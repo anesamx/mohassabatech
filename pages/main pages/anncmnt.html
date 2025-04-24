@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Mohassabatech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for header animation */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        #header.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-100">
+    e<hader id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-blue-600">
+                    Mohassabatech
+                </h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="/" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
+                    <li><a href="/pages/main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
+                    <li><a href="/pages/main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
+                    <li><a href="pages/auth/signup.html" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 shadow-md">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Latest Announcements</h2>
+            <div class="space-y-4">
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">New Platform Features Released!</h3>
+                        <p class="text-sm text-gray-500 mb-4">Published on April 22, 2025</p>
+                        <p class="text-gray-700">We're excited to announce the release of several new features designed to enhance your experience...</p>
+                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline">View Details</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Upcoming Maintenance Window</h3>
+                        <p class="text-sm text-gray-500 mb-4">Published on April 20, 2025</p>
+                        <p class="text-gray-700">Please be advised that we will be undergoing scheduled maintenance on April 25th from 10 PM to 2 AM CET...</p>
+                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline">View Details</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Job Fair for Accounting Professionals</h3>
+                        <p class="text-sm text-gray-500 mb-4">Published on April 15, 2025</p>
+                        <p class="text-gray-700">Mark your calendars! We're hosting a virtual job fair for accounting professionals on May 10th...</p>
+                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline">View Details</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Important Security Update</h3>
+                        <p class="text-sm text-gray-500 mb-4">Published on April 10, 2025</p>
+                        <p class="text-gray-700">We have implemented a critical security update to ensure the safety of your data. Please review the details...</p>
+                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline">View Details</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">New Resource Library Launched</h3>
+                        <p class="text-sm text-gray-500 mb-4">Published on April 5, 2025</p>
+                        <p class="text-gray-700">Explore our newly launched resource library, packed with valuable articles, guides, and templates for accounting professionals...</p>
+                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline">Explore Now</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Office Closure Announcement</h3>
+                        <p class="text-sm text-gray-500 mb-4">Published on March 28, 2025</p>
+                        <p class="text-gray-700">Please note that our physical offices will be closed on May 1st for a public holiday. Our online services will remain available...</p>
+                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex justify-center mt-6 space-x-2">
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">Previous</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">1</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">2</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">Next</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="py-4 text-center text-gray-700 bg-white">
+        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        let showHeaderTimeout;
+
+        function showHeaderOnScroll() {
+            if (window.scrollY > 50) {
+                header.classList.add('show');
+            } else {
+                header.classList.remove('show');
+            }
+        }
+
+        function showHeaderOnMousemove(event) {
+            if (event.clientY <= 50) {
+                header.classList.add('show');
+                clearTimeout(showHeaderTimeout);
+            } else if (window.scrollY <= 50) {
+                showHeaderTimeout = setTimeout(() => {
+                    header.classList.remove('show');
+                }, 100);
+            }
+            
+        }
+
+        window.addEventListener('scroll', showHeaderOnScroll);
+        window.addEventListener('mousemove', showHeaderOnMousemove);
+    </script>
+</body>
+</html>

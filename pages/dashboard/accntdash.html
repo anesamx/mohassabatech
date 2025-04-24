@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Dashboard - Mohassabatech</title>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+   <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="stylesheet" href="style.css">
+   <script src="modal.js" defer></script>
+</head>
+<body class="font-inter bg-gray-100">
+    <header id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="../../index.html">
+                <h1 class="text-2xl sm:text-3xl font-bold text-blue-600" >
+                    Mohassabatech
+                </h1>
+</a>
+                </div>
+            <nav>
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="../../index.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
+                    <li><a href="../main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
+                    <li><a href="../main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
+                    <li><a href="/register" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 shadow-md">Get Started</a></li>
+                  </ul>
+            </nav>
+        </div>
+    </header>
+<div id="modal-container"></div>
+
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 flex">
+        <aside class="w-1/4 pr-8 sidebar">
+            <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Dashboard Menu</h2>
+                <ul class="space-y-2">
+                    <li><a href="#profile" class="block text-gray-700 hover:text-blue-600 transition-colors duration-300 dashboard-link" data-content="profile-content">My Profile</a></li>
+                    <li><a href="#applications" class="block text-gray-700 hover:text-blue-600 transition-colors duration-300 dashboard-link" data-content="applications-content">Job Applications</a></li>
+                    <li><a href="#messages" class="block text-gray-700 hover:text-blue-600 transition-colors duration-300 dashboard-link" data-content="messages-content">Messages</a></li>
+                    <li><a href="#settings" class="block text-gray-700 hover:text-blue-600 transition-colors duration-300 dashboard-link" data-content="settings-content">Settings</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main class="flex-1 bg-white shadow rounded-lg p-6">
+            <h2 id="dashboard-title" class="text-2xl font-semibold text-gray-800 mb-4">My Profile</h2>
+            <div id="dashboard-content" class="hidden">
+                <p class="text-gray-700">Here's a summary of your activity:</p>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Recent Applications</h3>
+                    <p class="text-gray-600">You have recently applied to the following jobs:</p>
+                    <ul>
+                        <li>Senior Accountant at Tech Solutions Inc.</li>
+                        <li>Tax Analyst at Global Finance Corp.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="profile-content" class="hidden mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">My Profile Information</h3>
+                <div class="profile-info-item">
+                    <label class="profile-info-label">Username:</label>
+                    <p class="profile-info-value">john.doe</p>
+                </div>
+                <div class="profile-info-item">
+                    <label class="profile-info-label">Full Name:</label>
+                    <p class="profile-info-value">John Doe</p>
+                </div>
+                <div class="profile-info-item">
+                    <label class="profile-info-label">Phone Number:</label>
+                    <p class="profile-info-value">+1 555-123-4567</p>
+                </div>
+                <div class="profile-info-item">
+                    <label class="profile-info-label">Email:</label>
+                    <p class="profile-info-value">john.doe@example.com</p>
+                </div>
+            </div>
+
+            <div id="applications-content" class="hidden mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Job Applications</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="summary-box">
+                        <div class="summary-box-title">Total Jobs Applied</div>
+                        <div class="summary-box-value">15</div>
+                    </div>
+                    <div class="summary-box">
+                        <div class="summary-box-title">Pending Applications</div>
+                        <div class="summary-box-value">3</div>
+                    </div>
+                    <div class="summary-box">
+                        <div class="summary-box-title">Total Earnings</div>
+                        <div class="summary-box-value">$1,200</div>
+                    </div>
+                </div>
+
+                <h4 class="text-md font-semibold text-gray-800 mb-2">Pending Applications</h4>
+                <div class="scrollable-list-box mb-6">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Senior Accountant at Alpha Corp.
+                                <p class="text-sm text-gray-600">Applied on 2025-04-20</p>
+                            </div>
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">Contract</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Tax Specialist at Beta Industries
+                                <p class="text-sm text-gray-600">Applied on 2025-04-15</p>
+                            </div>
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">Contract</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Junior Auditor at Gamma Solutions
+                                <p class="text-sm text-gray-600">Applied on 2025-04-10</p>
+                            </div>
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">Contract</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4 class="text-md font-semibold text-gray-800 mb-2">Completed Jobs</h4>
+                <div class="scrollable-list-box">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Accountant at Delta Systems
+                                <p class="text-sm text-gray-600">Completed on 2025-04-05 - Earned $500</p>
+                            </div>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Bookkeeper at Epsilon Group
+                                <p class="text-sm text-gray-600">Completed on 2025-03-28 - Earned $700</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="messages-content" class="hidden mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Your Messages</h3>
+                <div class="scrollable-list-box">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Conversation with Alpha Corp.
+                                <p class="text-sm text-gray-600">Last message on 2025-04-22</p>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Chat with Beta Industries
+                                <p class="text-sm text-gray-600">Last message on 2025-04-18</p>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Inquiry about Gamma Solutions
+                                <p class="text-sm text-gray-600">Last message on 2025-04-10</p>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="settings-content" class="hidden mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Account Settings</h3>
+                <p class="text-gray-700">Here you can manage your account settings.</p>
+                <ul>
+                    <li>Change Password</li>
+                    <li>Update Email Preferences</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <footer class="py-4 text-center text-gray-700 bg-white mt-8">
+        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>

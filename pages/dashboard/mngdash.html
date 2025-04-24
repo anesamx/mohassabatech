@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager Dashboard - [Your Company Name]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-inter bg-gray-100">
+        <div id="modal-container"></div>
+    <header id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                 <a href="../../index.html" class="text-2xl sm:text-3xl font-bold text-blue-600">
+                 Mohassabatech                 
+                 </a>
+               
+             </div>
+            <nav>
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="../../index.html" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 hover:border-b-2 hover:border-indigo-600 pb-1">Home</a></li>                    <li><a href="../main pages/anncmnt.html" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 hover:border-b-2 hover:border-indigo-600 pb-1">Announcements</a></li>
+                     <li><a href="../main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
+                    <li><a href="/team" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 hover:border-b-2 hover:border-indigo-600 pb-1">Team</a></li>
+                    <li><a href="/reports" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 hover:border-b-2 hover:border-indigo-600 pb-1">Reports</a></li>
+                    <li><a href="/settings" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 hover:border-b-2 hover:border-indigo-600 pb-1">Settings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 flex">
+        <aside class="w-1/4 pr-8 sidebar">
+            <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Manager Menu</h2>
+                <ul class="space-y-2">
+                    <li><a href="#overview" class="block text-gray-700 hover:text-indigo-600 transition-colors duration-300 dashboard-link" data-content="overview-content">Overview</a></li>
+                    <li><a href="#pending-contracts" class="block text-gray-700 hover:text-indigo-600 transition-colors duration-300 dashboard-link active-link" data-content="pending-contracts-content">Pending Contracts</a></li>
+                    <li><a href="#ongoing-contracts" class="block text-gray-700 hover:text-indigo-600 transition-colors duration-300 dashboard-link" data-content="ongoing-contracts-content">Ongoing Contracts</a></li>
+                    <li><a href="#completed-contracts" class="block text-gray-700 hover:text-indigo-600 transition-colors duration-300 dashboard-link" data-content="completed-contracts-content">Completed Contracts</a></li>
+                    <li><a href="#reports" class="block text-gray-700 hover:text-indigo-600 transition-colors duration-300 dashboard-link" data-content="reports-content">Reports</a></li>
+                    <li><a href="#settings" class="block text-gray-700 hover:text-indigo-600 transition-colors duration-300 dashboard-link" data-content="settings-content">Settings</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main class="flex-1 bg-white shadow rounded-lg p-6">
+            <h2 id="dashboard-title" class="text-2xl font-semibold text-gray-800 mb-4">Pending Contracts</h2>
+            <div id="dashboard-content" class="hidden">
+                <p class="text-gray-700">Welcome to your manager dashboard.</p>
+            </div>
+
+            <div id="overview-content" class="hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Key Contract Metrics</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white shadow rounded-lg p-4 text-center">
+                        <div class="font-semibold text-gray-700 mb-1">Pending Contracts</div>
+                        <div class="font-bold text-xl text-yellow-600">5</div>
+                    </div>
+                    <div class="bg-white shadow rounded-lg p-4 text-center">
+                        <div class="font-semibold text-gray-700 mb-1">Ongoing Contracts</div>
+                        <div class="font-bold text-xl text-blue-600">12</div>
+                    </div>
+                    <div class="bg-white shadow rounded-lg p-4 text-center">
+                        <div class="font-semibold text-gray-700 mb-1">Completed Contracts (Last Week)</div>
+                        <div class="font-bold text-xl text-green-600">7</div>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Recent Activities</h3>
+                <div class="scrollable-list-box">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            Team member John Doe completed the "Marketing Strategy Report".
+                            <p class="text-sm text-gray-600">5 minutes ago</p>
+                        </li>
+                        <li class="scrollable-list-item">
+                            New task "Prepare Q3 Budget" assigned to Alice Smith.
+                            <p class="text-sm text-gray-600">15 minutes ago</p>
+                        </li>
+                        <li class="scrollable-list-item">
+                            Project "Website Redesign" moved to the "Development" stage.
+                            <p class="text-sm text-gray-600">30 minutes ago</p>
+                        </li>
+                        <li class="scrollable-list-item">
+                            Team meeting scheduled for tomorrow at 10:00 AM.
+                            <p class="text-sm text-gray-600">1 hour ago</p>
+                        </li>
+                        <li class="scrollable-list-item">
+                            Reminder: Review progress on "Customer Onboarding Flow" project.
+                            <p class="text-sm text-gray-600">2 hours ago</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="pending-contracts-content" class="">
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Pending Contracts</h3>
+    <div class="scrollable-list-box">
+        <ul class="list-none p-0">
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Accountant</p>
+                    <p class="text-gray-600">Company: Example Corp</p>
+                    <p class="text-gray-600">Accountant: Jane Doe</p>
+                    <p class="text-sm text-gray-500">Price: $50,000 | Time: Full-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Software Engineer</p>
+                    <p class="text-gray-600">Company: Google</p>
+                    <p class="text-gray-600">Accountant: John Smith</p>
+                    <p class="text-sm text-gray-500">Price: $120,000 | Time: Full-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Marketing Manager</p>
+                    <p class="text-gray-600">Company: Facebook</p>
+                    <p class="text-gray-600">Accountant: Alice Brown</p>
+                    <p class="text-sm text-gray-500">Price: $90,000 | Time: Full-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Data Scientist</p>
+                    <p class="text-gray-600">Company: Amazon</p>
+                    <p class="text-gray-600">Accountant: Bob Green</p>
+                    <p class="text-sm text-gray-500">Price: $110,000 | Time: Full-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+            <div id="ongoing-contracts-content" class="">
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Ongoing Contracts</h3>
+    <div class="scrollable-list-box">
+        <ul class="list-none p-0">
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Senior Developer</p>
+                    <p class="text-gray-600">Company: Tech Solutions Inc.</p>
+                    <p class="text-gray-600">Accountant: Carol White</p>
+                    <p class="text-sm text-gray-500">Price: $130,000 | Time: Full-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Content Writer</p>
+                    <p class="text-gray-600">Company: Global Media Corp.</p>
+                    <p class="text-gray-600">Accountant: David Black</p>
+                    <p class="text-sm text-gray-500">Price: $60,000 | Time: Part-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Project Manager</p>
+                    <p class="text-gray-600">Company: Innovation Group</p>
+                    <p class="text-gray-600">Accountant: Emily Grey</p>
+                    <p class="text-sm text-gray-500">Price: $100,000 | Time: Full-time</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+            <div id="completed-contracts-content" class="">
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Completed Contracts</h3>
+    <div class="scrollable-list-box">
+        <ul class="list-none p-0">
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: UI/UX Designer</p>
+                    <p class="text-gray-600">Company: Creative Agency Ltd.</p>
+                    <p class="text-gray-600">Accountant: Frank Blue</p>
+                    <p class="text-sm text-gray-500">Price: $80,000 | Time: Full-time | Completed On: 2025-04-15</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Backend Developer</p>
+                    <p class="text-gray-600">Company: Software Innovations Inc.</p>
+                    <p class="text-gray-600">Accountant: Grace Red</p>
+                    <p class="text-sm text-gray-500">Price: $115,000 | Time: Full-time | Completed On: 2025-04-01</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+            <li class="scrollable-list-item">
+                <div class="contract-details">
+                    <p class="font-semibold">Job: Sales Representative</p>
+                    <p class="text-gray-600">Company: Marketing Solutions Group.</p>
+                    <p class="text-gray-600">Accountant: Henry Yellow</p>
+                    <p class="text-sm text-gray-500">Price: $70,000 | Time: Full-time | Completed On: 2025-03-20</p>
+                </div>
+                <div class="contract-actions">
+                    <button>View</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+            <div id="reports-content" class="hidden mt-4">
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Contract Reports</h3>
+    <p class="text-gray-700">Generate and view reports related to contracts.</p>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2">Add a Report</button>
+
+    <div class="mt-4">
+        <h4 class="text-md font-semibold text-gray-700 mb-2">Previous Reports</h4>
+        <ul class="list-none pl-0 text-gray-700">
+            <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                <a href="#" class="hover:text-indigo-600 flex-grow">Monthly Contract Summary - March 2025</a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+            </li>
+            <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                <a href="#" class="hover:text-indigo-600 flex-grow">Q1 2025 Contract Performance</a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+            </li>
+            <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                <a href="#" class="hover:text-indigo-600 flex-grow">Pending Contracts - April 15, 2025</a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+            </li>
+            <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                <a href="#" class="hover:text-indigo-600 flex-grow">Completed Contracts - Last Quarter</a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline text-sm">View</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+            <div id="settings-content" class="hidden mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Manager Settings</h3>
+                <p class="text-gray-700">Manage your manager account settings and team configurations.</p>
+                <ul>
+                    <li><a href="#" class="text-blue-500 hover:text-blue-700">Profile Information</a></li>
+                    <li><a href="#" class="text-blue-500 hover:text-blue-700">Team Management</a></li>
+                    <li><a href="#" class="text-blue-500 hover:text-blue-700">Notification Settings</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <footer class="py-4 text-center text-gray-700 bg-white mt-8">
+        <p>© {new Date().getFullYear()} [Your Company Name]. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

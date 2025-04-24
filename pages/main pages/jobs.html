@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - Mohassabatech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for header animation */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        #header.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-100">
+    <header id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-blue-600">
+                    Mohassabatech
+                </h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="/" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
+                    <li><a href="/pages/main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
+                    <li><a href="/pages/main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
+                    <li><a href="pages/auth/signup.html" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 shadow-md">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
+        <div class="max-w-6xl mx-auto">
+            <section class="mb-8">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4">Find Your Dream Accounting Job</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location</label>
+                        <input type="text" id="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., City, State">
+                    </div>
+                    <div>
+                        <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
+                        <select id="category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="">All Categories</option>
+                            <option value="tax">Tax Accounting</option>
+                            <option value="audit">Audit</option>
+                            <option value="financial">Financial Accounting</option>
+                            <option value="management">Management Accounting</option>
+                            <option value="forensic">Forensic Accounting</option>
+                            <option value="governmental">Governmental Accounting</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2 flex items-center justify-end">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Search Jobs
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Job Listings</h2>
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <ul class="divide-y divide-gray-200">
+                        <li class="px-4 py-4 sm:px-6">
+                            <div class="flex items-center justify-between">
+                                <p class="text-lg font-medium text-blue-600 hover:underline">Senior Accountant</p>
+                                <p class="text-sm text-gray-500">Posted 3 days ago</p>
+                            </div>
+                            <p class="text-sm text-gray-900">ABC Company</p>
+                            <p class="text-sm text-gray-700">New York, NY</p>
+                            <p class="mt-2 text-sm text-gray-800">We are looking for a highly motivated Senior Accountant to join our growing team...</p>
+                            <div class="mt-4 flex justify-end">
+                                <button class="apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                    Apply
+                                </button>
+                                <a href="#" class="inline-block ml-4 text-blue-500 hover:underline">Learn More</a>
+                            </div>
+                            <div class="apply-success-message mt-2 text-green-600 hidden">You have applied successfully!</div>
+                        </li>
+                        <li class="px-4 py-4 sm:px-6">
+                            <div class="flex items-center justify-between">
+                                <p class="text-lg font-medium text-blue-600 hover:underline">Tax Manager</p>
+                                <p class="text-sm text-gray-500">Posted 7 days ago</p>
+                            </div>
+                            <p class="text-sm text-gray-900">XYZ Corp</p>
+                            <p class="text-sm text-gray-700">Los Angeles, CA</p>
+                            <p class="mt-2 text-sm text-gray-800">Join our dynamic tax department as a Tax Manager and lead complex tax planning projects...</p>
+                            <div class="mt-4 flex justify-end">
+                                <button class="apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                    Apply
+                                </button>
+                                <a href="#" class="inline-block ml-4 text-blue-500 hover:underline">Learn More</a>
+                            </div>
+                            <div class="apply-success-message mt-2 text-green-600 hidden">You have applied successfully!</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <nav class="flex justify-center space-x-2">
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">Previous</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">1</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">2</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">Next</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="py-4 text-center text-gray-700 bg-white">
+        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        let showHeaderTimeout;
+
+        function showHeaderOnScroll() {
+            if (window.scrollY > 50) {
+                header.classList.add('show');
+            } else {
+                header.classList.remove('show');
+            }
+        }
+
+        function showHeaderOnMousemove(event) {
+            if (event.clientY <= 50) {
+                header.classList.add('show');
+                clearTimeout(showHeaderTimeout);
+            } else if (window.scrollY <= 50) {
+                showHeaderTimeout = setTimeout(() => {
+                    header.classList.remove('show');
+                }, 100);
+            }
+        }
+
+        window.addEventListener('scroll', showHeaderOnScroll);
+        window.addEventListener('mousemove', showHeaderOnMousemove);
+    </script>
+</body>
+</html>
