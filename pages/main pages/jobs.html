@@ -7,23 +7,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Custom CSS for header animation */
+        #header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        #header.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
-<body class="font-inter bg-gray-100 relative">
+<body class="font-inter bg-gray-100">
     <header id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
-        <div class="flex justify-between items-center  max-w-7xl mx-auto">
+        <div class="flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <h1 class="text-2xl sm:text-3xl font-bold text-blue-600">
                     Mohassabatech
-                 </h1>
+                </h1>
             </div>
-            <nav >
-                <ul class="flex space-x-4 sm:space-x-6 items-center" >
-                   <li><a href="../../index.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
-                   <li><a href="anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
-                   <li><a href="jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
-                   <li ><a href="../auth/signup.html" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 shadow-md">Get Started</a></li>
-
+            <nav>
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="/" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
+                    <li><a href="/pages/main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
+                    <li><a href="/pages/main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
+                    <li><a href="pages/auth/signup.html" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 shadow-md">Get Started</a></li>
                 </ul>
             </nav>
         </div>
@@ -110,6 +123,32 @@
     <footer class="py-4 text-center text-gray-700 bg-white">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
-    <script src="../../script.js" ></script>
+
+    <script>
+        const header = document.getElementById('header');
+        let showHeaderTimeout;
+
+        function showHeaderOnScroll() {
+            if (window.scrollY > 50) {
+                header.classList.add('show');
+            } else {
+                header.classList.remove('show');
+            }
+        }
+
+        function showHeaderOnMousemove(event) {
+            if (event.clientY <= 50) {
+                header.classList.add('show');
+                clearTimeout(showHeaderTimeout);
+            } else if (window.scrollY <= 50) {
+                showHeaderTimeout = setTimeout(() => {
+                    header.classList.remove('show');
+                }, 100);
+            }
+        }
+
+        window.addEventListener('scroll', showHeaderOnScroll);
+        window.addEventListener('mousemove', showHeaderOnMousemove);
+    </script>
 </body>
 </html>

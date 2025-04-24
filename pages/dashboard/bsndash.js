@@ -1,6 +1,29 @@
 /* JavaScript from bsndash.js */
 document.addEventListener('DOMContentLoaded', function() {
-   
+    const header = document.getElementById('header');    
+    let showHeaderTimeout;
+
+    function showHeaderOnScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add('show');
+        } else {
+            header.classList.remove('show');
+        }
+    }
+
+    function showHeaderOnMousemove(event) {
+        if (event.clientY <= 50) {
+            header.classList.add('show');
+            clearTimeout(showHeaderTimeout);
+        } else if (window.scrollY <= 50) {
+            showHeaderTimeout = setTimeout(() => {
+                header.classList.remove('show');
+            }, 100);
+        }
+    }
+
+    window.addEventListener('scroll', showHeaderOnScroll);
+    window.addEventListener('mousemove', showHeaderOnMousemove);
 
 
     const dashboardLinks = document.querySelectorAll('.dashboard-link');
