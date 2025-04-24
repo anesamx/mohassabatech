@@ -1,29 +1,23 @@
 /* Styles for index.html */
 /* Custom CSS for header animation */
 
-#header {
-    position: sticky; top: 0; z-index: 10;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-}
-
 
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%; /* Ensure the header spans the entire width */
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    padding: 1rem;
+    padding: 1rem 0rem; /* Adjust padding for top and bottom */
+    
 }
 
-#header.show {
-    transform: translateY(0)
-    top: 0;
-    opacity: 1;
-}
 
 /* Basic body styles */
 body {
     font-family: 'Inter', sans-serif;
+    margin: 0; /* Remove default body margins */
 
 .header-container {
     max-width: 80rem;
@@ -33,6 +27,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 
 .header-logo {
     font-size: 1.5rem;
@@ -139,11 +134,6 @@ body {
     padding: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-#header.show {
-    transform: translateY(0);
-    opacity: 1;
-}
 
 /* Sticky sidebar */
 .sidebar {

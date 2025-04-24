@@ -25,11 +25,12 @@ if (window.location.pathname.includes('index.html')) {
         window.addEventListener('scroll', showHeaderOnScroll);
        // window.addEventListener('mousemove', showHeaderOnMousemove);    
         const getStartedButtons = document.querySelectorAll('.get-started-button');
-        if (getStartedButtons) {
+        if (getStartedButtons.length>0) {
            getStartedButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     event.preventDefault();
-                   window.location.href = "pages/auth/signup.html"
+                  // the code was here  window.location.href = "pages/auth/signup.html"
+                   
                 });
            });
         }

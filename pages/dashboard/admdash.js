@@ -1,28 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const headerAdm = document.getElementById('header');
-    let showHeaderTimeoutAdm;
-
-    function showHeaderOnScrollAdm() {
-        if (window.scrollY > 50) {
-            headerAdm.classList.add('show');
-        } else {
-            headerAdm.classList.remove('show');
-        }
-    }
-
-    function showHeaderOnMousemoveAdm(event) {
-        if (event.clientY <= 50) {
-            headerAdm.classList.add('show');
-            clearTimeout(showHeaderTimeoutAdm);
-        } else if (window.scrollY <= 50) {
-            showHeaderTimeoutAdm = setTimeout(() => {
-                headerAdm.classList.remove('show');
-            }, 100);
-        }
-    }
-
-    window.addEventListener('scroll', showHeaderOnScrollAdm);
-    window.addEventListener('mousemove', showHeaderOnMousemoveAdm);
+    
+    
 
 
     const dashboardLinks = document.querySelectorAll('.dashboard-link');

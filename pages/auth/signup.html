@@ -1,370 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mohassabatech</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../script.js" defer></script>
     <style>
-      /* Custom CSS for header animation */
-      #header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        transform: translateY(-50px);
-        opacity: 0;
-      }
-
-      #header.show {
-        transform: translateY(0);
-        opacity: 1;
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
+    .signup-box {
+      max-width: 500px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
 
-        .signup-box {
-            background-color: #fff;
-            padding: 30px;
-             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 350px; /* Adjusted width to accommodate more fields */
-            text-align: center;
+    .signup-box h2 {
+      margin-bottom: 20px;
+      color: #2d3748;
+      font-size: 1.8rem;
+    }
+
+    .role-select,
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="password"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .role-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .role-options label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      background-color: #4299e1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #2b6cb0;
+    }
+
+    .separator {
+      border-top: 1px solid #e2e8f0;
+      margin: 20px 0;
+    }
+
+    .login-link {
+      text-align: center;
+      color: #718096;
+    }
+
+    .login-link a {
+      color: #4299e1;
+      text-decoration: none;
         }
-
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .role-select {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .role-select label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-size: 0.9em;
-        }
-
-        .role-options label {
-            margin-right: 15px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-size: 0.9em;
-        }
-
-        .input-group input[type="text"],
-        .input-group input[type="email"],
-        .input-group input[type="password"] {
-            width: calc(100% - 12px);
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1em;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1em;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .separator {
-            border-top: 1px solid #eee;
-            margin-top: 20px;
-            margin-bottom: 15px;
-            color: #777;
-            font-size: 0.9em;
-        }
-
-        .login-link {
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        .login-link a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
+        .error {
+            color: red;
         }
     </style>
-  </head>
-  <body class="font-inter bg-gray-100">
-    <header
-      id="header"
-      class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md"
-    >
-      <div class="flex justify-between items-center">
-        <div class="flex items-center gap-4">
-          <a href="/" class="text-2xl sm:text-3xl font-bold text-blue-600">
-            Mohassabatech
-          </a>
+</head>
+  
+<body class="font-inter bg-gray-100">
+  
+    <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
+        <div class="signup-box">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <div class="role-select">
+                    <label>I am signing up as:</label>
+                    <div class="role-options">
+                        <label><input
+                type="radio"
+                name="role"
+                value="accountant"
+                id="accountantRole"
+              />
+              Accountant</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="role"
+                value="business"
+                id="businessRole"
+              />
+              Business</label
+            >
+          </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            required
+          />
         </div>
-        <nav>
-          <ul class="flex space-x-4 sm:space-x-6">
-            <li>
-              <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a>
-            </li>
-            <li>
-              <a href="../main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a>
-            </li>
-            <li>
-              <a href="../main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a>
-            </li>
-             <li> <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">back</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-     <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Your password"
+          />
+        </div>
 
-    <div class="signup-box">
-        <h2>Sign Up</h2>
-        <form id="signupForm">
-            <div class="role-select">
-                <label>I am signing up as:</label>
-                <div class="role-options">
-                    <label><input type="radio" name="role" value="accountant" id="accountantRole" > Accountant</label>
-                    <label><input type="radio" name="role" value="business" id="businessRole" > Business</label>
+        <div id="accountantFields" class="hidden">
+          <div class="input-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="Your full name"
+            />
+          </div>
+                    <div class="input-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Your phone number"
+            />
+          </div>
+          <div class="input-group">
+            <label for="workPermit">Work Permit Number</label>
+            <input
+              type="text"
+              id="workPermit"
+              name="workPermit"
+              placeholder="Your work permit number"
+            />
+          </div>
+        </div>
+
+        <div id="businessFields" class="hidden">
+          <div class="input-group">
+            <label for="businessName">Business Name</label>
+            <input
+              type="text"
+              id="businessName"
+              name="businessName"
+              placeholder="Business name"
+            />
+          </div>
+          <div class="input-group">
+            <label for="businessPhone">Business Phone Number</label>
+            <input
+              type="text"
+              id="businessPhone"
+              name="businessPhone"
+              placeholder="Business phone number"
+            />
+          </div>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Choose a username" required>
-           </div>
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your email" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Your password">
-            </div>
 
-            <div id="accountantFields" class="hidden">
-                <div class="input-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Your full name">
-                </div>
-                <div class="input-group">
-                    <label for="phoneNumber">Phone Number</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Your phone number">
-                </div>
-                <div class="input-group">
-                    <label for="workPermit">Work Permit Number</label>
-                    <input type="text" id="workPermit" name="workPermit" placeholder="Your work permit number">
-                </div>
-            </div>
+                <button type="submit">Create Account</button>
+            </form>
+            <hr class="separator" />
+            <p class="login-link">
+                Already have an account?
+                <a href="auth.html">Log in</a>
+            </p>
+        </div>
+        <script type="module">
+            // Firebase Imports and Initialization
+            import {
+                initializeApp
+            } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        setDoc,
+      } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-            <div id="businessFields" class="hidden">
-                <div class="input-group">
-                    <label for="businessName">Business Name</label>
-                    <input type="text" id="businessName" name="businessName" placeholder="Business name">
-                </div>
-                <div class="input-group">
-                    <label for="businessPhone">Business Phone Number</label>
-                    <input type="text" id="businessPhone" name="businessPhone" placeholder="Business phone number">
-                </div>
-            </div>
+            const firebaseConfig = {
+                apiKey: "AIzaSyBt4iqIQljxLZvuedUBBdwqE-GnWcRbcbs",
+        authDomain: "mohassabatech-pro.firebaseapp.com",
+        projectId: "mohassabatech-pro",
+        storageBucket: "mohassabatech-pro.firebasestorage.app",
+        messagingSenderId: "885034594340",
+        appId: "1:885034594340:web:82599328783db409a3e8b1",
+        measurementId: "G-7DTQNZK1F4",
+      };
+      const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
 
-            <button type="submit">Create Account</button>
-        </form>
-          <hr class="separator">
-        <p class="login-link">Already have an account? <a href="/pages/auth/auth.html">Log in</a></p>
-    </div>
-    <script type="module">
-        // Firebase Imports and Initialization
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js';
-        import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js';
-        import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
+            // Function to display a toast message
+      async function displayToast(message, type = "success") {
+        try {
+          const toastContainer = document.createElement("div");
+          toastContainer.classList.add("toast-container");
+          document.body.appendChild(toastContainer);
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBt4iqIQljxLZvuedUBBdwqE-GnWcRbcbs",
-            authDomain: "mohassabatech-pro.firebaseapp.com",
-            projectId: "mohassabatech-pro",
-            storageBucket: "mohassabatech-pro.firebasestorage.app",
-            messagingSenderId: "885034594340",
-            appId: "1:885034594340:web:82599328783db409a3e8b1",
-            measurementId: "G-7DTQNZK1F4",
-        };
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+          const toast = document.createElement("div");
+          toast.classList.add("toast", type);
+          toast.textContent = message;
+          toastContainer.appendChild(toast);
 
-        // Function to display a toast message
-        async function displayToast(message, type = 'success') {
-            try {
-                const toastContainer = document.createElement('div');
-                toastContainer.classList.add('toast-container');
-                document.body.appendChild(toastContainer);
-
-                const toast = document.createElement('div');
-                toast.classList.add('toast', type);
-                toast.textContent = message;
-                toastContainer.appendChild(toast);
-
-                setTimeout(() => {
-                    toast.remove();
-                    toastContainer.remove();
-                }, 3000); // Remove after 3 seconds
-            } catch (error) {
-                console.error('Error displaying toast:', error);
+          setTimeout(() => {
+            toast.remove();
+            toastContainer.remove();
+          }, 3000); // Remove after 3 seconds
+        } catch (error) {
+          console.error("Error displaying toast:", error);
             }
+      }
+    
+      // Function to display errors
+      async function displayError(message, containerClass = "signup-box") {
+        try {
+          const errorContainer = document.querySelector(`.${containerClass}`);
+          if (!errorContainer) {
+            console.error("Error container not found.");
+            return;
+          }
+          errorContainer.querySelectorAll(".error").forEach((el) => el.remove());
+          const errorDiv = document.createElement("div");
+          errorDiv.classList.add("error");
+          errorDiv.textContent = message;
+          errorContainer.prepend(errorDiv);
+          setTimeout(() => {
+            errorDiv.remove();
+          }, 3000);
+        } catch (error) {
+          console.error("Error displaying error:", error);
         }
-
-        // Function to display errors
-        async function displayError(message, containerClass = 'signup-box') {
-            try {
-                const errorContainer = document.querySelector(`.${containerClass}`);
-                if (!errorContainer) {
-                    console.error('Error container not found.');
-                    return;
-                }
-                errorContainer.querySelectorAll('.error').forEach(el => el.remove());
-                const errorDiv = document.createElement('div');
-                errorDiv.classList.add('error');
-                errorDiv.textContent = message;
-                errorContainer.prepend(errorDiv);
-                setTimeout(() => {
-                    errorDiv.remove()
-                }, 3000);
-            } catch (error) {
-                console.error('Error displaying error:', error);
             }
+
+      // Function to handle user sign up
+      async function handleUserSignUp(event) {
+        try {
+          event.preventDefault();
+          const form = event.target;
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+          const role = data.role;
+          if (!role) {
+            await displayError("Please select a role.");
+            return;
+          }
+          const requiredFields =
+            role === "accountant"
+              ? [
+                  "username",
+                  "email",
+                  "password",
+                  "fullName",
+                  "phoneNumber",
+                  "workPermit",
+                ]
+              : ["username", "email", "password", "businessName", "businessPhone"];
+          const isFormValid = requiredFields.every(
+            (field) => data[field] && data[field].trim() !== ""
+          );
+          if (!isFormValid) {
+            await displayError("Please fill in all required fields.");
+                return;
+          }
+          const email = data.email;
+          const password = data.password;
+          const username = data.username;
+            const fullName = data.fullName;
+          const phoneNumber = data.phoneNumber;
+          const workPermit = data.workPermit;
+            const businessName = data.businessName;
+          const businessPhone = data.businessPhone;
+
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          const user = userCredential.user;
+          const userDocData = {
+            uid: user.uid,
+            username: username,
+            email: email,
+          };
+          if (role === "accountant") {
+                userDocData.fullName = fullName;
+                userDocData.phoneNumber = phoneNumber;
+                userDocData.workPermit = workPermit;
+                userDocData.role = "accountant";
+            } else if (role === "business") {
+                userDocData.businessName = businessName;
+                userDocData.businessPhone = businessPhone;
+                userDocData.role = "business";
+            } 
+          await setDoc(doc(db, "users", user.uid), userDocData);
+          await displayToast("Signup successful!");
+
+          if (role === "accountant") {
+                //use role
+                window.location.href = "../dashboard/accntdash.html"; // Redirect to accountant dashboard
+            } else if (role === "business") {
+            //use role
+            window.location.href = "../dashboard/bsndash.html"; // Redirect to business dashboard
+          }
+        } catch (error) {
+          const errorMessage = error.message;
+          await displayToast("Signup faild check your conection!", "error");
+          await displayError(errorMessage);
+          console.error("Error signing up:", error);
         }
+      }
 
-        // Function to handle user sign up
-        async function handleUserSignUp(event) {
-            try {
-                event.preventDefault();
-                const form = event.target;
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());        
-                const role = data.role;
-                if (!role) {
-                   await displayError('Please select a role.'); 
-                   return;
+      function toggleFields() {
+        try {
+          const accountantFields = document.getElementById("accountantFields");
+                const businessFields = document.getElementById("businessFields");
+                const roles = document.querySelectorAll('input[name="role"]'); // Get all radio buttons with name="role"
+                let role = null;
+                roles.forEach((radio) => {
+                    if (radio.checked) {
+                        role = radio.value; // Get the value of the checked radio button
+                    }
+                });
+                if (role === "accountant") {
+                    //use role
+                    accountantFields.classList.remove("hidden");
+                    businessFields.classList.add("hidden");
+                } else if (role === "business") {
+                    //use role
+                    businessFields.classList.remove("hidden");
+                    accountantFields.classList.add("hidden");
+                } else {
+                    accountantFields.classList.add("hidden");
+                    businessFields.classList.add("hidden");
                 }
-                const requiredFields = role === 'accountant' ? ['username', 'email', 'password', 'fullName', 'phoneNumber', 'workPermit'] : ['username', 'email', 'password', 'businessName', 'businessPhone'];
-                const isFormValid = requiredFields.every(field => data[field] && data[field].trim() !== '');
-                if (!isFormValid) {
-                   await displayError('Please fill in all required fields.');
-                    return;
-                 }
-                const email = data.email;
-                const password = data.password;
-                const username = data.username;
-                const fullName = data.fullName;
-                const phoneNumber = data.phoneNumber;
-                const workPermit = data.workPermit;
-                const businessName = data.businessName;
-                const businessPhone = data.businessPhone;
-
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                const userDocData = {
-                    uid: user.uid,
-                    username: username,
-                    email: email,
-                };
-                if (role === 'accountant') {
-                    userDocData.fullName = fullName;
-                    userDocData.phoneNumber = phoneNumber;
-                    userDocData.workPermit = workPermit;
-                    userDocData.role = 'accountant';
-                } else if (role === 'business') {
-                    userDocData.businessName = businessName;
-                    userDocData.businessPhone = businessPhone;
-                    userDocData.role = 'business';
-                }
-                await setDoc(doc(db, "users", user.uid), userDocData);
-                await displayToast('Signup successful!');
-                if (role === 'accountant') { //use role
-                    window.location.href = '/pages/dashboard/accntdash.html'; // Redirect to accountant dashboard
-                 } else if (role === 'business') { //use role
-                    window.location.href = '/pages/dashboard/bsndash.html'; // Redirect to business dashboard
-                }
-            } catch (error) {
-                const errorMessage = error.message;
-                await displayToast('Signup faild check your conection!', 'error');
-                await displayError(errorMessage);
-                console.error("Error signing up:", error);
-            }
+        } catch (error) {
+          console.error("Error displaying error:", error);
         }
+      }
+      document
+        .querySelectorAll('input[name="role"]')
+        .forEach((radio) =>
+          radio.addEventListener("change", async () => {
+            await toggleFields();
+          })
+        );
+      document.addEventListener("DOMContentLoaded", async () => {
+        await toggleFields();
+      });
 
-        function toggleFields() {
-         try{
-            const accountantFields = document.getElementById('accountantFields');
-            const businessFields = document.getElementById('businessFields');
-            const roles = document.querySelectorAll('input[name="role"]'); // Get all radio buttons with name="role"
-            let role = null;
-            roles.forEach(radio => {
-                if (radio.checked) {
-                    role = radio.value; // Get the value of the checked radio button
-                }
-            });
-            if (role === 'accountant') { //use role
-            accountantFields.classList.remove('hidden');
-            businessFields.classList.add('hidden');
-            } else if (role === 'business') { //use role
-            businessFields.classList.remove('hidden');
-            accountantFields.classList.add('hidden');
-            } else {
-            accountantFields.classList.add('hidden');
-            businessFields.classList.add('hidden');
-            }
-         }catch(error){
-            console.error("Error displaying error:", error);
-            }
-        }
-        document.querySelectorAll('input[name="role"]').forEach(radio => radio.addEventListener('change', async() => {await toggleFields()}))
-        document.addEventListener('DOMContentLoaded', async () => {await toggleFields()});
-
-        // Get radio buttons and add event listeners
-        const accountantRoleRadio = document.getElementById('accountantRole');
-        const businessRoleRadio = document.getElementById('businessRole');
-        accountantRoleRadio.addEventListener('change', toggleFields);
-        businessRoleRadio.addEventListener('change', toggleFields);
-        toggleFields();
-        // Add event listener to the form for sign up handling
-        document.getElementById('signupForm').addEventListener('submit', handleUserSignUp);
+      // Get radio buttons and add event listeners
+      const accountantRoleRadio = document.getElementById("accountantRole");
+      const businessRoleRadio = document.getElementById("businessRole");
+      accountantRoleRadio.addEventListener("change", toggleFields);
+      businessRoleRadio.addEventListener("change", toggleFields);
+      toggleFields();
+      // Add event listener to the form for sign up handling
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", handleUserSignUp);
     </script>
-
     </main>
     <footer class="py-4 text-center text-gray-700 bg-white">
-      <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
 </body>
 </html>
+
+
+  
+  
+ 
