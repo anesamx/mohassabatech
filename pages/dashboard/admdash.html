@@ -1,69 +1,64 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - [Your Company Name]</title>
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <title>Admin Dashboard - Mohassabatech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-inter bg-gray-100">
     <div id="modal-container"></div>
-    <header id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
-        <div class="flex justify-between items-center">
+    <header id="header" class="header py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
+        <div class="flex justify-between items-center header-container">
             <div class="flex items-center gap-4">
-                  <a href="../../../index.html" class="text-2xl sm:text-3xl font-bold text-blue-600">
+                <a href="../../../index.html" class="text-2xl sm:text-3xl font-bold text-blue-600 header-logo">
                     Mohassabatech
                 </a>
-               
             </div>
-            <nav>
-                <ul class="flex space-x-4 sm:space-x-6">  
-                    <li><a href="/index.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
-                    <li><a href="/pages/main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
-                    <li><a href="/pages/main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
-
-                   
-                    
+            <nav class="header-nav">
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="../../../index.html" class="header-link">Home</a></li>
+                    <li><a href="/pages/main pages/anncmnt.html" class="header-link">Announcements</a></li>
+                    <li><a href="/pages/main pages/jobs.html" class="header-link">Jobs</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 flex">
-        <aside class="w-1/4 pr-8 sidebar">
-             <!-- Sidebar Menu -->
-            <div class="bg-white shadow rounded-lg p-6" >
-                <h2 class="text-xl font-semibold text-gray-800">Admin Menu</h2>
-                <ul class="space-y-2">
-                    <li><a href="#overview" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link active-link" data-content="overview-content">Overview</a></li>
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 flex dashboard-container">
+        <aside class="w-1/4 pr-8 sidebar dashboard-sidebar">
+            <!-- Sidebar Menu -->
+            <div class="bg-white shadow rounded-lg p-6 sidebar-menu">
+                <h2 class="text-xl font-semibold text-gray-800 sidebar-title">Admin Menu</h2>
+                <ul class="space-y-2 sidebar-links">
+                    <li><a href="#overview" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="overview-content">Overview</a></li>
                     <li>
-                        <div class="block text-gray-700 font-semibold mb-1">Users</div>
+                        <div class="block text-gray-700 font-semibold mb-1 sidebar-submenu-title">Users</div>
                         <ul class="ml-4 space-y-1 sidebar-submenu">
-                            <li><a href="#managers" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link" data-content="managers-content">Managers</a></li>
-                            <li><a href="#accountants" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link active-link" data-content="accountants-content">Accountants</a></li>
-                            <li><a href="#companies" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link" data-content="companies-content">Companies</a></li>
+                            <li><a href="#managers" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="managers-content">Managers</a></li>
+                            <li><a href="#accountants" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="accountants-content">Accountants</a></li>
+                            <li><a href="#companies" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="companies-content">Companies</a></li>
                         </ul>
                     </li>
-                    <li><a href="#accountant-approval" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link" data-content="accountant-approval-content">Accountant Approval</a></li>
-                    <li><a href="#announcements" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link" data-content="announcements-content">Announcements</a></li>
-                    <li><a href="#audit-log" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link" data-content="audit-log-content">Audit Log</a></li>
-                    <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link" data-content="settings-content">Settings</a></li>
+                    <li><a href="#accountant-approval" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="accountant-approval-content">Accountant Approval</a></li>
+                    <li><a href="#announcements" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="announcements-content">Announcements</a></li>
+                    <li><a href="#audit-log" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="audit-log-content">Audit Log</a></li>
+                    <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content">Settings</a></li>
                 </ul>
             </div>
         </aside>
-        <main class="flex-1 bg-white shadow rounded-lg p-6">
-         <!-- Main Content -->
-            <h2 id="dashboard-title" class="text-2xl font-semibold text-gray-800 mb-4">Overview</h2>
-            <div id="dashboard-content" class="hidden">
+        <main class="flex-1 bg-white shadow rounded-lg p-6 dashboard-main">
+            <!-- Main Content -->
+            <h2 id="dashboard-title" class="text-2xl font-semibold text-gray-800 mb-4 dashboard-main-title">Overview</h2>
+            <div id="dashboard-content" class="hidden dashboard-main-content">
                 <p class="text-gray-700">Welcome to the admin dashboard.</p>
-           </div>
+            </div>
 
-            <div id="overview-content" class="">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">System Overview</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div id="overview-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 dashboard-section-title">System Overview</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
                     <div class="metric-box">
                         <div class="metric-label">Total Users</div>
                         <div class="metric-value text-blue-600">150</div>
@@ -78,8 +73,8 @@
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Contracts</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 dashboard-section-title">Contracts</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
                     <div class="metric-box">
                         <div class="metric-label">Total Contracts</div>
                         <div class="metric-value text-indigo-600">200</div>
@@ -94,8 +89,8 @@
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Earnings</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 dashboard-section-title">Earnings</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
                     <div class="metric-box">
                         <div class="metric-label">Total Earnings</div>
                         <div class="metric-value text-teal-600">$500,000</div>
@@ -110,8 +105,8 @@
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Admin Actions</h3>
-                <div class="scrollable-list-box">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 dashboard-section-title">Recent Admin Actions</h3>
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             Admin John Doe created a new user "Jane Smith".
@@ -129,12 +124,12 @@
                 </div>
             </div>
 
-        <!-- Accountants Content -->
-            <div id="accountants-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Accountants Management</h3>
-                <p class="text-gray-700">Manage accountant accounts and their details.</p>
-                <button class="button-primary mb-4">Add New Accountant</button>
-                <div class="scrollable-list-box">
+            <!-- Accountants Content -->
+            <div id="accountants-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Accountants Management</h3>
+                <p class="text-gray-700 dashboard-section-description">Manage accountant accounts and their details.</p>
+                <button class="button-primary mb-4 dashboard-section-button">Add New Accountant</button>
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             <div class="flex-grow">
@@ -154,12 +149,12 @@
                 </div>
             </div>
 
-          <!-- Companies Content -->
-            <div id="companies-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Companies Management</h3>
-                <p class="text-gray-700">Manage company profiles and their information.</p>
-                <button class="button-primary mb-4">Add New Company</button>
-                <div class="scrollable-list-box">
+            <!-- Companies Content -->
+            <div id="companies-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Companies Management</h3>
+                <p class="text-gray-700 dashboard-section-description">Manage company profiles and their information.</p>
+                <button class="button-primary mb-4 dashboard-section-button">Add New Company</button>
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             <div class="flex-grow">
@@ -180,11 +175,11 @@
             </div>
 
             <!-- Managers Content -->
-            <div id="managers-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Managers Management</h3>
-                <p class="text-gray-700">Manage manager accounts and their roles.</p>
-                <button class="button-primary mb-4">Add New Manager</button>
-                <div class="scrollable-list-box">
+            <div id="managers-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Managers Management</h3>
+                <p class="text-gray-700 dashboard-section-description">Manage manager accounts and their roles.</p>
+                <button class="button-primary mb-4 dashboard-section-button">Add New Manager</button>
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             <div class="flex-grow">
@@ -204,27 +199,27 @@
                 </div>
             </div>
 
-           <!-- Accountant Approval Content -->
-            <div id="accountant-approval-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Accountant Approval</h3>
-                <p class="text-gray-700 mb-4">Approve or reject pending accountant registrations.</p>
-                <div class="scrollable-list-box">
+            <!-- Accountant Approval Content -->
+            <div id="accountant-approval-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Accountant Approval</h3>
+                <p class="text-gray-700 mb-4 dashboard-section-description">Approve or reject pending accountant registrations.</p>
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
-                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between scrollable-list-item">
                             <span class="font-semibold">Jane Doe</span>
                             <div class="flex items-center space-x-4">
                                 <button class="button-primary text-sm">Approve</button>
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm">Reject</button>
                             </div>
                         </li>
-                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between scrollable-list-item">
                             <span class="font-semibold">John Smith</span>
                             <div class="flex items-center space-x-4">
                                 <button class="button-primary text-sm">Approve</button>
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm">Reject</button>
                             </div>
                         </li>
-                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between">
+                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between scrollable-list-item">
                             <span class="font-semibold">Alice Brown</span>
                             <div class="flex items-center space-x-4">
                                 <button class="button-primary text-sm">Approve</button>
@@ -236,12 +231,12 @@
             </div>
 
             <!-- Announcements Content -->
-            <div id="announcements-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Announcements</h3>
-                <p class="text-gray-700 mb-4">Manage announcements.</p>
-                <button class="button-primary mb-4">Create New Announcement</button>
+            <div id="announcements-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Announcements</h3>
+                <p class="text-gray-700 mb-4 dashboard-section-description">Manage announcements.</p>
+                <button class="button-primary mb-4 dashboard-section-button">Create New Announcement</button>
                 <h4 class="text-md font-semibold text-gray-700 mb-2">Old Announcements</h4>
-                <div class="scrollable-list-box">
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             <div class="flex-grow">
@@ -262,9 +257,9 @@
             </div>
 
             <!-- Audit Log Content -->
-            <div id="audit-log-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Audit Log</h3>
-                <div class="scrollable-list-box">
+            <div id="audit-log-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Audit Log</h3>
+                <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             User "Jane Smith" logged in at 10:00 AM.
@@ -282,10 +277,10 @@
                 </div>
             </div>
 
-              <!-- Settings Content -->
-            <div id="settings-content" class="hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Admin Settings</h3>
-                <p class="text-gray-700">Manage admin account settings and system configurations.</p>
+            <!-- Settings Content -->
+            <div id="settings-content" class="dashboard-section hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Admin Settings</h3>
+                <p class="text-gray-700 dashboard-section-description">Manage admin account settings and system configurations.</p>
                 <ul>
                     <li><a href="#" class="text-blue-500 hover:text-blue-700">Profile Information</a></li>
                     <li><a href="#" class="text-blue-500 hover:text-blue-700">System Configuration</a></li>
@@ -298,6 +293,6 @@
     <footer class="py-4 text-center text-gray-700 bg-white mt-8">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
-    <script src="/pages/dashboard/admdash.js"></script>
+    <script src="../../script.js"></script>
 </body>
 </html>

@@ -1,34 +1,31 @@
-/* Styles for index.html */
-/* Custom CSS for header animation */
-
-#header {
-    position: sticky; top: 0; z-index: 10;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 0;
 }
 
-
+/* Header Styles */
 .header {
+    position: fixed; /* Changed to fixed for proper positioning */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     padding: 1rem;
+    transition: transform 0.3s ease-in-out;
 }
 
-#header.show {
-    transform: translateY(0)
-    top: 0;
-    opacity: 1;
+.header.show {
+    transform: translateY(0);
 }
-
-/* Basic body styles */
-body {
-    font-family: 'Inter', sans-serif;
 
 .header-container {
     max-width: 80rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,18 +34,23 @@ body {
 .header-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2b6cb0 !important;
+    color: #2b6cb0;
+    text-decoration: none;
 }
 
 .header-nav ul {
     display: flex;
     gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .header-nav a {
     color: #4a5568;
     transition: color 0.3s ease-in-out;
     padding-bottom: 0.25rem;
+    text-decoration: none;
 }
 
 .header-nav a:hover {
@@ -69,6 +71,199 @@ body {
     background-color: #2c5282;
 }
 
+/* Dashboard Styles */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    margin-top: 4rem; /* Adjust based on header height */
+}
+
+.dashboard-sidebar {
+    width: 25%;
+    padding-right: 2rem;
+    position: sticky;
+    top: 5rem; /* Adjusted to avoid overlap with the header */
+    height: calc(100vh - 5rem - 1rem); /* Adjusted to fit within the viewport */
+}
+
+.sidebar-menu {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: #4a5568;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.sidebar-link:hover {
+    color: #007bff;
+}
+
+.sidebar-link.active-link {
+    color: #007bff;
+    font-weight: 600;
+    border-left: 2px solid #007bff;
+    padding-left: 1.25rem;
+}
+
+.sidebar-submenu {
+    margin-left: 1.25rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid #e2e8f0;
+}
+
+.dashboard-main {
+    flex-grow: 1;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+.dashboard-main-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+/* Dashboard Section Styles */
+.dashboard-section {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dashboard-section:last-child {
+    border-bottom: none;
+}
+
+.dashboard-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-section-description {
+    color: #718096;
+    margin-bottom: 1rem;
+}
+
+.dashboard-section-content {
+    margin-top: 1rem;
+}
+
+.dashboard-section-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Metric Box Styles */
+.metric-box {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.metric-label {
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* List and Item Styles */
+.scrollable-list-box {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.scrollable-list-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scrollable-list-item:last-child {
+    border-bottom: none;
+}
+
+/* Button Styles */
+.button-primary,
+.contract-actions button,
+.job-actions button,
+.application-actions button,
+.candidate-actions button,
+.button,
+.jobs-search-button,
+.dashboard-section-button,
+.hero-btn{
+    background-color: #2b6cb0;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+.button-primary:hover,
+.contract-actions button:hover,
+.job-actions button:hover,
+.application-actions button:hover,
+.candidate-actions button:hover,
+.button:hover,
+.jobs-search-button:hover,
+.dashboard-section-button:hover,
+.hero-btn:hover{
+    background-color: #2c5282;
+}
+
+/* Details and Actions */
+.job-details,
+.application-details,
+.candidate-details,
+.contract-details {
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+/* Hero section */
 /* Hero section styles */
 .hero {
     background-color: transparent;
@@ -95,18 +290,6 @@ body {
     margin-bottom: 2rem;
 }
 
-.hero-btn {
-    background-color: #2b6cb0;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    transition: background-color 0.3s ease-in-out;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}
-
-.hero-btn:hover {
-    background-color: #2c5282;
-}
 
 .hero-btn-secondary {
     background-color: #e2e8f0;
@@ -116,7 +299,7 @@ body {
 .hero-btn-secondary:hover {
     background-color: #cbd5e0;
 }
-
+/* Features section */
 /* Features section styles */
 .features {
     padding: 4rem 1rem;
@@ -139,28 +322,7 @@ body {
     padding: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-#header.show {
-    transform: translateY(0);
-    opacity: 1;
 }
-
-/* Sticky sidebar */
-.sidebar {
-    position: sticky;
-    top: 16px;
-    height: calc(100vh - 16px - 4rem);
-}
-
-/* Style for active sidebar link */
-.active-link {
-    background-color: rgba(0, 123, 255, 0.1);
-    color: #007bff;
-    font-weight: 600;
-    border-left: 2px solid #007bff;
-    padding-left: 1.25rem;
-}
-
 /* Style for profile information */
 .profile-info-item {
     margin-bottom: 1rem;
@@ -190,96 +352,101 @@ body {
 .summary-box-value {
     font-bold text-xl text-blue-600;
 }
-
-/* Style for scrollable list boxes */
-.scrollable-list-box {
-    background-white shadow rounded-lg overflow-y-auto;
-    max-height: 300px;
-    padding: 0.5rem;
+/* jobs section */
+/* Search section styles */
+.jobs-search {
+    margin-bottom: 2rem;
 }
 
-.scrollable-list-item {
-    background-color: #f7fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.375rem;
-    padding: 0.75rem 1rem;
+.jobs-search-title {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.jobs-search-label {
+    font-weight: 600;
+    color: #4a5568;
     margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+.jobs-search-input,
+.jobs-search-select {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+/* Job listings section styles */
+.jobs-listings {
+    margin-bottom: 2rem;
 }
 
-.scrollable-list-item:last-child {
-    margin-bottom: 0;
+.jobs-listings-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
 }
 
-
-/* Styles from admdash.html */
-/* Reusing styles from the manager dashboard for consistency */
-
-
-
-.metric-box {
+.jobs-listings-list {
     background-color: white;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -5px rgba(0, 0, 0, 0.1); /* Tailwind's shadow */
-    border-radius: 0.5rem; /* Tailwind's rounded-lg */
-    padding: 1rem; /* Tailwind's p-4 */
-    text-align: center;
-}
-
-.metric-label {
-    font-weight: 600; /* Tailwind's font-semibold */
-    color: #4a5568; /* Tailwind's text-gray-700 */
-    margin-bottom: 0.25rem; /* Adjusted for spacing */
-}
-
-.metric-value {
-    font-weight: 700; /* Tailwind's font-bold */
-    font-size: 1.25rem; /* Tailwind's text-xl */
-}
-
-.button-primary {
-    background-color: #007bff;
-    color: white;
-    border: none;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     border-radius: 0.375rem;
-    padding: 0.75rem 1.25rem;
-    cursor: pointer;
+}
+
+.jobs-listings-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.jobs-listings-item:last-child {
+    border-bottom: none;
+}
+
+.jobs-listings-item-title {
+    font-weight: 600;
+    color: #2b6cb0;
+}
+
+.jobs-listings-item-title:hover {
+    text-decoration: underline;
+}
+
+.jobs-listings-item-date {
     font-size: 0.875rem;
-    transition: background-color 0.3s ease;
+    color: #718096;
 }
 
-.button-primary:hover {
-    background-color: #0056b3;
+.jobs-listings-item-company {
+    font-weight: 600;
+    color: #2d3748;
 }
 
-.sidebar-submenu {
-    margin-left: 1.25rem;
-    padding-left: 0.75rem;
-    border-left: 1px solid #e2e8f0;
+.jobs-listings-item-location {
+    color: #4a5568;
 }
 
-/* Styles from bsndash.html */
-/*No new styles*/
-
-
-/* Styles from mngdash.html */
-/* style for contract details and actions */
-.contract-details {
-    flex-grow: 1;
+.jobs-listings-item-description {
+    margin-top: 0.5rem;
+    color: #2d3748;
 }
 
-.contract-actions button {
-    background-color: #28a745; /* Green button */
-    color: white;
-    border: none;
-    border-radius: 0.375rem;
-    padding: 0.5rem 0.75rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-    transition: background-color 0.3s ease;
+.jobs-listings-item-actions {
+    margin-top: 1rem;
 }
 
-.contract-actions button:hover {
-    background-color: #1e7e34;
+.jobs-listings-item-link {
+    color: #2b6cb0;
+}
+
+.jobs-listings-item-link:hover {
+    text-decoration: underline;
+}
+
+/* Pagination styles */
+.jobs-pagination {
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.jobs-listings-item-success{
+    color: green;
+    margin-top: 10px;
 }
