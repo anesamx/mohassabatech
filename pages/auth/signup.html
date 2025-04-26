@@ -312,9 +312,9 @@
                 await setDoc(doc(db, "users", user.uid), userDocData);
                 await displayToast('Signup successful!');
                 if (role === 'accountant') { //use role
-                    window.location.href = '/pages/dashboard/accntdash.html'; // Redirect to accountant dashboard
+                    window.location.href = '../dashboard/accntdash.html'; // Redirect to accountant dashboard
                  } else if (role === 'business') { //use role
-                    window.location.href = '/pages/dashboard/bsndash.html'; // Redirect to business dashboard
+                    window.location.href = '../dashboard/bsndash.html'; // Redirect to business dashboard
                 }
             } catch (error) {
                 const errorMessage = error.message;
