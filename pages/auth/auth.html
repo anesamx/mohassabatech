@@ -9,16 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-        <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      type="module"
-      src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"
-    ></script>
- <script
-      type="module"
-      src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"
-    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <script type="module" src="firebase.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
     
     <style>        
      .auth-form .error {color: red;}       
@@ -42,13 +36,13 @@
       }
     </style>    
     <script type="module">
+      import { getDoc, doc } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
       import { auth, db } from "../../firebase.js";
-         const {signInWithEmailAndPassword} = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
-           import { getDocs, collection, query, where } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
-           import { getDoc, doc } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
-
+      const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
+    
+       
       
-        // Function to handle user sign in
+         // Function to handle user sign in
          async function handleUserSignIn(event) {          
             try {
                 event.preventDefault();
@@ -82,15 +76,13 @@
                         window.location.href = '../dashboard/mngdash.html';
                         }
                 }
-                    await displayToast("Sign-in successful!");
+                await displayToast("Sign-in successful!");
                   
            
             } catch (error) {
             
-            
-                
-            catch(error){
                 const errorMessage = error.message;
+
                 await displayToast('sign in faild !', 'error');
                 await displayError(errorMessage);
                 console.error("Error signing in:", error);
@@ -124,7 +116,6 @@
                     console.error('Error container not found.');
                     return;
                 }
-                console.log("i am here");
                 errorContainer.querySelectorAll('.error').forEach(el => el.remove());
                 const errorDiv = document.createElement('div');
                 errorDiv.classList.add('error');
@@ -179,7 +170,7 @@
                 placeholder="Enter your email"
                 required
               />
-            </div>
+            </div>          
             <div class="form-group">
               <label for="password">Password</label>
               <input
@@ -189,7 +180,7 @@
                 placeholder="Enter your password"
                 required
               />
-            </div>
+            </div>            
             <button type="submit" class="btn-primary">Sign In</button>
           </form>
           <a
@@ -203,7 +194,7 @@
         </div>
       </section>
     </main>
-<script src="../../script.js"></script>
+<script type="module" src="../../script.js"></script>
     
 
   </body>  
