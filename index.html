@@ -114,25 +114,44 @@
     </footer>
 
     <script type="module">
-        import { checkLoginStatus } from "/pages/main pages/js/auth.js";
+        import { checkLoginStatus } from "/pages/main%20pages/js/auth.js";
       
-        checkLoginStatus((isLoggedIn) => {
+        checkLoginStatus((isLoggedIn, role) => {
           const getStartedButton = document.getElementById("getStartedButton");
           if (getStartedButton) {
             if (isLoggedIn) {
               getStartedButton.textContent = "Dashboard";
-              getStartedButton.addEventListener('click', function() {
-                window.location.href = "/pages/dashboard/bsndash.html";
+              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
+              getStartedButton.addEventListener('click', () => {
+                switch (role) {
+                  case 'Admin':
+                    window.location.href = "/pages/dashboard/admdash.html";
+                    break;
+                  case 'accountant':
+                    window.location.href = "/pages/dashboard/accntdash.html";
+                    break;
+                  case 'business':
+                    window.location.href = "/pages/dashboard/bsndash.html";
+                    break;
+                  case 'Manager':
+                      window.location.href = "/pages/dashboard/mngdash.html";
+                    break;
+                  default:
+                    console.error('Unknown user role:', role);
+                    break;
+                }
               });
             } else {
               getStartedButton.textContent = "Get Started";
-              getStartedButton.addEventListener('click', function() {
-                window.location.href = "/pages/auth/signup.html";
+              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
+              getStartedButton.addEventListener('click', () => {
+                window.location.href = "./pages/auth/signup.html";
               });
             }
           }
         });
       </script>
+      
       
 </body>
 </html>

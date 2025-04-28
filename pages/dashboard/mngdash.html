@@ -22,6 +22,7 @@
                     <li><a href="../../index.html" class="header-link">Home</a></li>
                     <li><a href="../main pages/anncmnt.html" class="header-link">Announcements</a></li>
                     <li><a href="../main pages/jobs.html" class="header-link">Jobs</a></li>
+                    <button id="logoutButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
                 </ul>
             </nav>
         </div>
@@ -267,5 +268,14 @@
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
     <script src="../../script.js"></script>
+    <script type="module" src="../main pages/js/auth.js"></script>
+<script type="module">
+    import { logout } from '../main pages/js/auth.js';
+  
+    const logoutButton = document.getElementById('logoutButton');
+      if (logoutButton) {
+          logoutButton.addEventListener('click', logout);
+      }
+  </script>
 </body>
 </html>

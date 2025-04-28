@@ -1,6 +1,6 @@
 console.log("script.js loaded");
 
-import { checkLoginStatus } from "./main%20pages/js/auth.js";
+
 // header
 const header = document.getElementById("header");
 let showHeaderTimeout;
