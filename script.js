@@ -1,3 +1,6 @@
+console.log("script.js loaded");
+
+import { checkLoginStatus } from "./main%20pages/js/auth.js";
 // header
 const header = document.getElementById("header");
 let showHeaderTimeout;
@@ -84,3 +87,8 @@ if (window.location.hash) {
     firstLink.click(); // Programmatically trigger the click event
     }
 }
+
+// Wait for the DOM to be fully loaded
+// Wait for the DOM to be fully loaded
+// Wait for the DOM to be fully loaded
+
