@@ -43,9 +43,7 @@
                             <li><a href="#companies" class="block text-gray-600 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="companies-content">Companies</a></li>
                         </ul>
                     </li>
-                    <li><a href="#accountant-approval" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="accountant-approval-content">Accountant Approval</a></li>
                     <li><a href="#announcements" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="announcements-content">Announcements</a></li>
-                    <li><a href="#audit-log" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="audit-log-content">Audit Log</a></li>
                     <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content">Settings</a></li>
                 </ul>
             </div>
@@ -129,8 +127,8 @@
             <div id="accountants-content" class="dashboard-section hidden">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Accountants Management</h3>
                 <p class="text-gray-700 dashboard-section-description">Manage accountant accounts and their details.</p>
-                <button class="button-primary mb-4 dashboard-section-button">Add New Accountant</button>
-                <div class="scrollable-list-box dashboard-section-content">
+                <button id="openAddAccountantModal" class="button-primary mb-4 dashboard-section-button">Add New Accountant</button>
+                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
                             <div class="flex-grow">
@@ -154,7 +152,7 @@
             <div id="companies-content" class="dashboard-section hidden">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Companies Management</h3>
                 <p class="text-gray-700 dashboard-section-description">Manage company profiles and their information.</p>
-                <button class="button-primary mb-4 dashboard-section-button">Add New Company</button>
+                <button id="openAddCompanyModal" class="button-primary mb-4 dashboard-section-button">Add New Company</button>
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
@@ -179,7 +177,8 @@
             <div id="managers-content" class="dashboard-section hidden">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Managers Management</h3>
                 <p class="text-gray-700 dashboard-section-description">Manage manager accounts and their roles.</p>
-                <button class="button-primary mb-4 dashboard-section-button">Add New Manager</button>
+                <button id="openAddManagerModal" class="button-primary mb-4 dashboard-section-button">Add New Manager</button>
+
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
@@ -201,41 +200,14 @@
             </div>
 
             <!-- Accountant Approval Content -->
-            <div id="accountant-approval-content" class="dashboard-section hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Accountant Approval</h3>
-                <p class="text-gray-700 mb-4 dashboard-section-description">Approve or reject pending accountant registrations.</p>
-                <div class="scrollable-list-box dashboard-section-content">
-                    <ul class="list-none p-0">
-                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between scrollable-list-item">
-                            <span class="font-semibold">Jane Doe</span>
-                            <div class="flex items-center space-x-4">
-                                <button class="button-primary text-sm">Approve</button>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm">Reject</button>
-                            </div>
-                        </li>
-                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between scrollable-list-item">
-                            <span class="font-semibold">John Smith</span>
-                            <div class="flex items-center space-x-4">
-                                <button class="button-primary text-sm">Approve</button>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm">Reject</button>
-                            </div>
-                        </li>
-                        <li class="bg-white shadow rounded-md p-3 mb-2 flex items-center justify-between scrollable-list-item">
-                            <span class="font-semibold">Alice Brown</span>
-                            <div class="flex items-center space-x-4">
-                                <button class="button-primary text-sm">Approve</button>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm">Reject</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
 
             <!-- Announcements Content -->
             <div id="announcements-content" class="dashboard-section hidden">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Announcements</h3>
                 <p class="text-gray-700 mb-4 dashboard-section-description">Manage announcements.</p>
-                <button class="button-primary mb-4 dashboard-section-button">Create New Announcement</button>
+                <button id="openAnncmntModalBtn" class="button-primary mb-4 dashboard-section-button">Create New Announcement</button>
+
                 <h4 class="text-md font-semibold text-gray-700 mb-2">Old Announcements</h4>
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
@@ -258,25 +230,7 @@
             </div>
 
             <!-- Audit Log Content -->
-            <div id="audit-log-content" class="dashboard-section hidden">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Audit Log</h3>
-                <div class="scrollable-list-box dashboard-section-content">
-                    <ul class="list-none p-0">
-                        <li class="scrollable-list-item">
-                            User "Jane Smith" logged in at 10:00 AM.
-                            <p class="text-sm text-gray-600">Today</p>
-                        </li>
-                        <li class="scrollable-list-item">
-                            Admin "Alice Brown" updated role "Editor".
-                            <p class="text-sm text-gray-600">Today</p>
-                        </li>
-                        <li class="scrollable-list-item">
-                            User "Peter Jones" failed login attempt at 9:45 AM.
-                            <p class="text-sm text-gray-600">Today</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            
 
             <!-- Settings Content -->
             <div id="settings-content" class="dashboard-section hidden">
@@ -294,6 +248,29 @@
     <footer class="py-4 text-center text-gray-700 bg-white mt-8">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
+
+
+<div id="createAnncmntModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <button id="closeAnncmntModalBtn" class="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-gray-800">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <form id="createAnncmntForm" class="mt-4">
+            <div class="mb-4">
+                <label for="anncmntTitle" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                <input type="text" id="anncmntTitle" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter announcement title" required>
+            </div>
+            <div class="mb-6">
+                <label for="anncmntDescription" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                <textarea id="anncmntDescription" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter announcement description" required></textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Announcement</button>
+        </form>
+    </div>
+</div>
+
     <script src="../../script.js"></script>
     <script type="module" src="../main pages/js/auth.js"></script>
 <script type="module">
@@ -304,5 +281,46 @@
           logoutButton.addEventListener('click', logout);
       }
   </script>
+  <script type="module" src="../main pages/js/createAnncmntModal.js"></script>
+  <script type="module" src="../main pages/js/auth.js"></script>
+  <div id="createUserModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <button id="closeUserModalBtn" class="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-gray-800">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <form id="createUserForm" class="mt-4">
+            <div id="usernameField" class="form-field mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="username" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div id="emailField" class="form-field mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div id="passwordField" class="form-field mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="password" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div id="phoneField" class="form-field mb-4 hidden">
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone Number</label>
+                <input type="text" id="phone" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div id="addressField" class="form-field mb-4 hidden">
+                <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address</label>
+                <input type="text" id="address" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div id="companyNameField" class="form-field mb-4 hidden">
+                <label for="companyName" class="block text-gray-700 text-sm font-bold mb-2">Company Name</label>
+                <input type="text" id="companyName" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create User</button>
+        </form>
+    </div>
+</div>
+<script type="module" src="../main pages/js/createUserModal.js"></script>
+
+
 </body>
 </html>

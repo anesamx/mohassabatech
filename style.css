@@ -224,12 +224,12 @@ body {
 }
 
 /* Button Styles */
+/* Button Styles */
 .button-primary,
 .contract-actions button,
 .job-actions button,
 .application-actions button,
 .candidate-actions button,
-.button,
 .jobs-search-button,
 .dashboard-section-button,
 .hero-btn{
@@ -242,17 +242,29 @@ body {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     cursor: pointer;
     font-size: 0.875rem;
+    width: fit-content; /* Make buttons fit their content */
+    min-width: 100px; /* Add a minimum width */
+    display: inline-flex;
+    align-items: center;
 }
 .button-primary:hover,
 .contract-actions button:hover,
 .job-actions button:hover,
 .application-actions button:hover,
 .candidate-actions button:hover,
-.button:hover,
 .jobs-search-button:hover,
 .dashboard-section-button:hover,
 .hero-btn:hover{
     background-color: #2c5282;
+}
+/*signup styles*/
+button {
+    background-color: #4299e1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 /* Details and Actions */

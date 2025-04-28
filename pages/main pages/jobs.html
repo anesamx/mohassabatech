@@ -6,6 +6,7 @@
     <title>Jobs - Mohassabatech</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-inter bg-gray-100">
@@ -22,7 +23,7 @@
                     <li><a href="../../index.html" class="header-link">Home</a></li>
                     <li><a href="anncmnt.html" class="header-link">Announcements</a></li>
                     <li><a href="jobs.html" class="header-link">Jobs</a></li>
-                    <li><a href="../auth/signup.html" class="header-button">Get Started</a></li>
+                    <button id="getStartedButton"  class="header-button">Get Started</button>
                 </ul>
             </nav>
         </div>
@@ -61,38 +62,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4 jobs-listings-title">Job Listings</h2>
                 <div class="bg-white shadow overflow-hidden rounded-md">
                     <ul class="divide-y divide-gray-200 jobs-listings-list">
-                        <li class="px-4 py-4 sm:px-6 jobs-listings-item">
-                            <div class="flex items-center justify-between">
-                                <p class="text-lg font-medium text-blue-600 hover:underline jobs-listings-item-title">Senior Accountant</p>
-                                <p class="text-sm text-gray-500 jobs-listings-item-date">Posted 3 days ago</p>
-                            </div>
-                            <p class="text-sm text-gray-900 jobs-listings-item-company">ABC Company</p>
-                            <p class="text-sm text-gray-700 jobs-listings-item-location">New York, NY</p>
-                            <p class="mt-2 text-sm text-gray-800 jobs-listings-item-description">We are looking for a highly motivated Senior Accountant to join our growing team...</p>
-                            <div class="mt-4 flex justify-end jobs-listings-item-actions">
-                                <button class="apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    Apply
-                                </button>
-                                <a href="#" class="inline-block ml-4 text-blue-500 hover:underline jobs-listings-item-link">Learn More</a>
-                            </div>
-                            <div class="apply-success-message mt-2 text-green-600 hidden jobs-listings-item-success">You have applied successfully!</div>
-                        </li>
-                        <li class="px-4 py-4 sm:px-6 jobs-listings-item">
-                            <div class="flex items-center justify-between">
-                                <p class="text-lg font-medium text-blue-600 hover:underline jobs-listings-item-title">Tax Manager</p>
-                                <p class="text-sm text-gray-500 jobs-listings-item-date">Posted 7 days ago</p>
-                            </div>
-                            <p class="text-sm text-gray-900 jobs-listings-item-company">XYZ Corp</p>
-                            <p class="text-sm text-gray-700 jobs-listings-item-location">Los Angeles, CA</p>
-                            <p class="mt-2 text-sm text-gray-800 jobs-listings-item-description">Join our dynamic tax department as a Tax Manager and lead complex tax planning projects...</p>
-                            <div class="mt-4 flex justify-end jobs-listings-item-actions">
-                                <button class="apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    Apply
-                                </button>
-                                <a href="#" class="inline-block ml-4 text-blue-500 hover:underline jobs-listings-item-link">Learn More</a>
-                            </div>
-                            <div class="apply-success-message mt-2 text-green-600 hidden jobs-listings-item-success">You have applied successfully!</div>
-                        </li>
+                 
                     </ul>
                 </div>
             </section>
@@ -109,8 +79,48 @@
     <footer class="py-4 text-center text-gray-700 bg-white">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
-
+    <script type="module">
+        import { checkLoginStatus } from "./js/auth.js";
+      
+        checkLoginStatus((isLoggedIn, role) => {
+          const getStartedButton = document.getElementById("getStartedButton");
+          if (getStartedButton) {
+            if (isLoggedIn) {
+              getStartedButton.textContent = "Dashboard";
+              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
+              getStartedButton.addEventListener('click', () => {
+                switch (role) {
+                  case 'Admin':
+                    window.location.href = "../dashboard/admdash.html";
+                    break;
+                  case 'accountant':
+                    window.location.href = "../dashboard/accntdash.html";
+                    break;
+                  case 'business':
+                    window.location.href = "../dashboard/bsndash.html";
+                    break;
+                  case 'Manager':
+                      window.location.href = "../dashboard/mngdash.html";
+                    break;
+                  default:
+                    console.error('Unknown user role:', role);
+                    break;
+                }
+              });
+            } else {
+              getStartedButton.textContent = "Get Started";
+              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
+              getStartedButton.addEventListener('click', () => {
+                window.location.href = "../auth/signup.html";
+              });
+            }
+          }
+        });
+      </script>
+      
     <script src="../../script.js"></script>
+    <script type="module" src="./js/fetchJobs.js"></script>
+
 </body>
 </html>
 

@@ -1,0 +1,95 @@
+import { getDatabase } from "./databasefr.js";
+import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+const db = getDatabase();
+
+async function fetchAllJobs() {
+  try {
+    const jobsCollection = collection(db, "jobs");
+    const q = query(jobsCollection, orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+    const jobs = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      createdAt: doc.data().createdAt.toDate().toLocaleDateString(),
+    }));
+    return jobs;
+  } catch (error) {
+    console.error("Error fetching jobs:", error);
+    return [];
+  }
+}
+
+function displayJobs(jobs) {
+  const jobListings = document.querySelector(".jobs-listings-list");
+  if (!jobListings) {
+    console.error("jobs-listings-list not found in the DOM");
+    return;
+  }
+  jobListings.innerHTML = "";
+  jobs.forEach(job => {
+    const jobDiv = document.createElement("li");
+    jobDiv.className = "px-4 py-4 sm:px-6 jobs-listings-item";
+
+    const titleDateDiv = document.createElement("div");
+    titleDateDiv.className = "flex items-center justify-between";
+
+    const titleP = document.createElement("p");
+    titleP.className = "text-lg font-medium text-blue-600 hover:underline jobs-listings-item-title";
+    titleP.textContent = job.title; // Corrected: Use job.title
+
+    const dateP = document.createElement("p");
+    dateP.className = "text-sm text-gray-500 jobs-listings-item-date";
+    dateP.textContent = "Posted " + job.createdAt;
+
+    titleDateDiv.appendChild(titleP);
+    titleDateDiv.appendChild(dateP);
+
+    const companyP = document.createElement("p");
+    companyP.className = "text-sm text-gray-900 jobs-listings-item-company";
+    companyP.textContent = job.username; // Displaying company name
+
+    const locationP = document.createElement("p");
+    locationP.className = "text-sm text-gray-700 jobs-listings-item-location";
+    locationP.textContent = job.location;
+
+    const descriptionP = document.createElement("p");
+    descriptionP.className = "mt-2 text-sm text-gray-800 jobs-listings-item-description";
+    descriptionP.textContent = job.description; // Corrected: Use job.description
+
+    // Add Budget
+    const budgetP = document.createElement("p");
+    budgetP.className = "text-sm text-gray-600 mb-2"; // Added some margin-bottom for spacing
+    budgetP.textContent = "Budget: $" + job.price; // Displaying the price
+
+    const actionsDiv = document.createElement("div");
+    actionsDiv.className = "mt-4 flex justify-end jobs-listings-item-actions";
+
+    const applyButton = document.createElement("button");
+    applyButton.className = "apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline";
+    applyButton.textContent = "Apply";
+
+    const learnMoreLink = document.createElement("a");
+    learnMoreLink.className = "inline-block ml-4 text-blue-500 hover:underline jobs-listings-item-link";
+    learnMoreLink.textContent = "Learn More";
+    learnMoreLink.href = "#";
+
+    actionsDiv.appendChild(applyButton);
+    actionsDiv.appendChild(learnMoreLink);
+    
+    jobDiv.appendChild(titleDateDiv);
+    jobDiv.appendChild(companyP);
+    jobDiv.appendChild(locationP);
+    jobDiv.appendChild(descriptionP);
+    jobDiv.appendChild(budgetP);// Append the budget before the actionsDiv
+    jobDiv.appendChild(actionsDiv);
+
+
+    jobListings.appendChild(jobDiv);
+  });
+}
+
+(async () => {
+  const jobs = await fetchAllJobs();
+  displayJobs(jobs);
+})();
