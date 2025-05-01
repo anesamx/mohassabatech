@@ -72,21 +72,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold text-gray-800 mb-4 dashboard-section-title">Contracts</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
-                    <div class="metric-box">
-                        <div class="metric-label">Total Contracts</div>
-                        <div class="metric-value text-indigo-600">200</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-label">Pending Contracts</div>
-                        <div class="metric-value text-orange-600">30</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-label">Active Contracts</div>
-                        <div class="metric-value text-purple-600">170</div>
-                    </div>
-                </div>
+              
 
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 dashboard-section-title">Earnings</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
@@ -208,24 +194,8 @@
                 <p class="text-gray-700 mb-4 dashboard-section-description">Manage announcements.</p>
                 <button id="openAnncmntModalBtn" class="button-primary mb-4 dashboard-section-button">Create New Announcement</button>
 
-                <h4 class="text-md font-semibold text-gray-700 mb-2">Old Announcements</h4>
-                <div class="scrollable-list-box dashboard-section-content">
-                    <ul class="list-none p-0">
-                        <li class="scrollable-list-item">
-                            <div class="flex-grow">
-                                <p class="font-semibold">Important System Maintenance</p>
-                                <p class="text-gray-600 text-sm">Published on: 2025-04-20</p>
-                            </div>
-                            <button class="button-primary text-sm">View</button>
-                        </li>
-                        <li class="scrollable-list-item">
-                            <div class="flex-grow">
-                                <p class="font-semibold">New Feature Released!</p>
-                                <p class="text-gray-600 text-sm">Published on: 2025-04-15</p>
-                            </div>
-                            <button class="button-primary text-sm">View</button>
-                        </li>
-                    </ul>
+                <div id="old-announcements" class="scrollable-list-box dashboard-section-content">
+                 
                 </div>
             </div>
 
@@ -322,5 +292,6 @@
 <script type="module" src="../main pages/js/createUserModal.js"></script>
 
 
+<script type="module" src="../main pages/js/fetchAnnouncements.js"></script>
 </body>
 </html>

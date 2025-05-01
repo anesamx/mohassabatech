@@ -1,11 +1,9 @@
 import { getDatabase } from "./databasefr.js";
-import { collection, getDocs, query, orderBy, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { collection, getDocs, query, orderBy, doc, getDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import { checkLoginStatus } from "./auth.js";
-const auth = getAuth();
-
-console.log("fetchJobs.js loaded");
 
 const db = getDatabase();
+
 
 async function fetchAllJobs() {
   try {
@@ -39,8 +37,7 @@ async function displayJobs(jobs) {
         resolve({ isLoggedIn, userRole });
       });
     });
-     console.log("display jobs - isLoggedIn:", isLoggedIn);
-     console.log("display jobs - userRole:", userRole);
+
   jobs.forEach(job => {
     const jobDiv = document.createElement("li");
     jobDiv.className = "px-4 py-4 sm:px-6 jobs-listings-item";
@@ -79,7 +76,7 @@ async function displayJobs(jobs) {
     actionsDiv.className = "mt-4 flex justify-end jobs-listings-item-actions";
 
     const applyButton = document.createElement("button");
-    applyButton.className = "job-apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline";
+    applyButton.className = "apply-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline";
     applyButton.textContent = "Apply";
 
     const learnMoreLink = document.createElement("a");
@@ -91,8 +88,8 @@ async function displayJobs(jobs) {
     const buttonState = localStorage.getItem(`job-${job.id}`);
     if (buttonState === "done") {
       applyButton.textContent = "Done";
-      applyButton.classList.remove("bg-green-500", "hover:bg-green-700", "job-apply-button");
-      applyButton.classList.add("bg-gray-500", "cursor-not-allowed", "job-apply-button-done");
+      applyButton.classList.remove("bg-green-500", "hover:bg-green-700");
+      applyButton.classList.add("bg-gray-500", "cursor-not-allowed");
       applyButton.disabled = true;
     }
 
@@ -105,42 +102,31 @@ async function displayJobs(jobs) {
         window.location.href = "../../pages/auth/signup.html";
       } else if (userRole === "accountant") {
            console.log("Accountant logic entered");
-            // Update button text and style
-            applyButton.textContent = "Done";
-           console.log("Button text changed to Done");
-            applyButton.classList.remove("bg-green-500", "hover:bg-green-700", "job-apply-button");
-           console.log("Button color : removed");
-            applyButton.classList.add("bg-gray-500", "cursor-not-allowed", "job-apply-button-done");
-             console.log("Button color : added");
-            applyButton.disabled = true;
-            console.log("Button disabled");
-            // Save the button state to local storage
-            localStorage.setItem(`job-${job.id}`, "done");
-            console.log("localStorage updated");
+        // Accountant logic
+
+                // Update button text and style
+                applyButton.textContent = "Done";
+                applyButton.classList.remove("bg-green-500", "hover:bg-green-700");
+                applyButton.classList.add("bg-gray-500", "cursor-not-allowed");
+                applyButton.disabled = true;
+                // Save the button state to local storage
+                localStorage.setItem(`job-${job.id}`, "done");
 
         // Fetch accountant's information
         const userDocRef = doc(db, "users", auth.currentUser.uid);
         const userDocSnap = await getDoc(userDocRef);
         if (userDocSnap.exists()) {
-            console.log("User doc found");
           const userData = userDocSnap.data();
           const accountantInfo = {
             fullName: userData.fullName,
             phoneNumber: userData.phoneNumber,
             email: userData.email,
             userId: auth.currentUser.uid,
-            createdAt: serverTimestamp(),
+            createdAt: new Date(),
           };
-            console.log("Accountant info:", accountantInfo);
+
           // Add accountant's information to the applicants subcollection
-        try {
-                const docRef = await addDoc(collection(db, "jobs", job.id, "applicants"), accountantInfo);
-                console.log("Document written with ID: ", docRef.id);
-            } catch (e) {
-                console.error("Error adding document: ", e);
-            }
-        }else{
-             console.log("User doc not found");
+          await addDoc(collection(db, "jobs", job.id, "applicants"), accountantInfo);
         }
       }else{
            console.log("not accountant or not connected");

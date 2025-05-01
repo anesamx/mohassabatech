@@ -32,53 +32,8 @@
         <div class="max-w-3xl mx-auto">
             <h2 class="text-3xl font-semibold text-gray-800 mb-6 announcements-title">Latest Announcements</h2>
             <div class="space-y-4 announcements-list">
-                <div class="bg-white shadow rounded-lg overflow-hidden announcement-item">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 announcement-item-title">New Platform Features Released!</h3>
-                        <p class="text-sm text-gray-500 mb-4 announcement-item-date">Published on April 22, 2025</p>
-                        <p class="text-gray-700 announcement-item-description">We're excited to announce the release of several new features designed to enhance your experience...</p>
-                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline announcement-item-link">View Details</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow rounded-lg overflow-hidden announcement-item">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 announcement-item-title">Upcoming Maintenance Window</h3>
-                        <p class="text-sm text-gray-500 mb-4 announcement-item-date">Published on April 20, 2025</p>
-                        <p class="text-gray-700 announcement-item-description">Please be advised that we will be undergoing scheduled maintenance on April 25th from 10 PM to 2 AM CET...</p>
-                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline announcement-item-link">View Details</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow rounded-lg overflow-hidden announcement-item">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 announcement-item-title">Job Fair for Accounting Professionals</h3>
-                        <p class="text-sm text-gray-500 mb-4 announcement-item-date">Published on April 15, 2025</p>
-                        <p class="text-gray-700 announcement-item-description">Mark your calendars! We're hosting a virtual job fair for accounting professionals on May 10th...</p>
-                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline announcement-item-link">View Details</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow rounded-lg overflow-hidden announcement-item">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 announcement-item-title">Important Security Update</h3>
-                        <p class="text-sm text-gray-500 mb-4 announcement-item-date">Published on April 10, 2025</p>
-                        <p class="text-gray-700 announcement-item-description">We have implemented a critical security update to ensure the safety of your data. Please review the details...</p>
-                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline announcement-item-link">View Details</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow rounded-lg overflow-hidden announcement-item">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 announcement-item-title">New Resource Library Launched</h3>
-                        <p class="text-sm text-gray-500 mb-4 announcement-item-date">Published on April 5, 2025</p>
-                        <p class="text-gray-700 announcement-item-description">Explore our newly launched resource library, packed with valuable articles, guides, and templates for accounting professionals...</p>
-                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline announcement-item-link">Explore Now</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow rounded-lg overflow-hidden announcement-item">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 announcement-item-title">Office Closure Announcement</h3>
-                        <p class="text-sm text-gray-500 mb-4 announcement-item-date">Published on March 28, 2025</p>
-                        <p class="text-gray-700 announcement-item-description">Please note that our physical offices will be closed on May 1st for a public holiday. Our online services will remain available...</p>
-                        <a href="#" class="inline-block mt-4 text-blue-500 hover:underline announcement-item-link">Read More</a>
-                    </div>
+                 <div id="announcements-container">
+                    <ul id="announcements-list"></ul>
                 </div>
             </div>
             <nav class="flex justify-center mt-6 space-x-2 announcements-pagination">
@@ -131,6 +86,8 @@
           }
         });
       </script>
+     <script type="module" src="./js/fetchAnnouncements.js"></script>
+
     <script src="../../script.js"></script>
 </body>
 </html>

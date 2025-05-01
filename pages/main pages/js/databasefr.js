@@ -1,16 +1,19 @@
-import { getFirestore, collection, addDoc, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDoc, doc, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import app from '../../../firebase.js'; // Import the default export
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"; // Import the  auth
+import { getAuth as firebaseGetAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"; // Import the  auth
 
 
 const db = getFirestore(app); // Initialize Firestore with the app
-const auth = getAuth(app);
+const auth = firebaseGetAuth(app);
 
 export function getDatabase() {
-    return db
+    return db;
+}
+export function getAuth(){
+    return auth;
 }
 
-export async function createJob(db, jobData, userId) {
+export async function createJob(jobData, userId) {
     try {
         const userDoc = await getDoc(doc(db, "users", userId));
         const username = userDoc.data().username
@@ -23,7 +26,7 @@ export async function createJob(db, jobData, userId) {
     }
 }
 
-export async function createAnnouncement(db, anncmntData, userId) {
+export async function createAnnouncement(anncmntData, userId) {
     try {
         const userDoc = await getDoc(doc(db, "users", userId));
         const username = userDoc.data().username
@@ -35,7 +38,7 @@ export async function createAnnouncement(db, anncmntData, userId) {
         throw e;
     }
 }
-export async function createUser(db, userData, userType) {
+export async function createUser(userData, userType) {
     try {
         const docRef = await addDoc(collection(db, "users"), { ...userData, userType, createdAt: new Date() });
         console.log("Document written with ID: ", docRef.id);
@@ -83,3 +86,27 @@ export async function fetchAllJobs() {
         return [];
     }
 }
+// databasefr.js
+async function fetchAllAnnouncements() {
+    // Simulate fetching data from a database
+    const announcements = [
+      {
+        title: 'New Website Launched!',
+        description: 'We are excited to announce the launch of our brand new website. Check it out!',
+        createdAt: '2023-10-26'
+      },
+      {
+        title: 'Holiday Schedule',
+        description: 'Our office will be closed during the holidays. Please plan accordingly.',
+        createdAt: '2023-12-24'
+      },
+      {
+        title: 'Office Renovation',
+        description: 'We are renovating our office to better serve you. Please excuse any inconvenience.',
+        createdAt: '2024-01-15'
+      },
+    ];
+    return announcements;
+  }
+
+  export { fetchAllAnnouncements };

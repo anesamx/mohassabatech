@@ -37,7 +37,7 @@
                 <ul class="space-y-2 sidebar-links">
                     <li><a href="#overview" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="overview-content">Overview</a></li>
                     <li><a href="#jobs" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="jobs-content">Jobs</a></li>
-                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="applications-content">Applications</a></li>
+                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="job-applicants-section">Applications</a></li>
                     <li><a href="#candidates" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="candidates-content">Candidates</a></li>
                     <li><a href="#company" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="company-content">Company</a></li>
                     <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content">Settings</a></li>
@@ -133,43 +133,16 @@
                 </div>
             </section>
 
-            <section id="applications-content" class="hidden dashboard-section">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Active Applications</h3>
-                <div class="scrollable-list-box dashboard-section-content">
-                    <ul class="list-none p-0">
-                        <li class="scrollable-list-item">
-                            <div class="application-details">
-                                <h4 class="font-semibold">John Smith</h4>
-                                <p class="text-gray-600">Applied for: Senior Software Engineer</p>
-                                <p class="text-sm text-gray-500">Applied on: 2025-04-22</p>
-                            </div>
-                            <div class="application-actions">
-                                <button class="button-primary">View</button>
-                            </div>
-                        </li>
-                        <li class="scrollable-list-item">
-                            <div class="application-details">
-                                <h4 class="font-semibold">Alice Johnson</h4>
-                                <p class="text-gray-600">Applied for: Junior Data Analyst</p>
-                                <p class="text-sm text-gray-500">Applied on: 2025-04-20</p>
-                            </div>
-                            <div class="application-actions">
-                                <button class="button-primary">View</button>
-                            </div>
-                        </li>
-                        <li class="scrollable-list-item">
-                            <div class="application-details">
-                                <h4 class="font-semibold">Bob Williams</h4>
-                                <p class="text-gray-600">Applied for: Marketing Manager</p>
-                                <p class="text-sm text-gray-500">Applied on: 2025-04-18</p>
-                            </div>
-                            <div class="application-actions">
-                                <button class="button-primary">View</button>
-                            </div>
-                        </li>
+            <section id="job-applicants-section" class="dashboard-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Job Applicants</h3>
+                <p class="text-gray-700 dashboard-section-description">View the list of applicants for your jobs.</p>
+                <div class="dashboard-section-content">
+                    <ul id="job-applicants" class="divide-y divide-gray-200">
+                        <!-- Applicant data will be loaded here -->
                     </ul>
                 </div>
             </section>
+        
 
             <section id="candidates-content" class="hidden dashboard-section">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Total Candidates</h3>
@@ -235,7 +208,7 @@
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
     <script src="../../script.js"></script>
- 
+
 <!-- Modal -->
 <div id="createJobModal" class="modal hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
     <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
@@ -270,13 +243,32 @@
 </div>
 <script type="module" src="../main pages/js/createJobModal.js"></script>
 <script type="module" src="../main pages/js/auth.js"></script>
-<script type="module">
-    import { logout } from '../main%20pages/js/auth.js';
-  
-    const logoutButton = document.getElementById('logoutButton');
-      if (logoutButton) {
-          logoutButton.addEventListener('click', logout);
-      }
-  </script>
+<script type="module" >
+    import { checkLoginStatus } from '../main pages/js/auth.js';
+
+    checkLoginStatus((isLoggedIn) => {
+        if (!isLoggedIn) {
+            console.log('User not logged in, redirecting...');
+            window.location.href = '../../index.html';
+        }
+    });
+    </script>
+    <script src="../../script.js"></script>
+    <!-- Modal -->
+    <div id="createJobModal" class="modal hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <!-- Modal content -->
+    </div>
+    <script type="module" src="../main pages/js/createJobModal.js"></script>
+    <script type="module" src="../main pages/js/auth.js"></script>
+    <script type="module">
+        import { logout } from '../main%20pages/js/auth.js';
+      
+        const logoutButton = document.getElementById('logoutButton');
+          if (logoutButton) {
+              logoutButton.addEventListener('click', logout);
+          }
+      </script>
+      <script type="module" src="../main pages/js/fetchApplicant.js"></script>
+ <script type="module" src="../main pages/js/fetchApplicant.js"></script>
 </body>
 </html>

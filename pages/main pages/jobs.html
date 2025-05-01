@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobs - Mohassabatech</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="../../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-inter bg-gray-100">
@@ -79,11 +78,11 @@
     <footer class="py-4 text-center text-gray-700 bg-white">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
+    <script type="module" src="./js/fetchJobs.js"></script>
     <script type="module">
         import { checkLoginStatus } from "./js/auth.js";
-      
+        const getStartedButton = document.getElementById("getStartedButton");
         checkLoginStatus((isLoggedIn, role) => {
-          const getStartedButton = document.getElementById("getStartedButton");
           if (getStartedButton) {
             if (isLoggedIn) {
               getStartedButton.textContent = "Dashboard";
@@ -119,8 +118,5 @@
       </script>
       
     <script src="../../script.js"></script>
-    <script type="module" src="./js/fetchJobs.js"></script>
-
 </body>
 </html>
-
