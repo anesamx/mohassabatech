@@ -1,5 +1,6 @@
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 import { createJob, getDatabase } from "./databasefr.js"; // Import the createJob function
+import { checkLoginStatus } from "./auth.js";
 
 class CreateJobModal {
     constructor() {
@@ -13,15 +14,9 @@ class CreateJobModal {
     }
 
     initialize() {
-        if (this.openModalBtn) {
-            this.openModalBtn.addEventListener('click', () => this.openModal());
-        }
-        if (this.closeModalBtn) {
-            this.closeModalBtn.addEventListener('click', () => this.closeModal());
-        }
-        if (this.createJobForm) {
-            this.createJobForm.addEventListener('submit', (event) => this.handleFormSubmit(event));
-        }
+        this.openModalBtn.addEventListener('click', () => this.openModal());
+        this.closeModalBtn.addEventListener('click', () => this.closeModal());
+        this.createJobForm.addEventListener('submit', (event) => this.handleFormSubmit(event));
     }
 
     openModal() {
@@ -34,28 +29,29 @@ class CreateJobModal {
 
     async handleFormSubmit(event) {
         event.preventDefault();
-        const jobData = this.getFormData();
-        const user = this.auth.currentUser;
-        this.logFormData(jobData);
-        if (user) {
-            try {
-                await createJob(this.db, jobData, user.uid);
-            } catch (error) {
-                console.error("Error adding document: ", error);
-            }
-        } else {
-            console.log("No user is currently signed in.");
-        }
-        this.closeModal();
-    }
 
-    getFormData() {
-        return {
+        const jobData = {
             title: document.getElementById('jobTitle').value,
             budget: document.getElementById('jobBudget').value,
             time: document.getElementById('jobTime').value,
-            description: document.getElementById('jobDescription').value
+            description: document.getElementById('jobDescription').value,
         };
+        this.logFormData(jobData);
+        //check if the user is connected
+        checkLoginStatus((isLoggedIn,userRole)=>{
+            if(isLoggedIn && userRole==="company"){
+                const userId = this.auth.currentUser.uid
+                console.log("userId: ", userId);
+                createJob(jobData, userId)
+                    .then(jobId => {
+                        console.log('Job created with ID:', jobId);
+                        this.closeModal();
+                    })
+                    .catch(error => {
+                        console.error('Error creating job:', error);
+                    });
+            }
+        })
     }
 
     logFormData(jobData) {

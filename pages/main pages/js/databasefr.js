@@ -14,14 +14,15 @@ export function getAuth(){
 }
 
 export async function createJob(jobData, userId) {
+    console.log("createJob: userId type:", typeof userId, "value:", userId); // Add this line
     try {
-        const userDoc = await getDoc(doc(db, "users", userId));
-        const username = userDoc.data().username
+        const userDoc = await getDoc(doc(db, "users", userId)); // Line 18
+        const username = userDoc.data().username;
         const docRef = await addDoc(collection(db, "jobs"), { ...jobData, userId, username, createdAt: new Date() });
         console.log("Document written with ID: ", docRef.id);
         return docRef.id;
     } catch (e) {
-        console.error("Error adding document: ", e);
+        console.error("Error adding document: ", e); // Line 24
         throw e;
     }
 }
