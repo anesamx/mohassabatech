@@ -1,9 +1,8 @@
 // fetchApplicant.js
-import { getDatabase } from "./databasefr.js";
+import { getDatabase, getAuth } from "../../main pages/js/databasefr.js"; // Import getAuth
 import { collection, getDocs, query, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-import { getAuth } from "./databasefr.js";
-import { checkLoginStatus } from "./auth.js";
-const auth = getAuth();
+import { checkLoginStatus } from "../../main pages/js/auth.js";
+const auth = getAuth(); 
 const db = getDatabase();
 
 async function fetchJobsAndApplicants(userId) {
