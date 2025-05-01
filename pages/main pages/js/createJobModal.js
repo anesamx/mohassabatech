@@ -1,6 +1,7 @@
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 import { createJob, getDatabase } from "./databasefr.js"; // Import the createJob function
 import { checkLoginStatus } from "./auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 class CreateJobModal {
     constructor() {
@@ -38,11 +39,14 @@ class CreateJobModal {
         };
         this.logFormData(jobData);
         //check if the user is connected
-        checkLoginStatus((isLoggedIn,userRole)=>{
+        checkLoginStatus(async (isLoggedIn,userRole)=>{
             if(isLoggedIn && userRole==="company"){
                 const userId = this.auth.currentUser.uid
                 console.log("userId: ", userId);
-                createJob(jobData, userId)
+                const userDocRef = doc(this.db, "users", userId);
+                const userDocSnap = await getDoc(userDocRef);
+                const username = userDocSnap.data().username
+                createJob(jobData, userId,username)
                     .then(jobId => {
                         console.log('Job created with ID:', jobId);
                         this.closeModal();
