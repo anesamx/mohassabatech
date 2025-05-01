@@ -19,11 +19,17 @@
             </div>
             <nav class="header-nav">
                 <ul class="flex space-x-4 sm:space-x-6">
-                    <li><a href="../../index.html" class="header-link">Home</a></li>
-                    <li><a href="../main pages/anncmnt.html" class="header-link">Announcements</a></li>
-                    <li><a href="../main pages/jobs.html" class="header-link">Jobs</a></li>
+                    <li><a href="../../index.html" class="header-link" data-i18n="key_1">Home</a></li>
+                    <li><a href="../main pages/anncmnt.html" class="header-link" data-i18n="key_2">Announcements</a></li>
+                    <li><a href="../main pages/jobs.html" class="header-link" data-i18n="key_3">Jobs</a></li>
                     <button id="logoutButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
-
+                    <li>
+                        <select id="language-switcher" class="header-link">
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -33,14 +39,14 @@
         <aside class="w-1/4 pr-8 sidebar dashboard-sidebar">
             <!-- Sidebar Menu -->
             <div class="bg-white shadow rounded-lg p-6 sidebar-menu">
-                <h2 class="text-xl font-semibold text-gray-800 sidebar-title">Dashboard Menu</h2>
+                <h2 class="text-xl font-semibold text-gray-800 sidebar-title" data-i18n="key_48">Dashboard Menu</h2>
                 <ul class="space-y-2 sidebar-links">
-                    <li><a href="#overview" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="overview-content">Overview</a></li>
-                    <li><a href="#jobs" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="jobs-content">Jobs</a></li>
-                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="job-applicants-section">Applications</a></li>
-                    <li><a href="#candidates" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="candidates-content">Candidates</a></li>
-                    <li><a href="#company" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="company-content">Company</a></li>
-                    <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content">Settings</a></li>
+                    <li><a href="#overview" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="overview-content" data-i18n="key_30">Overview</a></li>
+                    <li><a href="#jobs" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="jobs-content" data-i18n="key_3">Jobs</a></li>
+                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="job-applicants-section" data-i18n="key_50">Applications</a></li>
+                    <li><a href="#candidates" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="candidates-content" data-i18n="key_49">Candidates</a></li>
+                    <li><a href="#company" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="company-content" data-i18n="key_34">Company</a></li>
+                    <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content" data-i18n="key_35">Settings</a></li>
                 </ul>
             </div>
         </aside>
@@ -48,10 +54,10 @@
             <!-- Main Content -->
             <h2 id="dashboard-title" class="text-2xl font-semibold text-gray-800 mb-4 dashboard-main-title">Overview</h2>
             <div id="dashboard-content" class="hidden dashboard-main-content">
-                <p class="text-gray-700">Welcome to your business dashboard.</p>
+                <p class="text-gray-700" data-i18n="key_51">Welcome to your business dashboard.</p>
             </div>
 
-            <section id="overview-content" class="dashboard-section">
+            <section id="overview-content" class="dashboard-section" >
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Key Business Metrics</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
                     <div class="metric-box">
@@ -95,7 +101,7 @@
             </section>
 
             <section id="jobs-content" class="hidden dashboard-section">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Open Jobs</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title" data-i18n="key_52">Open Jobs</h3>
                 <button id="openModalBtn" class="button">Create New Job</button>
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
@@ -134,8 +140,8 @@
             </section>
 
             <section id="job-applicants-section" class="dashboard-section">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Job Applicants</h3>
-                <p class="text-gray-700 dashboard-section-description">View the list of applicants for your jobs.</p>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title" data-i18n="key_53">Job Applicants</h3>
+                <p class="text-gray-700 dashboard-section-description" data-i18n="key_54">View the list of applicants for your jobs.</p>
                 <div class="dashboard-section-content">
                     <ul id="job-applicants" class="divide-y divide-gray-200">
                         <!-- Applicant data will be loaded here -->
@@ -144,7 +150,7 @@
             </section>
         
 
-            <section id="candidates-content" class="hidden dashboard-section">
+            <section id="candidates-content" class="hidden dashboard-section" >
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Total Candidates</h3>
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
@@ -183,8 +189,8 @@
             </section>
 
             <section id="company-content" class="hidden dashboard-section">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Company Profile</h3>
-                <p class="text-gray-700 dashboard-section-description">View and update your company's profile information.</p>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title" data-i18n="key_55">Company Profile</h3>
+                <p class="text-gray-700 dashboard-section-description" data-i18n="key_56">View and update your company's profile information.</p>
                 <div class="dashboard-section-content">
                     <p>Company Name: Mohassabatech</p>
                     <p>Industry: Technology</p>
@@ -193,8 +199,8 @@
             </section>
 
             <section id="settings-content" class="hidden dashboard-section">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Settings</h3>
-                <p class="text-gray-700 dashboard-section-description">Manage your company's dashboard settings.</p>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title" data-i18n="key_35">Settings</h3>
+                <p class="text-gray-700 dashboard-section-description" data-i18n="key_35">Manage your company's dashboard settings.</p>
                 <ul class="dashboard-section-content">
                     <li><a href="#" class="text-blue-500 hover:text-blue-700">Profile Information</a></li>
                     <li><a href="#" class="text-blue-500 hover:text-blue-700">Team Management</a></li>
@@ -207,7 +213,6 @@
     <footer class="py-4 text-center text-gray-700 bg-white mt-8">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
-    <script src="../../script.js"></script>
 
 <!-- Modal -->
 <div id="createJobModal" class="modal hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
@@ -241,34 +246,70 @@
         </div>
     </div>
 </div>
-<script type="module" src="../main pages/js/createJobModal.js"></script>
-<script type="module" src="../main pages/js/auth.js"></script>
-<script type="module" >
-    import { checkLoginStatus } from '../main pages/js/auth.js';
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+<script>
+     fetch('../../locales/en.json')
+         .then(response => response.json())
+         .then(englishTranslations => {
+             fetch('../../locales/fr.json')
+                 .then(response => response.json())
+                 .then(frenchTranslations => {
+                     fetch('../../locales/ar.json')
+                         .then(response => response.json())
+                         .then(arabicTranslations => {
+                             i18next.init({
+                                 lng: localStorage.getItem('selectedLanguage') || 'en',
+                                 
+                                 resources: {
+                                     en: {
+                                         translation: englishTranslations
+                                     },
+                                     fr: {
+                                         translation: frenchTranslations
+                                     },
+                                     ar: {
+                                         translation: arabicTranslations
+                                     }
+                                 }
+                             }).then(function (t) {
+                                 updateContent();
+                                 const languageSwitcher = document.getElementById('language-switcher');
+                                 if (languageSwitcher) {
+                                        languageSwitcher.value = i18next.language;
+                                        languageSwitcher.addEventListener('change', function () {
+                                            const selectedLanguage = languageSwitcher.value;
+                                            i18next.changeLanguage(selectedLanguage).then(() => {
+                                                updateContent();
+                                                localStorage.setItem('selectedLanguage', selectedLanguage);
+                                            });
+                                        });
+                                    }
+                             });
+                         });
+                 });
+         });
 
-    checkLoginStatus((isLoggedIn) => {
-        if (!isLoggedIn) {
-            console.log('User not logged in, redirecting...');
-            window.location.href = '../../index.html';
-        }
-    });
-    </script>
-    <script src="../../script.js"></script>
-    <!-- Modal -->
-    <div id="createJobModal" class="modal hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-        <!-- Modal content -->
-    </div>
-    <script type="module" src="../main pages/js/createJobModal.js"></script>
-    <script type="module" src="../main pages/js/auth.js"></script>
-    <script type="module">
-        import { logout } from '../main%20pages/js/auth.js';
-      
-        const logoutButton = document.getElementById('logoutButton');
-          if (logoutButton) {
-              logoutButton.addEventListener('click', logout);
-          }
-      </script>
-      <script type="module" src="../main pages/js/fetchApplicant.js"></script>
- <script type="module" src="../main pages/js/fetchApplicant.js"></script>
+                        function updateContent() {
+                            document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                element.textContent = i18next.t(element.dataset.i18n);
+                            });
+                            if (i18next.language == "ar") {
+                                document.body.classList.add('arabic-layout');
+                            } else {
+                                document.body.classList.remove('arabic-layout');
+                            }
+                        }
+ </script>
+<script src="../../script.js"></script>
+<script type="module" src="../main pages/js/auth.js"></script>
+<script type="module" src="../main pages/js/createJobModal.js"></script>
+<script type="module">
+    import { logout } from '../main%20pages/js/auth.js';
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logout);
+    }
+</script>
+<script type="module" src="../main pages/js/fetchApplicant.js"></script>
 </body>
 </html>

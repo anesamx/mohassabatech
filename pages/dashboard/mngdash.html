@@ -22,7 +22,15 @@
                     <li><a href="../../index.html" class="header-link">Home</a></li>
                     <li><a href="../main pages/anncmnt.html" class="header-link">Announcements</a></li>
                     <li><a href="../main pages/jobs.html" class="header-link">Jobs</a></li>
+                    
                     <button id="logoutButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
+                    <li>
+                        <select id="language-switcher" class="header-link">
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -277,5 +285,58 @@
           logoutButton.addEventListener('click', logout);
       }
   </script>
+  <script>
+    fetch('locales/en.json')
+        .then(response => response.json())
+        .then(englishTranslations => {
+            fetch('locales/fr.json')
+                .then(response => response.json())
+                .then(frenchTranslations => {
+                    fetch('locales/ar.json')
+                        .then(response => response.json())
+                        .then(arabicTranslations => {
+                            i18next.init({
+                                lng: localStorage.getItem('selectedLanguage') || 'en',
+                                
+                                resources: {
+                                    en: {
+                                        translation: englishTranslations
+                                    },
+                                    fr: {
+                                        translation: frenchTranslations
+                                    },
+                                    ar: {
+                                        translation: arabicTranslations
+                                    }
+                                }
+                            }).then(function (t) {
+                                updateContent();
+                                const languageSwitcher = document.getElementById('language-switcher');
+                                languageSwitcher.value = i18next.language;
+                                languageSwitcher.addEventListener('change', function () {
+                                    const selectedLanguage = languageSwitcher.value;
+                                    i18next.changeLanguage(selectedLanguage).then(() => {
+                                        updateContent();
+                                        localStorage.setItem('selectedLanguage', selectedLanguage);
+                                    });
+                                });
+                            });
+
+                            function updateContent() {
+                                document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                    element.textContent = i18next.t(element.dataset.i18n);
+                                });
+                                if (i18next.language == "ar") {
+                                    document.body.classList.add('arabic-layout');
+                                } else {
+                                    document.body.classList.remove('arabic-layout');
+                                }
+                            }
+                        });
+                });
+        });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+
 </body>
 </html>

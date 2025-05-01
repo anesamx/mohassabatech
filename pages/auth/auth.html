@@ -144,8 +144,16 @@
                 <li><a href="../../index.html"" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Home</a></li>
                 <li><a href="../main pages/anncmnt.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Announcements</a></li>
                 <li><a href="../main pages/jobs.html" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 hover:border-b-2 hover:border-blue-600 pb-1">Jobs</a></li>
+                
                 <li><a href="signup.html" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 shadow-md">Get Started</a></li>
-            </ul>
+                <li>
+                  <select id="language-switcher" class="header-link">
+                      <option value="en">English</option>
+                      <option value="fr">Français</option>
+                      <option value="ar">العربية</option>
+                  </select>
+              </li>
+              </ul>
         </nav>
     </div>
  </header>  
@@ -194,8 +202,61 @@
         </div>
       </section>
     </main>
+    <script>
+      fetch('locales/en.json')
+          .then(response => response.json())
+          .then(englishTranslations => {
+              fetch('locales/fr.json')
+                  .then(response => response.json())
+                  .then(frenchTranslations => {
+                      fetch('locales/ar.json')
+                          .then(response => response.json())
+                          .then(arabicTranslations => {
+                              i18next.init({
+                                  lng: localStorage.getItem('selectedLanguage') || 'en',
+                                  
+                                  resources: {
+                                      en: {
+                                          translation: englishTranslations
+                                      },
+                                      fr: {
+                                          translation: frenchTranslations
+                                      },
+                                      ar: {
+                                          translation: arabicTranslations
+                                      }
+                                  }
+                              }).then(function (t) {
+                                  updateContent();
+                                  const languageSwitcher = document.getElementById('language-switcher');
+                                  languageSwitcher.value = i18next.language;
+                                  languageSwitcher.addEventListener('change', function () {
+                                      const selectedLanguage = languageSwitcher.value;
+                                      i18next.changeLanguage(selectedLanguage).then(() => {
+                                          updateContent();
+                                          localStorage.setItem('selectedLanguage', selectedLanguage);
+                                      });
+                                  });
+                              });
+  
+                              function updateContent() {
+                                  document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                      element.textContent = i18next.t(element.dataset.i18n);
+                                  });
+                                  if (i18next.language == "ar") {
+                                      document.body.classList.add('arabic-layout');
+                                  } else {
+                                      document.body.classList.remove('arabic-layout');
+                                  }
+                              }
+                          });
+                  });
+          });
+  </script>
+  
 <script type="module" src="../../script.js"></script>
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+
 
   </body>  
 </html>

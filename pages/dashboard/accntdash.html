@@ -19,10 +19,18 @@
             </div>
             <nav class="header-nav">
                 <ul class="flex space-x-4 sm:space-x-6">
-                    <li><a href="../../index.html" class="header-link">Home</a></li>
-                    <li><a href="../main pages/anncmnt.html" class="header-link">Announcements</a></li>
-                    <li><a href="../main%20pages/jobs.html" class="header-link">Jobs</a></li>
+                    <li><a href="../../index.html" class="header-link" data-i18n="key_1">Home</a></li>
+                    <li><a href="../main pages/anncmnt.html" class="header-link" data-i18n="key_2">Announcements</a></li>
+                    <li><a href="../main%20pages/jobs.html" class="header-link" data-i18n="key_3">Jobs</a></li>
+                    
                     <button id="logoutButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
+                    <li>
+                        <select id="language-switcher" class="header-link">
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -32,12 +40,12 @@
         <aside class="w-1/4 pr-8 sidebar dashboard-sidebar">
             <!-- Sidebar Menu -->
             <div class="bg-white shadow rounded-lg p-6 sidebar-menu">
-                <h2 class="text-xl font-semibold text-gray-800 sidebar-title">Dashboard Menu</h2>
+                <h2 class="text-xl font-semibold text-gray-800 sidebar-title" data-i18n="key_48">Dashboard Menu</h2>
                 <ul class="space-y-2 sidebar-links">
-                    <li><a href="#profile" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="profile-content">My Profile</a></li>
-                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="applications-content">Job Applications</a></li>
-                    <li><a href="#messages" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="messages-content">Messages</a></li>            
-                     <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content">Settings</a></li>
+                    <li><a href="#profile" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="profile-content" data-i18n="key_57">My Profile</a></li>
+                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="applications-content" data-i18n="key_58">Job Applications</a></li>
+                    <li><a href="#messages" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="messages-content" data-i18n="key_59">Messages</a></li>            
+                     <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content" data-i18n="key_35">Settings</a></li>
                 </ul>
             </div>
         </aside>
@@ -59,15 +67,15 @@
             <div id="profile-content" class="hidden dashboard-section">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">My Profile Information</h3>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Username:</label>
+                    <label class="profile-info-label" data-i18n="key_66">Username:</label>
                     <p class="profile-info-value">john.doe</p>
                 </div>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Full Name:</label>
+                    <label class="profile-info-label"data-i18n="key_67">Full Name:</label>
                     <p class="profile-info-value">John Doe</p>
                 </div>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Phone Number:</label>
+                    <label class="profile-info-label"data-i18n="key_68">Phone Number:</label>
                     <p class="profile-info-value">+1 555-123-4567</p>
                 </div>
                 <div class="profile-info-item dashboard-section-content">
@@ -193,6 +201,59 @@
           logoutButton.addEventListener('click', logout);
       }
   </script> 
+  <script>
+    fetch('../../locales/en.json')
+        .then(response => response.json())
+        .then(englishTranslations => {
+            fetch('../../locales/fr.json')
+                .then(response => response.json())
+                .then(frenchTranslations => {
+                    fetch('../../locales/ar.json')
+                        .then(response => response.json())
+                        .then(arabicTranslations => {
+                            i18next.init({
+                                lng: localStorage.getItem('selectedLanguage') || 'en',
+                                
+                                resources: {
+                                    en: {
+                                        translation: englishTranslations
+                                    },
+                                    fr: {
+                                        translation: frenchTranslations
+                                    },
+                                    ar: {
+                                        translation: arabicTranslations
+                                    }
+                                }
+                            }).then(function (t) {
+                                updateContent();
+                                const languageSwitcher = document.getElementById('language-switcher');
+                                languageSwitcher.value = i18next.language;
+                                languageSwitcher.addEventListener('change', function () {
+                                    const selectedLanguage = languageSwitcher.value;
+                                    i18next.changeLanguage(selectedLanguage).then(() => {
+                                        updateContent();
+                                        localStorage.setItem('selectedLanguage', selectedLanguage);
+                                    });
+                                });
+                            });
+
+                            function updateContent() {
+                                document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                    element.textContent = i18next.t(element.dataset.i18n);
+                                });
+                                if (i18next.language == "ar") {
+                                    document.body.classList.add('arabic-layout');
+                                } else {
+                                    document.body.classList.remove('arabic-layout');
+                                }
+                            }
+                        });
+                });
+        });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+
   <script src="../../script.js"></script>
 </body>
 </html>

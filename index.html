@@ -22,7 +22,7 @@
                     <li><a href="index.html" class="header-link" data-i18n="key_1">Home</a></li>
                     <li><a href="pages/main pages/anncmnt.html" class="header-link" data-i18n="key_2">Announcements</a></li>
                     <li><a href="pages/main pages/jobs.html" class="header-link" data-i18n="key_3">Jobs</a></li>
-                    <button id="getStartedButton"  class="header-button" data-i18n="key_4">Get Started</button>
+                    <button id="getStartedButton"  class="header-button" >Get Started</button>
                     <li>
                         <select id="language-switcher" class="header-link">
                             <option value="en">English</option>
@@ -120,46 +120,9 @@
       <p data-i18n="key_18">© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
 
-    <script type="module">
-        import { checkLoginStatus } from "./pages/main pages/js/auth.js";
-      
-        checkLoginStatus((isLoggedIn, role) => {
-          const getStartedButton = document.getElementById("getStartedButton");
-          if (getStartedButton) {
-            if (isLoggedIn) {
-              getStartedButton.textContent = "Dashboard";
-              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
-              getStartedButton.addEventListener('click', () => {
-                switch (role) {
-                  case 'Admin':
-                    window.location.href = "pages/dashboard/admdash.html";
-                    break;
-                  case 'accountant':
-                    window.location.href = "pages/dashboard/accntdash.html";
-                    break;
-                  case 'business':
-                    window.location.href = "pages/dashboard/bsndash.html";
-                    break;
-                  case 'Manager':
-                      window.location.href = "pages/dashboard/mngdash.html";
-                    break;
-                  default:
-                    console.error('Unknown user role:', role);
-                    break;
-                }
-              });
-            } else {
-              getStartedButton.textContent = "Get Started";
-              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
-              getStartedButton.addEventListener('click', () => {
-                window.location.href = "./pages/auth/signup.html";
-              });
-            }
-          }
-        });
-      </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
-      <script>
+  
+     
+     <script>
         fetch('locales/en.json')
             .then(response => response.json())
             .then(englishTranslations => {
@@ -171,7 +134,7 @@
                             .then(arabicTranslations => {
                                 i18next.init({
                                     lng: localStorage.getItem('selectedLanguage') || 'en',
-                                    debug: true,
+                                    
                                     resources: {
                                         en: {
                                             translation: englishTranslations
@@ -210,6 +173,49 @@
                     });
             });
     </script>
+  <script type="module">
+        import { checkLoginStatus } from "./pages/main pages/js/auth.js";
+      
+        checkLoginStatus((isLoggedIn, role) => {
+          const getStartedButton = document.getElementById("getStartedButton");
+          if (getStartedButton) {
+            if (isLoggedIn) {
+              getStartedButton.textContent = "Dashboard";
+              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
+              getStartedButton.addEventListener('click', () => {
+                switch (role) {
+                  case 'Admin':
+                    window.location.href = "pages/dashboard/admdash.html";
+                    break;
+                  case 'accountant':
+                    window.location.href = "pages/dashboard/accntdash.html";
+                    break;
+                  case 'business':
+                    window.location.href = "pages/dashboard/bsndash.html";
+                    break;
+                  case 'Manager':
+                      window.location.href = "pages/dashboard/mngdash.html";
+                    break;
+                  default:
+                    console.error('Unknown user role:', role);
+                    break;
+                }
+              });
+            } else {
+              getStartedButton.textContent = "Get Started";
+              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
+              getStartedButton.addEventListener('click', () => {
+                window.location.href = "./pages/auth/signup.html";
+              });
+            }
+          }
+        });
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+     
+     
+     
+  
     
       
 </body>

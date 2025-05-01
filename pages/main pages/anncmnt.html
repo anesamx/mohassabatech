@@ -24,7 +24,14 @@
                     <li><a href="anncmnt.html" class="header-link">Announcements</a></li>
                     <li><a href="jobs.html" class="header-link">Jobs</a></li>
                     <button id="getStartedButton"  class="header-button">Get Started</button> </ul>
-            </nav>
+                    <li>
+                      <select id="language-switcher" class="header-link">
+                          <option value="en">English</option>
+                          <option value="fr">Français</option>
+                          <option value="ar">العربية</option>
+                      </select>
+                  </li>
+                  </nav>
         </div>
     </header>
 
@@ -87,6 +94,58 @@
         });
       </script>
      <script type="module" src="./js/fetchAnnouncements.js"></script>
+     <script>
+      fetch('locales/en.json')
+          .then(response => response.json())
+          .then(englishTranslations => {
+              fetch('locales/fr.json')
+                  .then(response => response.json())
+                  .then(frenchTranslations => {
+                      fetch('locales/ar.json')
+                          .then(response => response.json())
+                          .then(arabicTranslations => {
+                              i18next.init({
+                                  lng: localStorage.getItem('selectedLanguage') || 'en',
+                                  
+                                  resources: {
+                                      en: {
+                                          translation: englishTranslations
+                                      },
+                                      fr: {
+                                          translation: frenchTranslations
+                                      },
+                                      ar: {
+                                          translation: arabicTranslations
+                                      }
+                                  }
+                              }).then(function (t) {
+                                  updateContent();
+                                  const languageSwitcher = document.getElementById('language-switcher');
+                                  languageSwitcher.value = i18next.language;
+                                  languageSwitcher.addEventListener('change', function () {
+                                      const selectedLanguage = languageSwitcher.value;
+                                      i18next.changeLanguage(selectedLanguage).then(() => {
+                                          updateContent();
+                                          localStorage.setItem('selectedLanguage', selectedLanguage);
+                                      });
+                                  });
+                              });
+  
+                              function updateContent() {
+                                  document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                      element.textContent = i18next.t(element.dataset.i18n);
+                                  });
+                                  if (i18next.language == "ar") {
+                                      document.body.classList.add('arabic-layout');
+                                  } else {
+                                      document.body.classList.remove('arabic-layout');
+                                  }
+                              }
+                          });
+                  });
+          });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
 
     <script src="../../script.js"></script>
 </body>

@@ -19,28 +19,35 @@
             </div>
             <nav class="header-nav">
                 <ul class="flex space-x-4 sm:space-x-6">
-                    <li><a href="../../index.html" class="header-link">Home</a></li>
-                    <li><a href="anncmnt.html" class="header-link">Announcements</a></li>
-                    <li><a href="jobs.html" class="header-link">Jobs</a></li>
+                    <li><a href="../../index.html" class="header-link" data-i18n="key_1">Home</a></li>
+                    <li><a href="anncmnt.html" class="header-link" data-i18n="key_2">Announcements</a></li>
+                    <li><a href="jobs.html" class="header-link" data-i18n="key_3">Jobs</a></li>
                     <button id="getStartedButton"  class="header-button">Get Started</button>
-                </ul>
+                    <li>
+                      <select id="language-switcher" class="header-link">
+                          <option value="en">English</option>
+                          <option value="fr">Français</option>
+                          <option value="ar">العربية</option>
+                      </select>
+                  </li>
+                  </ul>
             </nav>
         </div>
     </header>
 
     <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
         <div class="max-w-6xl mx-auto">
-            <section class="mb-8 jobs-search">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-4 jobs-search-title">Find Your Dream Accounting Job</h2>
+            <section class="mb-8 jobs-search" >
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4 jobs-search-title" data-i18n="key_20">Find Your Dream Accounting Job</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="location" class="block text-gray-700 text-sm font-bold mb-2 jobs-search-label">Location</label>
+                        <label for="location" class="block text-gray-700 text-sm font-bold mb-2 jobs-search-label" data-i18n="key_21">Location</label>
                         <input type="text" id="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline jobs-search-input" placeholder="e.g., City, State">
                     </div>
                     <div>
-                        <label for="category" class="block text-gray-700 text-sm font-bold mb-2 jobs-search-label">Category</label>
+                        <label for="category" class="block text-gray-700 text-sm font-bold mb-2 jobs-search-label" data-i18n="key_22">Category</label>
                         <select id="category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline jobs-search-select">
-                            <option value="">All Categories</option>
+                            <option value="" data-i18n="key_23">All Categories</option>
                             <option value="tax">Tax Accounting</option>
                             <option value="audit">Audit</option>
                             <option value="financial">Financial Accounting</option>
@@ -48,17 +55,17 @@
                             <option value="forensic">Forensic Accounting</option>
                             <option value="governmental">Governmental Accounting</option>
                         </select>
-                    </div>
+                    </div> 
                     <div class="md:col-span-2 flex items-center justify-end">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline jobs-search-button">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline jobs-search-button" data-i18n="key_24">
                             Search Jobs
                         </button>
                     </div>
                 </div>
             </section>
 
-            <section class="mb-8 jobs-listings">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4 jobs-listings-title">Job Listings</h2>
+            <section class="mb-8 jobs-listings" >
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 jobs-listings-title" data-i18n="key_25">Job Listings</h2>
                 <div class="bg-white shadow overflow-hidden rounded-md">
                     <ul class="divide-y divide-gray-200 jobs-listings-list">
                  
@@ -67,20 +74,77 @@
             </section>
 
             <nav class="flex justify-center space-x-2 jobs-pagination">
-                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link">Previous</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link" data-i18n="key_26">Previous</a>
                 <a href="#" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 pagination-link">1</a>
                 <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link">2</a>
-                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link">Next</a>
+                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link" data-i18n="key_27">Next</a>
             </nav>
         </div>
     </main>
 
     <footer class="py-4 text-center text-gray-700 bg-white">
-        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
+        <p data-i18n="key_18">© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
     <script type="module" src="./js/fetchJobs.js"></script>
     <script type="module" src="../main pages/js/auth.js"></script>
+
     <script type="module" src="./js/fetchApplicant.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+
+      <script>
+        fetch('../../locales/en.json')
+            .then(response => response.json())
+            .then(englishTranslations => {
+                fetch('../../locales/fr.json')
+                    .then(response => response.json())
+                    .then(frenchTranslations => {
+                        fetch('../../locales/ar.json')
+                            .then(response => response.json())
+                            .then(arabicTranslations => {
+                                i18next.init({
+                                    lng: localStorage.getItem('selectedLanguage') || 'en',
+                                    
+                                    resources: {
+                                        en: {
+                                            translation: englishTranslations
+                                        },
+                                        fr: {
+                                            translation: frenchTranslations
+                                        },
+                                        ar: {
+                                            translation: arabicTranslations
+                                        }
+                                    }
+                                }).then(function (t) {
+                                    updateContent();
+                                    const languageSwitcher = document.getElementById('language-switcher');
+                                    languageSwitcher.value = i18next.language;
+                                    languageSwitcher.addEventListener('change', function () {
+                                        const selectedLanguage = languageSwitcher.value;
+                                        i18next.changeLanguage(selectedLanguage).then(() => {
+                                            updateContent();
+                                            localStorage.setItem('selectedLanguage', selectedLanguage);
+                                        });
+                                    });
+                                });
+    
+                                function updateContent() {
+                                    document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                        element.textContent = i18next.t(element.dataset.i18n);
+                                    });
+                                    if (i18next.language == "ar") {
+                                        document.body.classList.add('arabic-layout');
+                                    } else {
+                                        document.body.classList.remove('arabic-layout');
+                                    }
+                                }
+                            });
+                    });
+            });
+    </script>
+    
+    
     <script type="module">
         import { checkLoginStatus } from "./js/auth.js";
         const getStartedButton = document.getElementById("getStartedButton");
@@ -118,7 +182,8 @@
           }
         });
       </script>
-      
+    
+    
     <script src="../../script.js"></script>
 </body>
 </html>
