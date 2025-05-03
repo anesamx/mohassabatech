@@ -311,6 +311,35 @@ button {
 .hero-btn-secondary:hover {
     background-color: #cbd5e0;
 }
+/*hero logo container*/
+.hero-logo-container{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    margin-right: 1rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.hero-logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*hero-logo-container*/
+.hero-logo-container{
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Features section */
 /* Features section styles */
 .features {
