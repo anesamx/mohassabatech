@@ -1,14 +1,14 @@
+@ -1,188 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-    <title>Announcement - Mohassabatech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant Dashboard - Mohassabatech</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="font-inter bg-gray-100">
     <div id="modal-container"></div>
     <header id="header" class="header py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
@@ -20,41 +20,180 @@
             </div>
             <nav class="header-nav">
                 <ul class="flex space-x-4 sm:space-x-6">
-                    <li><a href="../../index.html" class="header-link" data-i18n="key_1">Home</a></li>
-                    <li><a href="../main pages/anncmnt.html" class="header-link" data-i18n="key_2">Announcements</a></li>
-                    <li><a href="../main%20pages/jobs.html" class="header-link" data-i18n="key_3">Jobs</a></li>
-                    
-                    <button id="logoutButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
-                    <li>
-                        <select id="language-switcher" class="header-link">
-                            <option value="en">English</option>
-                            <option value="fr">Français</option>
-                            <option value="ar">العربية</option>
-                        </select>
-                    </li>
+                    <li><a href="../../../index.html" class="header-link">Home</a></li>
+                    <li><a href="../../index.html" class="header-link">Home</a></li>
+                    <li><a href="../main pages/anncmnt.html" class="header-link">Announcements</a></li>
+                    <li><a href="../main%20pages/jobs.html" class="header-link">Jobs</a></li>
+                    <button id="logoutButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" data-i18n="key_4">Logout</button>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main-content container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-        <div class="announcement-content">
-          <h1 class="text-3xl font-semibold mb-6" data-i18n="key_19">Latest Announcements</h1>
-          <!-- Placeholder for announcement details -->
-          <div class="announcement-details">
-            <p data-i18n="key_20">No announcements available at the moment.</p>
-          </div>
-        </div>
-      </main>
-      
-      <footer class="py-4 text-center text-gray-700 bg-white mt-8">
-        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
-      </footer>
-      
-<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
-<script src="../../language.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 flex dashboard-container ">
+        <aside class="w-1/4 pr-8 sidebar dashboard-sidebar">
+            <!-- Sidebar Menu -->
+            <div class="bg-white shadow rounded-lg p-6 sidebar-menu">
+                <h2 class="text-xl font-semibold text-gray-800 sidebar-title">Dashboard Menu</h2>
+                <ul class="space-y-2 sidebar-links">
+                    <li><a href="#profile" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="profile-content">My Profile</a></li>
+                    <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="applications-content">Job Applications</a></li>
+                    <li><a href="#messages" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="messages-content">Messages</a></li>            
+                     <li><a href="#settings" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="settings-content">Settings</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main class="flex-1 bg-white shadow rounded-lg p-6 dashboard-main ">
+            <!-- Main Content -->
+            <h2 id="dashboard-title" class="text-2xl font-semibold text-gray-800 mb-4 dashboard-main-title">Dashboard</h2>
+            <div id="dashboard-content" class="hidden dashboard-main-content">
+                <p class="text-gray-700">Here's a summary of your activity:</p>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Recent Applications</h3>
+                    <p class="text-gray-600 dashboard-section-description">You have recently applied to the following jobs:</p>
+                    <ul>
+                        <li>Senior Accountant at Tech Solutions Inc.</li>
+                        <li>Tax Analyst at Global Finance Corp.</li>
+                    </ul>
+                </div>
+            </div>            
 
-  <script src="../../script.js"></script>
+            <div id="profile-content" class="hidden dashboard-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">My Profile Information</h3>
+                <div class="profile-info-item dashboard-section-content">
+                    <label class="profile-info-label">Username:</label>
+                    <p class="profile-info-value">john.doe</p>
+                </div>
+                <div class="profile-info-item dashboard-section-content">
+                    <label class="profile-info-label">Full Name:</label>
+                    <p class="profile-info-value">John Doe</p>
+                </div>
+                <div class="profile-info-item dashboard-section-content">
+                    <label class="profile-info-label">Phone Number:</label>
+                    <p class="profile-info-value">+1 555-123-4567</p>
+                </div>
+                <div class="profile-info-item dashboard-section-content">
+                    <label class="profile-info-label">Email:</label>
+                    <p class="profile-info-value">john.doe@example.com</p>
+                </div>
+            </div>
+
+            <div id="applications-content" class="hidden dashboard-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Job Applications</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
+                    <div class="metric-box">
+                        <div class="metric-label">Total Jobs Applied</div>
+                        <div class="metric-value text-blue-600">15</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Pending Applications</div>
+                        <div class="metric-value text-orange-600">3</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Total Earnings</div>
+                        <div class="metric-value text-green-600">$1,200</div>
+                    </div>
+                </div>
+
+                <h4 class="text-md font-semibold text-gray-800 mb-2 dashboard-section-title">Pending Applications</h4>
+                <div class="scrollable-list-box dashboard-section-content">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Senior Accountant at Alpha Corp.
+                                <p class="text-sm text-gray-600">Applied on 2025-04-20</p>
+                            </div>
+                            <button class="button-primary text-sm">Contract</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Tax Specialist at Beta Industries
+                                <p class="text-sm text-gray-600">Applied on 2025-04-15</p>
+                            </div>
+                            <button class="button-primary text-sm">Contract</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Junior Auditor at Gamma Solutions
+                                <p class="text-sm text-gray-600">Applied on 2025-04-10</p>
+                            </div>
+                            <button class="button-primary text-sm">Contract</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4 class="text-md font-semibold text-gray-800 mb-2 dashboard-section-title">Completed Jobs</h4>
+                <div class="scrollable-list-box dashboard-section-content">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Accountant at Delta Systems
+                                <p class="text-sm text-gray-600">Completed on 2025-04-05 - Earned $500</p>
+                            </div>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Bookkeeper at Epsilon Group
+                                <p class="text-sm text-gray-600">Completed on 2025-03-28 - Earned $700</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="messages-content" class="hidden dashboard-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Your Messages</h3>
+                <div class="scrollable-list-box dashboard-section-content">
+                    <ul class="list-none p-0">
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Conversation with Alpha Corp.
+                                <p class="text-sm text-gray-600">Last message on 2025-04-22</p>
+                            </div>
+                            <button class="button-primary text-sm">View</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Chat with Beta Industries
+                                <p class="text-sm text-gray-600">Last message on 2025-04-18</p>
+                            </div>
+                            <button class="button-primary text-sm">View</button>
+                        </li>
+                        <li class="scrollable-list-item">
+                            <div class="flex-1">
+                                Inquiry about Gamma Solutions
+                                <p class="text-sm text-gray-600">Last message on 2025-04-10</p>
+                            </div>
+                            <button class="button-primary text-sm">View</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="settings-content" class="hidden dashboard-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Account Settings</h3>
+                <p class="text-gray-700 dashboard-section-description">Here you can manage your account settings.</p>
+                <ul class="dashboard-section-content">
+                    <li><a href="#" class="text-blue-500 hover:text-blue-700">Change Password</a></li>
+                    <li><a href="#" class="text-blue-500 hover:text-blue-700">Update Email Preferences</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <footer class="py-4 text-center text-gray-700 bg-white mt-8">
+        <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
+    </footer>
+    <script type="module">
+        import { logout } from '../main%20pages/js/auth.js';
+      
+        const logoutButton = document.getElementById('logoutButton');
+          if (logoutButton) {
+              logoutButton.addEventListener('click', logout);
+          }
+      </script>
+    
+ 
+    <script src="../../script.js"></script>
 </body>
 </html>

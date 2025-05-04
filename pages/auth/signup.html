@@ -139,11 +139,24 @@
             <label for="phoneNumber">Phone Number</label>
             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Your phone number">
           </div>
-          <div class="input-group">
-            <label for="workPermit">Work Permit Number</label>
-            <input type="text" id="workPermit" name="workPermit" placeholder="Your work permit number">
-          </div>
+            <div id="accountantSpecializations" class="hidden mt-4">
+                <p class="mb-2 font-bold">Accountant Specializations:</p>
+                <div class="flex flex-col space-y-2">
+                    <div>
+                        <input type="checkbox" id="charteredAccountant" name="specialization" value="chartered">
+                        <label for="charteredAccountant">Chartered Accountant</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="accountant" name="specialization" value="accountant">
+                        <label for="accountant">Accountant</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="auditor" name="specialization" value="auditor">
+                        <label for="auditor">Auditor</label>
+                    </div>
         </div>
+      </div>
+      </div>
 
         <div id="businessFields" class="hidden">
           <div class="input-group">
@@ -154,13 +167,22 @@
             <label for="businessPhone">Business Phone Number</label>
             <input type="text" id="businessPhone" name="businessPhone" placeholder="Business phone number">
           </div>
+          <div class="business-type-selection hidden">
+            <label for="business-type" class="block mb-2 font-bold">Business Type:</label>
+            <select id="business-type" name="business-type" class="w-full p-2 border border-gray-300 rounded">
+              <option value="sarl">SARL</option>
+              <option value="spa">SPA</option>
+              <option value="eurl">EURL</option>
+            </select>
+          </div>
+          
                 </div>
 
-
+                
                 <button type="submit">Create Account</button>
-            </form>
-            <hr class="separator">
-            <p class="login-link">
+                 </form>
+                  <hr class="separator">
+                 <p class="login-link">
                 Already have an account?
                 <a href="auth.html">Log in</a>
             </p>
@@ -177,8 +199,14 @@
       import {
         getFirestore,
         doc,
-        setDoc,
+        setDoc, // Add setDoc here
+        collection, // Add collection import
+        query, // Add query import
+        getDocs, // Add getDocs import
+        where,
       } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+        
+    
 
             const firebaseConfig = {
                 apiKey: "AIzaSyBt4iqIQljxLZvuedUBBdwqE-GnWcRbcbs",
@@ -255,7 +283,6 @@
                   "password",
                   "fullName",
                   "phoneNumber",
-                  "workPermit",
                 ]
               : ["username", "email", "password", "businessName", "businessPhone"];
           const isFormValid = requiredFields.every(
@@ -270,7 +297,6 @@
           const username = data.username;
             const fullName = data.fullName;
           const phoneNumber = data.phoneNumber;
-          const workPermit = data.workPermit;
             const businessName = data.businessName;
           const businessPhone = data.businessPhone;
 
@@ -287,9 +313,33 @@
           };
           if (role === "accountant") {
                 userDocData.fullName = fullName;
-                userDocData.phoneNumber = phoneNumber;
-                userDocData.workPermit = workPermit;
-                userDocData.role = "accountant";
+            userDocData.phoneNumber = phoneNumber;
+            // Handle specializations
+            const specializations = [];
+            if (data.specialization) {
+              if (Array.isArray(data.specialization)) {
+                specializations.push(...data.specialization);
+              } else {
+                specializations.push(data.specialization);
+              }
+            }
+            userDocData.specializations = specializations;
+            userDocData.role = "accountant";
+          } else if (role === "business") {
+            userDocData.businessName = businessName;
+            userDocData.businessPhone = businessPhone;
+            // Handle business type
+            const businessType = data["business-type"];
+            userDocData.businessType = businessType;
+            userDocData.role = "business";
+          }
+           // Check if user already exists
+        const usersCollection = collection(db, "users");
+        const userQuery = query(usersCollection, where("email", "==", email));
+        const querySnapshot = await getDocs(userQuery);
+        if (!querySnapshot.empty) {
+          await displayError("This email is already registered. Please use a different email.");
+          return;
             } else if (role === "business") {
                 userDocData.businessName = businessName;
                 userDocData.businessPhone = businessPhone;
@@ -307,6 +357,7 @@
           }
         } catch (error) {
           const errorMessage = error.message;
+        
           await displayToast("Signup faild check your conection!", "error");
           await displayError(errorMessage);
           console.error("Error signing up:", error);
@@ -314,32 +365,30 @@
       }
 
       function toggleFields() {
-        try {
-          const accountantFields = document.getElementById("accountantFields");
-                const businessFields = document.getElementById("businessFields");
-                const roles = document.querySelectorAll('input[name="role"]'); // Get all radio buttons with name="role"
-                let role = null;
-                roles.forEach((radio) => {
-                    if (radio.checked) {
-                        role = radio.value; // Get the value of the checked radio button
-                    }
-                });
-                if (role === "accountant") {
-                    //use role
-                    accountantFields.classList.remove("hidden");
-                    businessFields.classList.add("hidden");
-                } else if (role === "business") {
-                    //use role
-                    businessFields.classList.remove("hidden");
-                    accountantFields.classList.add("hidden");
-                } else {
-                    accountantFields.classList.add("hidden");
-                    businessFields.classList.add("hidden");
-                }
-        } catch (error) {
-          console.error("Error displaying error:", error);
+        const accountantFields = document.getElementById("accountantFields");
+        const businessFields = document.getElementById("businessFields");
+        const businessTypeSelection = document.querySelector(".business-type-selection");
+        const accountantSpecializations = document.getElementById("accountantSpecializations");
+        const accountantRoleRadio = document.getElementById("accountantRole");
+        const businessRoleRadio = document.getElementById("businessRole");
+        if (accountantRoleRadio.checked) {
+            accountantFields.classList.remove("hidden");
+            businessFields.classList.add("hidden");
+            businessTypeSelection.classList.add("hidden");
+            accountantSpecializations.classList.remove("hidden");
+        } else if (businessRoleRadio.checked) {
+            businessFields.classList.remove("hidden");
+            accountantFields.classList.add("hidden");
+            businessTypeSelection.classList.remove("hidden");
+            accountantSpecializations.classList.add("hidden");
+        } else {
+            accountantFields.classList.add("hidden");
+            businessFields.classList.add("hidden");
+            businessTypeSelection.classList.add("hidden");
+            accountantSpecializations.classList.add("hidden");
         }
-      }
+    }
+
       document
         .querySelectorAll('input[name="role"]')
         .forEach((radio) =>
@@ -369,13 +418,13 @@
 
 
     <script>
-      fetch('locales/en.json')
+      fetch('../../locales/en.json')
           .then(response => response.json())
           .then(englishTranslations => {
-              fetch('locales/fr.json')
+              fetch('../../locales/fr.json')
                   .then(response => response.json())
                   .then(frenchTranslations => {
-                      fetch('locales/ar.json')
+                      fetch('../../locales/ar.json')
                           .then(response => response.json())
                           .then(arabicTranslations => {
                               i18next.init({
