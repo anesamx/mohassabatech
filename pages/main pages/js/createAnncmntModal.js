@@ -39,7 +39,7 @@ class CreateAnncmntModal {
         this.logFormData(anncmntData);
         if (user) {
             try {
-                await createAnnouncement(this.db, anncmntData, user.uid); // You'll need to create this function in databasefr.js
+                await createAnnouncement(anncmntData, user.uid);
             } catch (error) {
                 console.error("Error adding document: ", error);
             }
@@ -51,14 +51,15 @@ class CreateAnncmntModal {
 
     getFormData() {
         return {
-            title: document.getElementById('anncmntTitle').value, // Ensure you have this ID in your HTML
-            description: document.getElementById('anncmntDescription').value // Ensure you have this ID in your HTML
+            title: document.getElementById('anncmntTitle').value,
+            description: document.getElementById('anncmntDescription').value,
+            category: document.getElementById('anncmntCategory').value
         };
     }
-
     logFormData(anncmntData) {
         console.log('Announcement Title:', anncmntData.title);
         console.log('Announcement Description:', anncmntData.description);
+        console.log('Announcement Category:', anncmntData.category);
     }
 }
 

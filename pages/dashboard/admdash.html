@@ -243,21 +243,24 @@
                 <label for="anncmntDescription" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
                 <textarea id="anncmntDescription" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter announcement description" required></textarea>
             </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Announcement</button>
+           
+            <div class="mb-6">
+                <label for="anncmntCategory" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
+                <select id="anncmntCategory" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <option value="Tax Law">Tax Law</option>
+                    <option value="Finance Law">Finance Law</option>
+                    <option value="Commerce Law">Commerce Law</option>
+                    <option value="Platform Update">Platform Update</option>
+                </select> 
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Announcement</button>
+            </div>
         </form>
     </div>
 </div>
 
     <script src="../../script.js"></script>
     <script type="module" src="../main pages/js/auth.js"></script>
-<script type="module">
-    import { logout } from '../main%20pages/js/auth.js';
-  
-    const logoutButton = document.getElementById('logoutButton');
-      if (logoutButton) {
-          logoutButton.addEventListener('click', logout);
-      }
-  </script>
+
   <script type="module" src="../main pages/js/createAnncmntModal.js"></script>
   <script type="module" src="../main pages/js/auth.js"></script>
   <div id="createUserModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">

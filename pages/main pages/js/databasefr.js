@@ -29,9 +29,9 @@ export async function createJob(jobData, userId,username) {
 
 export async function createAnnouncement(anncmntData, userId) {
     try {
-        const userDoc = await getDoc(doc(db, "users", userId));
-        const username = userDoc.data().username
-        const docRef = await addDoc(collection(db, "announcements"), { ...anncmntData, userId, username, createdAt: new Date() });
+        const userDoc = await getDoc(doc(db, "users", userId)); // use `db` here, it's defined at the top
+        const username = userDoc.data().username;
+        const docRef = await addDoc(collection(db, "announcements"), { ...anncmntData, userId, username, createdAt: new Date() }); // use `db` here
         console.log("Document written with ID: ", docRef.id);
         return docRef.id;
     } catch (e) {
@@ -39,6 +39,7 @@ export async function createAnnouncement(anncmntData, userId) {
         throw e;
     }
 }
+
 export async function createUser(userData, userType) {
     try {
         const docRef = await addDoc(collection(db, "users"), { ...userData, userType, createdAt: new Date() });
