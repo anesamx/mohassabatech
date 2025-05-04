@@ -8,13 +8,19 @@ const db = getFirestore(app);
 export function checkLoginStatus(callback) {
   onAuthStateChanged(auth, async (user) => {
       console.log("checkLoginStatus - User:", user); // Add this line
-    if (user) {
+   if (user) {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       const userData = docSnap.data();
-      console.log("checkLoginStatus - User Data:", userData); // Add this line
-        console.log("checkLoginStatus - User is logged in, role:", userData.role);// Add this line
-      callback(true, userData.role);
+        console.log('userData : ',userData)
+      if (userData && userData.role) {
+        console.log("checkLoginStatus - User is logged in, role:", userData.role);
+        callback(true, userData.role);
+      } else {
+        console.log("User data or role not found!");
+        callback(false, null);
+      }
+
     } else {
           console.log("checkLoginStatus - User is NOT logged in");// Add this line
       callback(false, null);

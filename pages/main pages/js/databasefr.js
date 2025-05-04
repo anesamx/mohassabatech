@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDoc, doc, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDoc, doc, query, orderBy, getDocs, where } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import app from '../../../firebase.js'; // Import the default export
 import { getAuth as firebaseGetAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"; // Import the  auth
 
@@ -6,12 +6,37 @@ import { getAuth as firebaseGetAuth, createUserWithEmailAndPassword } from "http
 const db = getFirestore(app); // Initialize Firestore with the app
 const auth = firebaseGetAuth(app);
 
+
+export async function fetchAccountantsFromDB() {
+    try {
+        const usersCollection = collection(db, "users");
+        const q = query(usersCollection, where("role", "==", "accountant"));
+        const querySnapshot = await getDocs(q);
+
+        const accountants = querySnapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                fullName: data.fullName,
+                username: data.username,
+                accountantType: data.accountantType,
+                email: data.email,
+                phoneNumber:data.phoneNumber
+            };
+        });
+
+        return accountants;
+    } catch (error) {
+        console.error("Error fetching accountants:", error);
+        return [];
+    }
+}
 export function getDatabase() {
     return db;
 }
 export function getAuth(){
     return auth;
 }
+
 
 
 export async function createJob(jobData, userId,username) {
@@ -40,9 +65,9 @@ export async function createAnnouncement(anncmntData, userId) {
     }
 }
 
-export async function createUser(userData, userType) {
+export async function createUser(userData, userType, accountantType) {
     try {
-        const docRef = await addDoc(collection(db, "users"), { ...userData, userType, createdAt: new Date() });
+        const docRef = await addDoc(collection(db, "users"), { ...userData, userType,accountantType ,createdAt: new Date() });
         console.log("Document written with ID: ", docRef.id);
         return docRef.id;
     } catch (e) {
@@ -53,6 +78,7 @@ export async function createUser(userData, userType) {
 export async function signup(email, password, username) {
     try {
         // Create the user in Firebase Authentication
+       
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
@@ -61,6 +87,7 @@ export async function signup(email, password, username) {
             username: username,
             email: email,
             userId: user.uid, // Store the Firebase user ID
+            role:'business',
             createdAt: new Date(),
         });
         console.log("User added to database with ID: ", docRef.id);

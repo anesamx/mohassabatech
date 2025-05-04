@@ -316,15 +316,23 @@
             userDocData.phoneNumber = phoneNumber;
             // Handle specializations
             const specializations = [];
-            if (data.specialization) {
-              if (Array.isArray(data.specialization)) {
-                specializations.push(...data.specialization);
-              } else {
-                specializations.push(data.specialization);
+            // Get all entries from FormData
+            for (const [key, value] of formData.entries()) {
+              if (key === 'specialization') {
+                specializations.push(value);
               }
             }
-            userDocData.specializations = specializations;
+
+            // Ensure accountantType is an empty array if no specializations are selected
+            if (specializations.length === 0) {
+              userDocData.accountantType = [];
+            } else {
+            userDocData.accountantType = specializations;
+            }
+
             userDocData.role = "accountant";
+
+            
           } else if (role === "business") {
             userDocData.businessName = businessName;
             userDocData.businessPhone = businessPhone;
@@ -345,7 +353,7 @@
                 userDocData.businessPhone = businessPhone;
                 userDocData.role = "business";
             } 
-          await setDoc(doc(db, "users", user.uid), userDocData);
+          await setDoc(doc(collection(db, "users")),{...userDocData, uid : user.uid});
           await displayToast("Signup successful!");
 
           if (role === "accountant") {

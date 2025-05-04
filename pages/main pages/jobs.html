@@ -38,47 +38,34 @@
     <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
         <div class="max-w-6xl mx-auto">
             <section class="mb-8 jobs-search" >
-                <h2 class="text-3xl font-semibold text-gray-800 mb-4 jobs-search-title" data-i18n="key_20">Find Your Dream Accounting Job</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="location" class="block text-gray-700 text-sm font-bold mb-2 jobs-search-label" data-i18n="key_21">Location</label>
-                        <input type="text" id="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline jobs-search-input" placeholder="e.g., City, State">
-                    </div>
-                    <div>
-                        <label for="category" class="block text-gray-700 text-sm font-bold mb-2 jobs-search-label" data-i18n="key_22">Category</label>
-                        <select id="category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline jobs-search-select">
-                            <option value="" data-i18n="key_23">All Categories</option>
-                            <option value="tax">Tax Accounting</option>
-                            <option value="audit">Audit</option>
-                            <option value="financial">Financial Accounting</option>
-                            <option value="management">Management Accounting</option>
-                            <option value="forensic">Forensic Accounting</option>
-                            <option value="governmental">Governmental Accounting</option>
-                        </select>
-                    </div> 
-                    <div class="md:col-span-2 flex items-center justify-end">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline jobs-search-button" data-i18n="key_24">
-                            Search Jobs
-                        </button>
-                    </div>
+            
+            </section>
+
+            <section class="mb-8" >
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <button id="audit-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Audit</button>
+                    <button id="Financial-Reports-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Financial Reports</button>
+                    <button id="Financial-Statements-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Financial Statements</button>
+                    <button id="Payroll-Management-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Payroll Management</button>
+                    <button id="Tax-Returns-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Tax Returns</button>
+                    <button id="Other-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Other</button>
                 </div>
             </section>
 
-            <section class="mb-8 jobs-listings" >
+           <div id="accountant-profiles" style="display: none;">
+                
+           </div>
+ <section id="jobs-section" class="mb-8 jobs-listings" >
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4 jobs-listings-title" data-i18n="key_25">Job Listings</h2>
                 <div class="bg-white shadow overflow-hidden rounded-md">
                     <ul class="divide-y divide-gray-200 jobs-listings-list">
-                 
                     </ul>
                 </div>
             </section>
 
-            <nav class="flex justify-center space-x-2 jobs-pagination">
-                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link" data-i18n="key_26">Previous</a>
-                <a href="#" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 pagination-link">1</a>
-                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link">2</a>
-                <a href="#" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 pagination-link" data-i18n="key_27">Next</a>
-            </nav>
+
+
+ 
         </div>
     </main>
 
@@ -182,6 +169,75 @@
           }
         });
       </script>
+      <script  type="module">
+        import { fetchAccountantsFromDB } from "./js/databasefr.js";
+
+
+        async function populateAccountants(accountants) {
+            const accountantProfilesDiv = document.getElementById("accountant-profiles");
+             if (!accountants || accountants.length === 0) {
+                console.warn("No accountants data available.");
+                return;
+            }
+            
+
+            accountantProfilesDiv.innerHTML = ""; // Clear existing content
+
+            accountants.forEach(accountant => {
+                const accountantDiv = document.createElement("div");
+                accountantDiv.classList.add("p-4", "border", "border-gray-300", "rounded-md", "mb-4");
+
+                const namePara = document.createElement("p");
+                namePara.textContent = `Name: ${accountant.name}`;
+                const emailPara = document.createElement("p");
+                emailPara.textContent = `Email: ${accountant.email}`;
+                const phonePara = document.createElement("p");
+                phonePara.textContent = `Phone: ${accountant.phoneNumber}`;
+                const typePara = document.createElement("p");
+                const accountantType = accountant.accountantType || "Not specified";
+                typePara.textContent = `Type: ${accountantType}`;
+
+                accountantDiv.appendChild(namePara);
+                accountantDiv.appendChild(emailPara);
+                accountantDiv.appendChild(phonePara);
+                accountantDiv.appendChild(typePara);
+
+                accountantProfilesDiv.appendChild(accountantDiv);
+            });
+        }
+
+        function clearAccountants() {
+          const accountantProfilesDiv = document.getElementById("accountant-profiles");
+          accountantProfilesDiv.innerHTML = "";
+        }
+        function showJobs() {
+            document.getElementById("jobs-section").style.display = "block";
+            document.getElementById("accountant-profiles").style.display = "none";
+        }
+        function showAccountants() {
+            document.getElementById("jobs-section").style.display = "none";
+            document.getElementById("accountant-profiles").style.display = "block";
+        }
+
+        const auditButton = document.getElementById("audit-button");
+        auditButton.addEventListener("click", async () => {
+            clearAccountants();
+            const accountants = await fetchAccountantsFromDB();
+            if (accountants) {
+                populateAccountants(accountants);
+            }
+            
+            showAccountants();
+        });
+
+        const otherButtons = document.querySelectorAll("button:not(#audit-button)");
+        otherButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                showJobs();
+            });
+        });
+      </script>
+
     
     
     <script src="../../script.js"></script>
