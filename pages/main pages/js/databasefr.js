@@ -88,27 +88,3 @@ export async function fetchAllJobs() {
         return [];
     }
 }
-// databasefr.js
-async function fetchAllAnnouncements() {
-    // Simulate fetching data from a database
-    const announcements = [
-      {
-        title: 'New Website Launched!',
-        description: 'We are excited to announce the launch of our brand new website. Check it out!',
-        createdAt: '2023-10-26'
-      },
-      {
-        title: 'Holiday Schedule',
-        description: 'Our office will be closed during the holidays. Please plan accordingly.',
-        createdAt: '2023-12-24'
-      },
-      {
-        title: 'Office Renovation',
-        description: 'We are renovating our office to better serve you. Please excuse any inconvenience.',
-        createdAt: '2024-01-15'
-      },
-    ];
-    return announcements;
-  }
-
-  export { fetchAllAnnouncements };

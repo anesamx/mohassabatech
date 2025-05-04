@@ -5,92 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcements - Mohassabatech</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script> <script src="../../language.js"></script>
 </head>
 <body class="font-inter bg-gray-100">
 
-            
+
+
     <header id="header" class="py-6 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-md">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <h1 class="text-2xl sm:text-3xl font-bold text-blue-600 header-logo">
+
                     Mohassabatech
                 </h1>
             </div>
             <nav class="header-nav">
                 <ul class="flex space-x-4 sm:space-x-6">
                     <li><a href="../../index.html" class="header-link">Home</a></li>
-                    <li><a href="anncmnt.html" class="header-link">Announcements</a></li>
-                    <li><a href="jobs.html" class="header-link">Jobs</a></li>
-                    <button id="getStartedButton"  class="header-button">Get Started</button> </ul>
+                    <li><a href="jobs.html" class="header-link" data-i18n="key_3">Jobs</a></li>
+                    <li><a href="anncmnt.html" class="header-link" data-i18n="key_2">Announcements</a></li>
+                    <button id="getStartedButton" class="header-button">Get Started</button>
                     <li>
-                      <select id="language-switcher" class="header-link">
-                          <option value="en">English</option>
-                          <option value="fr">Français</option>
-                          <option value="ar">العربية</option>
-                      </select>
-                  </li>
-                  </nav>
+                        <select id="language-switcher" class="header-link">
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </li>
+                </ul> </nav>
         </div>
     </header>
 
     <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8 mt-16">
-        <div class="max-w-3xl mx-auto">
-         
-            <button class="w-full py-4 px-6 bg-blue-500 text-white rounded-lg font-bold text-xl hover:bg-blue-700 mb-4">Tax Law</button>
-            <button class="w-full py-4 px-6 bg-blue-500 text-white rounded-lg font-bold text-xl hover:bg-blue-700 mb-4">Finance Law</button>
-            <button class="w-full py-4 px-6 bg-blue-500 text-white rounded-lg font-bold text-xl hover:bg-blue-700 mb-4">Commerce Law</button>
-            <button class="w-full py-4 px-6 bg-blue-500 text-white rounded-lg font-bold text-xl hover:bg-blue-700 mb-4">Update</button>
-
-
-    
-        </div>
+        <div class="max-w-6xl mx-auto">
+            <section id="category-buttons-container" class="mb-8 jobs-search">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4 jobs-search-title" data-i18n="key_2">Announcements Categories</h2>
+                <!-- Category Buttons -->
+                <div id="category-buttons" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <button class="category-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" data-category="Tax Law" data-i18n="key_48" >Tax Law</button>
+                    </div>
+                     <div>
+                        <button class="category-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" data-category="Finance Law" data-i18n="key_49">Finance Law</button>
+                    </div>
+                    <div>
+                        <button class="category-button bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" data-category="Commerce Law" data-i18n="key_50">Commerce Law</button>
+                    </div>
+                    <div>
+                        <button class="category-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" data-category="Platform Update" data-i18n="key_51">Platform Update</button>
+                    </div>
+                </div>
+            </section>
+            <section id="announcements-container" class=" mb-8 jobs-listings" style="background-color: white; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); border-radius: 0.5rem; padding: 1.5rem; width: 100%; margin-top: 10px;">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4 jobs-search-title" data-i18n="key_2">Announcements </h2>
+                
+                <ul id="announcements-list" style="list-style: none; padding: 0; margin: 0;"></ul> 
+            </section>
     </main>
-
     <footer class="py-4 text-center text-gray-700 bg-white">
         <p>© {new Date().getFullYear()} Mohassabatech. All rights reserved.</p>
     </footer>
-    <script type="module">
-        import { checkLoginStatus } from "./js/auth.js";
-      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+<script type="module">
+       
+    import { checkLoginStatus } from "./js/auth.js";
+  
         checkLoginStatus((isLoggedIn, role) => {
-          const getStartedButton = document.getElementById("getStartedButton");
-          if (getStartedButton) {
-            if (isLoggedIn) {
-              getStartedButton.textContent = "Dashboard";
-              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
-              getStartedButton.addEventListener('click', () => {
-                switch (role) {
-                  case 'Admin':
-                    window.location.href = "../dashboard/admdash.html";
-                    break;
-                  case 'accountant':
-                    window.location.href = "../dashboard/accntdash.html";
-                    break;
-                  case 'business':
-                    window.location.href = "../dashboard/bsndash.html";
-                    break;
-                  case 'Manager':
-                      window.location.href = "../dashboard/mngdash.html";
-                    break;
-                  default:
-                    console.error('Unknown user role:', role);
-                    break;
+            const getStartedButton = document.getElementById("getStartedButton");
+            if (getStartedButton) {
+                if (isLoggedIn) {
+                    getStartedButton.textContent = "Dashboard";
+                    getStartedButton.addEventListener('click', () => {
+                        switch (role) {
+                            case 'Admin':
+                                window.location.href = "../dashboard/admdash.html";
+                                break;
+                            case 'accountant':
+                                window.location.href = "../dashboard/accntdash.html";
+                                break;
+                            case 'business':
+                                window.location.href = "../dashboard/bsndash.html";
+                                break;
+                            case 'Manager':
+                                window.location.href = "../dashboard/mngdash.html";
+                                break;
+                            default:
+                                console.error('Unknown user role:', role);
+                               break;
+                        }
+                    });
+                } else {
+                    getStartedButton.textContent = "Get Started";
+                    getStartedButton.addEventListener('click', () => {
+                        window.location.href = "../auth/signup.html";
+                    });
                 }
-              });
-            } else {
-              getStartedButton.textContent = "Get Started";
-              getStartedButton.removeEventListener('click', () => {}); // Remove any existing event listeners
-              getStartedButton.addEventListener('click', () => {
-                window.location.href = "../auth/signup.html";
-              });
             }
-          }
         });
-      </script>
-     <script type="module" src="./js/fetchAnnouncements.js"></script>
-    <script src="../../script.js"></script>
+       
+</script>
+<script type="module">
+    import { fetchAndDisplayAnnouncements } from "./js/fetchAnnouncements.js";
+    const categoryButtons = document.querySelectorAll('.category-button');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category;
+            fetchAndDisplayAnnouncements(category);
+        });
+    });
+
+        const originalFetchAndDisplayAnnouncements = fetchAndDisplayAnnouncements;
+    
+        fetchAndDisplayAnnouncements = async (category) => {
+            await originalFetchAndDisplayAnnouncements(category);
+            const announcementsList = document.getElementById('announcements-list');
+            const liElements = announcementsList.querySelectorAll('li');
+            liElements.forEach(li => {
+                 li.style.padding = '0.75rem 0';
+                li.style.borderBottom = '1px solid #e2e8f0';
+                li.querySelectorAll('p')[0].style.fontWeight = 'bold';
+                  li.querySelectorAll('p')[2].style.color = '#718096';
+            });
+        };
+    fetchAndDisplayAnnouncements(null);
+    
+
+</script>
 </body>
 </html>
