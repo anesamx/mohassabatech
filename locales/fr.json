@@ -1,9 +1,10 @@
 
      { 
-      "key_1": "Accueil",
+     "key_get":"commencer", 
+     "key_1": "Accueil",
       "key_2": "Annonces",
       "key_4": "Se déconnecter",
-      "key_3": "Emplois",
+      "key_3": "service",
       "key_5": "Rejoignez une communauté florissante conçue pour favoriser la croissance et les opportunités dans le monde de la comptabilité.",
       "key_6": "Trouver un emploi",
       "key_7": "Fonctionnalités clés",
