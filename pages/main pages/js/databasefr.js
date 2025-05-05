@@ -9,50 +9,70 @@ const db = getFirestore(app); // Initialize Firestore with the app
 
 export async function fetchAccountantsFromDB(accountantType) {
     try {
-        const usersCollection = collection(db, "users");
-        let q;
-        if (accountantType) {
-           if (accountantType === "auditor") {
-                q = query(
-                    usersCollection,
-                    where("role", "==", "accountant"),
-                    where("accountantType", "array-contains-any", ["auditor"])
-                );
-            } else if (accountantType === "chartered") {
-               q = query(
-                    usersCollection,
-                    where("role", "==", "accountant"),
-                    where("accountantType", "array-contains-any", ["chartered", "accountant"])
-                );
-            } else if (accountantType === "accountant") {
-                 q = query(
-                    usersCollection,
-                    where("role", "==", "accountant"),
-                    where("accountantType", "array-contains", "accountant") // Corrected line
-                );
-            } else{
-                q = query(usersCollection, where("role", "==", "accountant")
+        const usersCollection = collection(db, "users");// fetch all acountant
+        let accountants = [];
 
-                );
-            }
-        } else {
-           
-            q = query(usersCollection, where("role", "==", "accountant"));
+        if (accountantType === "auditor") {
+            // Query for accountants with 'auditor'
+            const q1 = query(usersCollection, where("role", "==", "accountant"), where("accountantType", "array-contains", "auditor"));
+            const querySnapshot1 = await getDocs(q1);
+            const auditors = querySnapshot1.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+            // Query for accountants with both 'auditor' and 'chartered'
+            const q2 = query(usersCollection, where("role", "==", "accountant"), where("accountantType", "array-contains-any", ["auditor", "chartered"]));
+            const querySnapshot2 = await getDocs(q2);
+            const auditorChartereds = querySnapshot2.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+            accountants = [...auditors, ...auditorChartereds];
+        } else if (accountantType === "chartered") {
+            // Query for accountants with 'chartered'
+            const q1 = query(usersCollection, where("role", "==", "accountant"), where("accountantType", "array-contains", "chartered"));
+            const querySnapshot1 = await getDocs(q1);
+            const chartereds = querySnapshot1.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+            // Query for accountants with both 'chartered' and 'accountant'
+            const q2 = query(usersCollection, where("role", "==", "accountant"), where("accountantType", "array-contains-any", ["chartered", "accountant"]));
+            const querySnapshot2 = await getDocs(q2);
+            const charteredAccountants = querySnapshot2.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+            accountants = [...chartereds, ...charteredAccountants];
+        } else if (accountantType === "accountant") {
+            // Query for accountants with 'accountant'
+            const q = query(usersCollection, where("role", "==", "accountant"), where("accountantType", "array-contains", "accountant"));
+            const querySnapshot = await getDocs(q);
+            accountants = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        }else {
+            // Fetch all accountants
+             const q = query(usersCollection, where("role", "==", "accountant"));
+            const querySnapshot = await getDocs(q);
+            accountants = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
         }
-        const querySnapshot = await getDocs(q);
+         if (!accountantType) {
+            // Fetch all accountants
+            const q = query(usersCollection, where("role", "==", "accountant"));
+            const querySnapshot = await getDocs(q);
+            accountants = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+            }
 
-        const accountants = querySnapshot.docs.map(doc => {
-            const data = doc.data();
+        // Remove duplicates based on document ID
+        const uniqueAccountants = [];
+        const seenIds = new Set();
+        for (const accountant of accountants) {
+            if (!seenIds.has(accountant.id)) {
+                uniqueAccountants.push(accountant);
+                seenIds.add(accountant.id);
+            }
+        }
+
+         const cleanedAccountants = uniqueAccountants.map(accountant => {
             return {
-                fullName: data.fullName,
-                username: data.username,
-                accountantType: data.accountantType,
-                email: data.email,
-                phoneNumber:data.phoneNumber
-            };
-        });
-            
-        return accountants;
+                fullName: accountant.fullName,
+                username: accountant.username,
+                accountantType: accountant.accountantType,
+                email: accountant.email,
+                phoneNumber: accountant.phoneNumber};});
+
+        return cleanedAccountants;
     } catch (error) {
         console.error("Error fetching accountants:", error);
         return [];
