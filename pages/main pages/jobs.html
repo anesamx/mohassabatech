@@ -188,17 +188,39 @@
 
             accountantProfilesDiv.innerHTML = ""; // Clear existing content
 
-            accountants.forEach(accountant => {
+            accountants.forEach(accountant => { 
                 const accountantDiv = document.createElement("div");
-                accountantDiv.classList.add("p-4", "border", "border-gray-300", "rounded-md", "mb-4");
+                accountantDiv.classList.add("p-4", "border", "border-gray-300", "rounded-md", "mb-4", "flex");
 
-                const namePara = document.createElement("p");
-                namePara.textContent = `Name: ${accountant.fullName}`;
+                // Profile Image
+                const profileImage = document.createElement("img");
+                profileImage.src = accountant.profileImage || "../../assets/acountant.png"; // Default image if not provided
+                profileImage.alt = `${accountant.fullName}'s Profile`;
+                profileImage.classList.add("w-20", "h-20", "rounded-full", "mr-4");
+                accountantDiv.appendChild(profileImage);
+        
+                // Container for text details
+                const textContainer = document.createElement("div");
+                textContainer.classList.add("flex-1");
+        
+                // Accountant Details
+                const namePara = document.createElement("h3");
+                namePara.textContent = accountant.fullName;
+                namePara.classList.add("font-semibold", "text-lg");
+        
                 const emailPara = document.createElement("p");
                 emailPara.textContent = `Email: ${accountant.email}`;
+                emailPara.classList.add("text-sm", "text-gray-600");
+        
                 const phonePara = document.createElement("p");
                 phonePara.textContent = `Phone: ${accountant.phoneNumber}`;
+                phonePara.classList.add("text-sm", "text-gray-600");
+        
                 const typePara = document.createElement("p");
+                typePara.classList.add("text-sm", "text-gray-600");
+                const aboutPara = document.createElement("p");
+                 aboutPara.textContent = `About: ${accountant.about || 'Not specified'}`; // Add about information
+                 aboutPara.classList.add("text-sm", "text-gray-600");
         
                 if (accountant.accountantType && accountant.accountantType.length > 0) {
                     typePara.textContent = `Type: ${accountant.accountantType.join(", ")}`;
@@ -207,11 +229,22 @@
                 }
                 // Create a container div for the buttons
                 const buttonsDiv = document.createElement("div");
-                buttonsDiv.classList.add("flex", "gap-4", "mt-4");
+                buttonsDiv.classList.add("flex", "mt-4");
+                const languagePara = document.createElement("p");
+               languagePara.textContent = `Language: ${accountant.language || 'Not specified'}`; // Add language
+               languagePara.classList.add("text-sm", "text-gray-600");
 
-        // Create the Contact button
-        const contactButton = document.createElement("button");
-        contactButton.textContent = "Contact";
+            const experiencePara = document.createElement("p");
+            experiencePara.textContent = `Experience: ${accountant.experience || 'Not specified'}`; // Add experience
+            experiencePara.classList.add("text-sm", "text-gray-600");
+
+            const ratePara = document.createElement("p");
+            ratePara.textContent = `Rate: ${accountant.rate || 'Not specified'}`; // Add rate
+            ratePara.classList.add("text-sm", "text-gray-600");
+            textContainer.appendChild(namePara);
+           textContainer.appendChild(aboutPara);
+            textContainer.appendChild(emailPara);
+        
                // Create the "Contact Me" button
    // Create the "Contact Me" button
                 const contactMeButton = document.createElement("button");
@@ -222,16 +255,19 @@
                  chatModal.open(`Contact ${accountant.fullName} at ${accountant.email}`);
             });
 
+            textContainer.appendChild(phonePara);
+            textContainer.appendChild(typePara);
+            textContainer.appendChild(ratePara);
+            textContainer.appendChild(experiencePara);
+            textContainer.appendChild(languagePara);
+            textContainer.appendChild(buttonsDiv)
 
+           
+        
+            buttonsDiv.appendChild(contactMeButton);
+        
 
-                accountantDiv.appendChild(namePara);
-                accountantDiv.appendChild(emailPara);
-                accountantDiv.appendChild(phonePara);
-                accountantDiv.appendChild(typePara);
-                buttonsDiv.appendChild(contactButton);
-                buttonsDiv.appendChild(contactMeButton);
-
-                 accountantDiv.appendChild(buttonsDiv);
+                accountantDiv.appendChild(textContainer);
 
                 accountantProfilesDiv.appendChild(accountantDiv);
             });
@@ -262,7 +298,7 @@
         // Audit Button
         auditButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB("auditor");
+            const accountants = await fetchAccountantsFromDB("auditor" ,);
             if (accountants) {
                 populateAccountants(accountants);
             }
@@ -270,7 +306,7 @@
             });
         // Financial Statements Button
         financialStatementsButton.addEventListener("click", async () => {
-            clearAccountants();
+           clearAccountants();
             const accountants = await fetchAccountantsFromDB("chartered");
             if (accountants) {
                 populateAccountants(accountants);
@@ -280,7 +316,7 @@
         // Financial Reports Button
         financialReportsButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB("chartered");
+            const accountants = await fetchAccountantsFromDB("chartered",);
             if (accountants) {
                 populateAccountants(accountants);
             }
@@ -288,11 +324,11 @@
         });
         // Payroll Management Button
         payrollManagementButton.addEventListener("click", async () => {
-            clearAccountants();
-            const accountants = await fetchAccountantsFromDB("chartered"); if (accountants) { populateAccountants(accountants); } showAccountants(); }); // Tax Returns Button
+            clearAccountants();            
+            const accountants = await fetchAccountantsFromDB("chartered"); if (accountants) { populateAccountants(accountants); } showAccountants(); });
         taxReturnsButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB("chartered");
+            const accountants = await fetchAccountantsFromDB("chartered",);
             if (accountants) {
                 populateAccountants(accountants);
             }
