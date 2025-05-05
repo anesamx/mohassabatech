@@ -171,6 +171,10 @@
         });
       </script>
       <script  type="module">
+         import { ChatModal } from "./js/chatmodel.js";
+
+         
+         
         import { fetchAccountantsFromDB } from "./js/databasefr.js";
 
 
@@ -210,15 +214,15 @@
         contactButton.textContent = "Contact";
                // Create the "Contact Me" button
    // Create the "Contact Me" button
-const contactMeButton = document.createElement("button");
-    contactMeButton.textContent = "Contact Me";
-    contactMeButton.classList.add("bg-green-500", "hover:bg-green-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
-   
-   contactMeButton.addEventListener("click", async () => {
-       const chatModal = new ChatModal();
-       chatModal.textElement.textContent = `Contact ${accountant.fullName} at ${accountant.email}`;
+                const contactMeButton = document.createElement("button");
+                contactMeButton.textContent = "Contact Me";
+                contactMeButton.classList.add("bg-green-500", "hover:bg-green-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
+                contactMeButton.addEventListener("click", async () => {
+                const chatModal = new ChatModal();
+                 chatModal.textElement.textContent = `Contact ${accountant.fullName} at ${accountant.email}`;
         chatModal.open();
     });
+
 
                 accountantDiv.appendChild(namePara);
                 accountantDiv.appendChild(emailPara);
@@ -296,8 +300,6 @@ const contactMeButton = document.createElement("button");
         });
       </script>
 
-    
-<script src="js/chatmodel.js"></script>
     
     <script src="../../script.js"></script>
 </body>

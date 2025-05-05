@@ -1,7 +1,6 @@
-import { auth, db, addDoc, collection, serverTimestamp, getDocs, query, where } from '../../../firebase.js';
-import { getUserByEmail } from './databasefr.js';
 
-class ChatModal {
+
+export class ChatModal {
   constructor() { 
     this.modal = document.createElement('div');
     this.modal.style.display = 'none'; // Hidden by default

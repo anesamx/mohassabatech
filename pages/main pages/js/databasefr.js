@@ -1,11 +1,10 @@
 import { getFirestore, collection, addDoc, getDoc, doc, query, orderBy, getDocs, where } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import app from '../../../firebase.js'; // Import the default export
-import { auth } from '../../../firebase.js';
+import { auth } from '../../../firebase.js'; // Import the  auth
 import { getAuth as firebaseGetAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"; // Import the  auth
 
 
 const db = getFirestore(app); // Initialize Firestore with the app
-const auth = firebaseGetAuth(app);
 
 
 export async function fetchAccountantsFromDB(accountantType) {

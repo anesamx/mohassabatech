@@ -1,9 +1,8 @@
-import { auth } from '../firebase.js';
-import { getDatabase,getAuth } from "./databasefr.js"; // Import getAuth
+import { getDatabase, getAuth } from "./databasefr.js"; // Import getAuth
 import { collection, getDocs, query, orderBy, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import { checkLoginStatus } from "./auth.js";
-const auth = getAuth();
 
+const auth = getAuth();
 console.log("fetchJobs.js loaded");
 
 const db = getDatabase();
