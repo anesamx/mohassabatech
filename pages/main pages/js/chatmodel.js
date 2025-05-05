@@ -81,22 +81,17 @@ export class ChatModal {
   }
 
   sendMessage() {
-    const messageText = this.messageInput.value.trim();
-    if (messageText) {
-      this.messages.push({ text: messageText, sender: 'user' });
-      this.messageInput.value = ''; 
-      this.displayMessages();
-    }
-  }
+    const messageContent = this.messageInput.value.trim();
+    if (messageContent) {
+      // Create a new message element
+      const newMessage = document.createElement("div");
+      newMessage.textContent = `You: ${messageContent}`;
+      newMessage.classList.add('chat-message');
+      this.conversationHistory.appendChild(newMessage);
 
-  displayMessages() {
-    this.conversationHistory.innerHTML = ''; 
-    this.messages.forEach(message => {
-      const messageElement = document.createElement('div');
-      messageElement.textContent = `${message.sender}: ${message.text}`;
-      this.conversationHistory.appendChild(messageElement);
-    });
-    this.conversationHistory.scrollTop = this.conversationHistory.scrollHeight;
+      this.messageInput.value = "";
+      this.conversationHistory.scrollTop = this.conversationHistory.scrollHeight; // Scroll to the bottom
+    }
   }
 
   open() {

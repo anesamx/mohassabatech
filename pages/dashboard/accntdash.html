@@ -1,7 +1,7 @@
 @ -1,188 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>+    <script type="module" src="../main pages/js/chatmodel.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accountant Dashboard - Mohassabatech</title>
@@ -146,25 +146,24 @@
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
                         <li class="scrollable-list-item">
-                            <div class="flex-1">
-                                Conversation with Alpha Corp.
-                                <p class="text-sm text-gray-600">Last message on 2025-04-22</p>
+                         <div class="flex-1">
+                                Conversation with Alpha Corp.<p class="text-sm text-gray-600">Last message on 2025-04-22</p>
                             </div>
-                            <button class="button-primary text-sm">View</button>
+ <button class="open-chat-modal button-primary text-sm" data-conversation-title="Conversation with Alpha Corp.">Contact</button>
                         </li>
                         <li class="scrollable-list-item">
                             <div class="flex-1">
                                 Chat with Beta Industries
                                 <p class="text-sm text-gray-600">Last message on 2025-04-18</p>
                             </div>
-                            <button class="button-primary text-sm">View</button>
+                             <button class="open-chat-modal button-primary text-sm" data-conversation-title="Chat with Beta Industries">Contact</button>
                         </li>
                         <li class="scrollable-list-item">
                             <div class="flex-1">
                                 Inquiry about Gamma Solutions
                                 <p class="text-sm text-gray-600">Last message on 2025-04-10</p>
                             </div>
-                            <button class="button-primary text-sm">View</button>
+                            <button class="open-chat-modal button-primary text-sm" data-conversation-title="Inquiry about Gamma Solutions">Contact</button>
                         </li>
                     </ul>
                 </div>
@@ -192,8 +191,21 @@
               logoutButton.addEventListener('click', logout);
           }
       </script>
-    
- 
+ <script type="module">
+    import { ChatModal } from '../main pages/js/chatmodel.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatModal = new ChatModal();
+        const openModalButtons = document.querySelectorAll('.open-chat-modal');
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const conversationTitle = button.dataset.conversationTitle;
+                chatModal.open(`Conversation with ${conversationTitle}`);
+            });
+        });
+    });
+</script>
+
     <script src="../../script.js"></script>
 </body>
 </html>
