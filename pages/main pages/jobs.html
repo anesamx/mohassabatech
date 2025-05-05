@@ -199,10 +199,24 @@
                     typePara.textContent = `Type: ${accountant.accountantType.join(", ")}`;
                 } else {
           typePara.textContent = `Type: Not specified`;
-        }
+                }
+                // Create a container div for the buttons
+                const buttonsDiv = document.createElement("div");
+                buttonsDiv.classList.add("flex", "gap-4", "mt-4");
+
         // Create the Contact button
         const contactButton = document.createElement("button");
         contactButton.textContent = "Contact";
+                // Create the "Contact Me" button
+                const contactMeButton = document.createElement("button");
+                contactMeButton.textContent = "Contact Me";
+                contactMeButton.classList.add("bg-green-500", "hover:bg-green-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
+                contactMeButton.addEventListener("click", () => {
+                    const email = accountant.email; // Get the accountant's email
+                    if (email) {
+                        window.open(`mailto:${email}?subject=Contact%20Request`);
+                    }
+                });
         contactButton.classList.add("bg-blue-500", "hover:bg-blue-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
 
          contactButton.addEventListener("click", () => {
@@ -214,15 +228,14 @@
             }
            
         });
-
-
-
                 accountantDiv.appendChild(namePara);
                 accountantDiv.appendChild(emailPara);
                 accountantDiv.appendChild(phonePara);
                 accountantDiv.appendChild(typePara);
+                buttonsDiv.appendChild(contactButton);
+                buttonsDiv.appendChild(contactMeButton);
 
-                 accountantDiv.appendChild(contactButton);
+                 accountantDiv.appendChild(buttonsDiv);
 
                 accountantProfilesDiv.appendChild(accountantDiv);
             });

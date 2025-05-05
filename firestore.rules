@@ -5,6 +5,9 @@ service cloud.firestore {
       allow read, update, delete: if request.auth != null && request.auth.uid == userId;
       allow create : if request.auth != null && request.auth.uid == userId;
     }
+    match /users/{userId} {
+        allow read: if get(/databases/$(database)/documents/users/$(userId)).data.role == 'accountant';
+    }
     match /jobs/{jobId} {
       allow read : if true;
       allow create : if request.auth != null;
