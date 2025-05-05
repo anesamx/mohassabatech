@@ -188,13 +188,13 @@
                 accountantDiv.classList.add("p-4", "border", "border-gray-300", "rounded-md", "mb-4");
 
                 const namePara = document.createElement("p");
-                namePara.textContent = `Name: ${accountant.name}`;
+                namePara.textContent = `Name: ${accountant.fullName}`;
                 const emailPara = document.createElement("p");
                 emailPara.textContent = `Email: ${accountant.email}`;
                 const phonePara = document.createElement("p");
                 phonePara.textContent = `Phone: ${accountant.phoneNumber}`;
                 const typePara = document.createElement("p");
-                const accountantType = accountant.accountantType || "Not specified";
+                const accountantType = accountant.accountantType && accountant.accountantType[0]|| "Not specified";
                 typePara.textContent = `Type: ${accountantType}`;
 
                 accountantDiv.appendChild(namePara);
@@ -220,21 +220,55 @@
         }
 
         const auditButton = document.getElementById("audit-button");
+        const financialStatementsButton = document.getElementById("Financial-Statements-button");
+        const financialReportsButton = document.getElementById("Financial-Reports-button");
+        const payrollManagementButton = document.getElementById("Payroll-Management-button");
+        const taxReturnsButton = document.getElementById("Tax-Returns-button");
+        const otherButton = document.getElementById("Other-button");
+        otherButton.addEventListener("click", () => {
+            showJobs();
+        });
+
         auditButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB();
+            const accountants = await fetchAccountantsFromDB(["chartered","auditor"]);
             if (accountants) {
                 populateAccountants(accountants);
             }
-            
+            showAccountants();
+            });
+        financialStatementsButton.addEventListener("click", async () => {
+            clearAccountants();
+            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            if (accountants) {
+                populateAccountants(accountants);
+            }
+            showAccountants();
+        });
+        financialReportsButton.addEventListener("click", async () => {
+            clearAccountants();
+            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            if (accountants) {
+                populateAccountants(accountants);
+            }
+            showAccountants();
+        });
+        payrollManagementButton.addEventListener("click", async () => {
+            clearAccountants();
+            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            if (accountants) {
+                populateAccountants(accountants);
+            }
             showAccountants();
         });
 
-        const otherButtons = document.querySelectorAll("button:not(#audit-button)");
-        otherButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                showJobs();
-            });
+        taxReturnsButton.addEventListener("click", async () => {
+            clearAccountants();
+            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            if (accountants) {
+                populateAccountants(accountants);
+            }
+            showAccountants();
         });
       </script>
 

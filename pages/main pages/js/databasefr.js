@@ -7,10 +7,27 @@ const db = getFirestore(app); // Initialize Firestore with the app
 const auth = firebaseGetAuth(app);
 
 
-export async function fetchAccountantsFromDB() {
+export async function fetchAccountantsFromDB(accountantType) { //accountantType type can be a string or an array of string
     try {
         const usersCollection = collection(db, "users");
-        const q = query(usersCollection, where("role", "==", "accountant"));
+        let q;
+        if (accountantType) {
+            if (Array.isArray(accountantType)) {
+                q = query(
+                    usersCollection,
+                    where("role", "==", "accountant"),
+                    where("accountantType", "array-contains-any", accountantType) // Corrected line
+                );
+            } else {
+                q = query(
+                    usersCollection,
+                    where("role", "==", "accountant"),
+                    where("accountantType", "array-contains", accountantType)
+                );
+            }
+        } else {
+            q = query(usersCollection, where("role", "==", "accountant"));
+        }
         const querySnapshot = await getDocs(q);
 
         const accountants = querySnapshot.docs.map(doc => {
@@ -23,19 +40,21 @@ export async function fetchAccountantsFromDB() {
                 phoneNumber:data.phoneNumber
             };
         });
-
+            
         return accountants;
     } catch (error) {
         console.error("Error fetching accountants:", error);
         return [];
     }
 }
+
 export function getDatabase() {
     return db;
 }
 export function getAuth(){
     return auth;
 }
+
 
 
 
