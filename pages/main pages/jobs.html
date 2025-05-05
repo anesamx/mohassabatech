@@ -219,9 +219,9 @@
                 contactMeButton.classList.add("bg-green-500", "hover:bg-green-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
                 contactMeButton.addEventListener("click", async () => {
                 const chatModal = new ChatModal();
-                 chatModal.textElement.textContent = `Contact ${accountant.fullName} at ${accountant.email}`;
-        chatModal.open();
-    });
+                 chatModal.open(`Contact ${accountant.fullName} at ${accountant.email}`);
+            });
+
 
 
                 accountantDiv.appendChild(namePara);

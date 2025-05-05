@@ -1,7 +1,6 @@
-
-
 export class ChatModal {
   constructor() { 
+    this.messages = [];
     this.modal = document.createElement('div');
     this.modal.style.display = 'none'; // Hidden by default
     this.modal.style.position = 'fixed';
@@ -12,6 +11,7 @@ export class ChatModal {
     this.modal.style.height = '100%';
     this.modal.style.overflow = 'auto';
     this.modal.style.backgroundColor = 'rgba(0,0,0,0.4)'; // Semi-transparent background
+    this.modal.classList.add("chat-modal");
   
     this.modalContent = document.createElement('div')
       this.modalContent.style.backgroundColor = '#fefefe';
@@ -20,12 +20,35 @@ export class ChatModal {
       this.modalContent.style.border = '1px solid #888';
       this.modalContent.style.width = '80%';
       this.modalContent.style.position = 'relative';
+      this.modalContent.classList.add("chat-modal-content");
     
-    this.textElement = document.createElement('p');
-      this.textElement.textContent = 'Default text...'; // Default message for the model
-      this.textElement.style.fontSize = '16px';
-      this.textElement.classList.add('modal-text');
-  
+    // Conversation history container
+    this.conversationHistory = document.createElement('div');
+    this.conversationHistory.style.height = '300px';
+    this.conversationHistory.style.overflowY = 'auto';
+    this.conversationHistory.style.marginBottom = '10px';
+    this.conversationHistory.style.padding = '10px';
+    this.conversationHistory.style.border = '1px solid #ccc';
+    this.conversationHistory.classList.add("chat-history");
+
+    // Message input field
+    this.messageInput = document.createElement('input');
+    this.messageInput.type = 'text';
+    this.messageInput.placeholder = 'Enter your message';
+    this.messageInput.style.width = 'calc(100% - 60px)';
+    this.messageInput.style.padding = '10px';
+    this.messageInput.style.border = '1px solid #ccc';
+    this.messageInput.classList.add("chat-input");
+
+    // Send button
+    this.sendButton = document.createElement('button');
+    this.sendButton.textContent = 'Send';
+    this.sendButton.style.width = '50px';
+    this.sendButton.style.padding = '10px';
+    this.sendButton.style.marginLeft = '5px';
+    this.sendButton.classList.add("chat-send-btn");
+
+
     this.closeButton = document.createElement('span')
       this.closeButton.innerHTML = '&times;'; // "X" symbol
       this.closeButton.style.color = '#aaa';
@@ -41,8 +64,13 @@ export class ChatModal {
     this.closeButton.onclick = () => {
       this.close();
     };
+    this.sendButton.onclick = () => {
+        this.sendMessage()
+    };
     this.modalContent.appendChild(this.closeButton);
-    this.modalContent.appendChild(this.textElement);
+    this.modalContent.appendChild(this.conversationHistory);
+    this.modalContent.appendChild(this.messageInput);
+    this.modalContent.appendChild(this.sendButton);
     this.modal.appendChild(this.modalContent);
     document.body.appendChild(this.modal);
     window.addEventListener('click', (event) => {
@@ -52,40 +80,28 @@ export class ChatModal {
     });
   }
 
-  async createChatDocument(accountantEmail, accountantName) {
-    try {
-        const accountantDoc = await getUserByEmail(accountantEmail);
-      if (!accountantDoc) return; // Accountant not found
-        const accountantUid = accountantDoc.id;
-        const user = auth.currentUser;
-        if (!user) return;
-        const businessUid = user.uid;
-
-        // Check if a chat already exists
-        const q = query(collection(db, "chats"), where("businessUid", "==", businessUid), where("accountantUid", "==", accountantUid));
-        const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-            // Create a new chat document
-            await addDoc(collection(db, "chats"), {
-                accountantUid: accountantUid,
-                businessUid: businessUid,
-                timestamp: serverTimestamp(),
-            });
-        }
-
-        this.textElement.textContent = `Contact ${accountantName} at ${accountantEmail}`;
-        this.open()
-        
-
-    } catch (e) {
-        console.error("Error adding chat document: ", e);
+  sendMessage() {
+    const messageText = this.messageInput.value.trim();
+    if (messageText) {
+      this.messages.push({ text: messageText, sender: 'user' });
+      this.messageInput.value = ''; 
+      this.displayMessages();
     }
   }
 
-  open(text) {
+  displayMessages() {
+    this.conversationHistory.innerHTML = ''; 
+    this.messages.forEach(message => {
+      const messageElement = document.createElement('div');
+      messageElement.textContent = `${message.sender}: ${message.text}`;
+      this.conversationHistory.appendChild(messageElement);
+    });
+    this.conversationHistory.scrollTop = this.conversationHistory.scrollHeight;
+  }
+
+  open() {
     this.modal.style.display = 'block'; // Show the modal
-    this.textElement.textContent = text;
+    
   }
 
   close() {
