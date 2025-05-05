@@ -7,25 +7,36 @@ const db = getFirestore(app); // Initialize Firestore with the app
 const auth = firebaseGetAuth(app);
 
 
-export async function fetchAccountantsFromDB(accountantType) { //accountantType type can be a string or an array of string
+export async function fetchAccountantsFromDB(accountantType) {
     try {
         const usersCollection = collection(db, "users");
         let q;
         if (accountantType) {
-            if (Array.isArray(accountantType)) {
+           if (accountantType === "auditor") {
                 q = query(
                     usersCollection,
                     where("role", "==", "accountant"),
-                    where("accountantType", "array-contains-any", accountantType) // Corrected line
+                    where("accountantType", "array-contains-any", ["auditor"])
                 );
-            } else {
-                q = query(
+            } else if (accountantType === "chartered") {
+               q = query(
                     usersCollection,
                     where("role", "==", "accountant"),
-                    where("accountantType", "array-contains", accountantType)
+                    where("accountantType", "array-contains-any", ["chartered", "accountant"])
+                );
+            } else if (accountantType === "accountant") {
+                 q = query(
+                    usersCollection,
+                    where("role", "==", "accountant"),
+                    where("accountantType", "array-contains", "accountant") // Corrected line
+                );
+            } else{
+                q = query(usersCollection, where("role", "==", "accountant")
+
                 );
             }
         } else {
+           
             q = query(usersCollection, where("role", "==", "accountant"));
         }
         const querySnapshot = await getDocs(q);

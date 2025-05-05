@@ -194,13 +194,35 @@
                 const phonePara = document.createElement("p");
                 phonePara.textContent = `Phone: ${accountant.phoneNumber}`;
                 const typePara = document.createElement("p");
-                const accountantType = accountant.accountantType && accountant.accountantType[0]|| "Not specified";
-                typePara.textContent = `Type: ${accountantType}`;
+        
+                if (accountant.accountantType && accountant.accountantType.length > 0) {
+                    typePara.textContent = `Type: ${accountant.accountantType.join(", ")}`;
+                } else {
+          typePara.textContent = `Type: Not specified`;
+        }
+        // Create the Contact button
+        const contactButton = document.createElement("button");
+        contactButton.textContent = "Contact";
+        contactButton.classList.add("bg-blue-500", "hover:bg-blue-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
+
+         contactButton.addEventListener("click", () => {
+            const email = accountant.email; // Get the accountant's email
+            if (email) {
+               window.open(`mailto:${email}`);
+            } else{
+                console.error("No email available");
+            }
+           
+        });
+
+
 
                 accountantDiv.appendChild(namePara);
                 accountantDiv.appendChild(emailPara);
                 accountantDiv.appendChild(phonePara);
                 accountantDiv.appendChild(typePara);
+
+                 accountantDiv.appendChild(contactButton);
 
                 accountantProfilesDiv.appendChild(accountantDiv);
             });
@@ -228,43 +250,40 @@
         otherButton.addEventListener("click", () => {
             showJobs();
         });
-
+        // Audit Button
         auditButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB(["chartered","auditor"]);
+            const accountants = await fetchAccountantsFromDB("auditor");
             if (accountants) {
                 populateAccountants(accountants);
             }
             showAccountants();
             });
+        // Financial Statements Button
         financialStatementsButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            const accountants = await fetchAccountantsFromDB("chartered");
             if (accountants) {
                 populateAccountants(accountants);
             }
             showAccountants();
         });
+        // Financial Reports Button
         financialReportsButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            const accountants = await fetchAccountantsFromDB("chartered");
             if (accountants) {
                 populateAccountants(accountants);
             }
             showAccountants();
         });
+        // Payroll Management Button
         payrollManagementButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
-            if (accountants) {
-                populateAccountants(accountants);
-            }
-            showAccountants();
-        });
-
+            const accountants = await fetchAccountantsFromDB("chartered"); if (accountants) { populateAccountants(accountants); } showAccountants(); }); // Tax Returns Button
         taxReturnsButton.addEventListener("click", async () => {
             clearAccountants();
-            const accountants = await fetchAccountantsFromDB(["chartered", "accountant"]);
+            const accountants = await fetchAccountantsFromDB("chartered");
             if (accountants) {
                 populateAccountants(accountants);
             }
