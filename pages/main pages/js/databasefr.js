@@ -1,5 +1,6 @@
 import { getFirestore, collection, addDoc, getDoc, doc, query, orderBy, getDocs, where } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 import app from '../../../firebase.js'; // Import the default export
+import { auth } from '../../../firebase.js';
 import { getAuth as firebaseGetAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"; // Import the  auth
 
 

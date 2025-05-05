@@ -211,42 +211,14 @@
                // Create the "Contact Me" button
    // Create the "Contact Me" button
 const contactMeButton = document.createElement("button");
-contactMeButton.textContent = "Contact Me";
-contactMeButton.classList.add("bg-green-500", "hover:bg-green-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
-contactMeButton.addEventListener("click", async () => {
-    const email = accountant.email; // Get the accountant's email
-    if (email) {
-        // Create a new ChatModal instance
-        const chatModal = new ChatModal();
-        chatModal.textElement.textContent = `Contact ${accountant.name} at ${email}`; // Set the text
-
-        chatModal.open(); // Open the modal
-
-        try {
-            // Get the current user (business) UID
-            const user = auth.currentUser; // get current user
-            if (user) {
-                const businessUid = user.uid; // get current uid
-
-                // Get the accountant's UID (assuming it's in the accountant object)
-                const accountantUid = accountant.uid;
-
-                // Create a new chat document in Firestore
-                const docRef = await addDoc(collection(db, "chat"), {
-                    accountantUid: accountantUid,
-                    businessUid: businessUid,
-                    timestamp: serverTimestamp(),
-                });
-
-                console.log("Chat document created with ID: ", docRef.id);
-            } else {
-                console.log("No user is currently logged in.");
-            }
-        } catch (e) {
-            console.error("Error adding chat document: ", e);
-        }
-    }
-});
+    contactMeButton.textContent = "Contact Me";
+    contactMeButton.classList.add("bg-green-500", "hover:bg-green-700", "text-white", "font-bold", "py-2", "px-4", "rounded");
+   
+   contactMeButton.addEventListener("click", async () => {
+       const chatModal = new ChatModal();
+       chatModal.textElement.textContent = `Contact ${accountant.fullName} at ${accountant.email}`;
+        chatModal.open();
+    });
 
                 accountantDiv.appendChild(namePara);
                 accountantDiv.appendChild(emailPara);
