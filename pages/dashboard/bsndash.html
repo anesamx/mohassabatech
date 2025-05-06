@@ -45,7 +45,7 @@
                 <ul class="space-y-2 sidebar-links">
                     <li><a href="#overview"
                             class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link active-link" data-content="overview-content" data-i18n="key_30">Overview</a></li>
-                    <li><a href="#jobs" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="jobs-content" data-i18n="key_3">Jobs</a></li>
+                    <li><a href="#jobs" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="jobs-content" data-i18n="key_job">Jobs</a></li>
                     <li><a href="#applications" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="job-applicants-section" data-i18n="key_50">Job Applications</a></li>
                     <li><a href="#masages" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="candidates-content" data-i18n="key_49">messages</a></li>
                     <li><a href="#company" class="block text-gray-700 hover:text-red-600 transition-colors duration-300 dashboard-link sidebar-link" data-content="company-content" data-i18n="key_34">Company</a></li>
@@ -253,7 +253,7 @@
                 </div>
             </div>
     </div>
-    <script src="../../language.js"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
     <script src="../../script.js"></script>
     <script type="module" src="../main pages/js/auth.js"></script>
@@ -282,5 +282,61 @@
             });
         });
     </script>
+    <script>
+        fetch('../../locales/en.json')
+            .then(response => response.json())
+            .then(englishTranslations => {
+                fetch('../../locales/fr.json')
+                    .then(response => response.json())
+                    .then(frenchTranslations => {
+                        fetch('../../locales/ar.json')
+                            .then(response => response.json())
+                            .then(arabicTranslations => {
+                                i18next.init({
+                                    lng: localStorage.getItem('selectedLanguage') || 'en',
+
+                                    resources: {
+                                        en: {
+                                            translation: englishTranslations
+                                        },
+                                        fr: {
+                                            translation: frenchTranslations
+                                        },
+                                        ar: {
+                                            translation: arabicTranslations
+                                        }
+                                    }
+                                }).then(function (t) {
+                                    updateContent();
+                                    const languageSwitcher = document.getElementById('language-switcher');
+                                    if (languageSwitcher) {
+                                        languageSwitcher.value = i18next.language;
+                                        languageSwitcher.addEventListener('change', function () {
+                                            const selectedLanguage = languageSwitcher.value;
+                                            i18next.changeLanguage(selectedLanguage).then(() => {
+                                                updateContent();
+                                                localStorage.setItem('selectedLanguage', selectedLanguage);
+                                            });
+                                        });
+                                    }
+                                });
+                            });
+                    });
+            });
+
+                           function updateContent() {
+                               document.querySelectorAll('[data-i18n]').forEach(function (element) {
+                                   element.textContent = i18next.t(element.dataset.i18n);
+                               });
+                               if (i18next.language == "ar") {
+                                   document.body.classList.add('arabic-layout');
+                               } else {
+                                   document.body.classList.remove('arabic-layout');
+                               }
+                           }
+ 
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
+     
 </body>
 </html>

@@ -1,4 +1,11 @@
 {
+  "key_a":"Audit", 
+  "key_b":"Financial Reports", 
+  "key_c":"Financial Statements", 
+  "key_d":"Payroll Management", 
+  "key_e":"Tax Returns", 
+  "key_f":"other", 
+  "key_job":"jobs", 
   "key_get":"get started",
   "key_1": "Home",
   "key_2": "Announcements",
