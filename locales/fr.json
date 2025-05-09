@@ -1,12 +1,15 @@
 
      { 
+      "tl": "Droit fiscal",
+      "fl": "Droit financier",
+      "cl": "Droit commercial",
+      "pu": "Mise à jour de la plateforme",
       "key_a": "Audit",
-"key_b": "Rapports financiers",
-"key_c": "États financiers",
-"key_d": "Gestion de la paie",
-"key_e": "Déclarations fiscales",
-"key_f": "Autre",
-
+      "key_b": "Rapports financiers",
+      "key_c": "États financiers",
+      "key_d": "Gestion de la paie",
+      "key_e": "Déclarations fiscales",
+      "key_f": "Autre",
       "key_job":"emploi", 
      "key_get":"commencer", 
      "key_1": "Accueil",

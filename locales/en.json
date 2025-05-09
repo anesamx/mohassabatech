@@ -1,4 +1,8 @@
 {
+  "tl":"Tax Law", 
+  "fl":"Finance Law", 
+  "cl":"Commerce Law", 
+  "pu":"Platform Update", 
   "key_a":"Audit", 
   "key_b":"Financial Reports", 
   "key_c":"Financial Statements", 
