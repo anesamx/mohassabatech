@@ -118,12 +118,32 @@
    "key_106": "Paiement complété",
    "key_107": "Paiement en attente",
    "key_108": "Activité",
-   "key_109": "Paiements Récents",
-   "key_110": "Factures récentes",
-   "key_111": "N° de facture",
-   "key_112": "Montant",
-   "key_113": "Date d'échéance",
-   "key_114": "Créer un nouveau poste"
+    "key_109": "Paiements Récents",
+    "key_110": "Factures récentes",
+    "key_111": "N° de facture",
+    "key_112": "Montant",
+    "key_113": "Date d'échéance",
+    "key_114": "Créer un nouveau poste",
+    "services_title": "Nos Services",
+    "services_subtitle1": "Services",
+    "services_list1_item1": "Préparation des États Financiers",
+    "services_list1_item2": "Tenue de Livres Comptables",
+    "services_list1_item3": "Préparation des Déclarations Fiscales",
+    "services_list1_item4": "Audit et Examen",
+    "services_list1_item5": "Gestion de la Paie",
+    "services_subtitle2": "Services Additionnels",
+    "services_list2_item1": "Préparation des Études de Faisabilité Financière",
+    "services_list2_item2": "Fourniture de Consultations Financières et Comptables",
+    "services_list2_item3": "Formation et Qualification Comptable",
+    "services_list2_item4": "Services de Conformité Financière",
+    "services_list2_item5": "Services d'Analyse Financière et de Planification",
+    "feedback_text1": "Les comptables sont très serviables et disponibles. Les prix sont aussi très intéressants.",
+    "feedback_name1": "Jeanne Dupont",
+    "feedback_text2": "J'ai eu une super expérience. Ils sont compétents et professionnels",
+    "feedback_name2": "Jean Martin",
+    "feedback_text3": "Je recommande vivement cette plateforme. Tout est facile et rapide.",
+    "feedback_name3": "Alice Lambert"
+  ,"feedback_title": "Avis des Clients"
   }
   
   

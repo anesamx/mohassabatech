@@ -125,6 +125,27 @@
     "key_111": "Invoice No.",
     "key_112": "Amount",
     "key_113": "Due date",
-    "key_114": "Create New Job"
-  }
+    "key_114": "Create New Job",
+    "services_subtitle1": "Services",
+    "services_list1_item1": "Preparation of Financial Statements",
+    "services_list1_item2": "Accounting Bookkeeping",
+    "services_list1_item3": "Preparation of Tax Returns",
+    "services_list1_item4": "Auditing and Review",
+    "services_list1_item5": "Payroll Management",
+    "services_subtitle2": "Additional Services",
+    "services_list2_item1": "Preparation of Financial Feasibility Studies",
+    "services_list2_item2": "Providing Financial and Accounting Consultations",
+    "services_list2_item3": "Accounting Training and Qualification",
+    "services_list2_item4": "Financial Compliance Services",
+    "services_list2_item5": "Financial Analysis and Planning Services",
+    "services_title": "Our Services",
+    "feedback_text1": "The accountants are really helpful and available. Great prices too.",
+    "feedback_name1": "Jane Smith",
+    "feedback_text2": "I had a great experience. They are knowledgable and profesional",
+    "feedback_name2": "John Doe",
+    "feedback_text3": "I highly recommend this platform. All is easy and fast.",
+    "feedback_name3": "Alice Johnson"
+    ,"feedback_title": "Customer Feedback"
+    
+}
   
