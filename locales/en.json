@@ -14,7 +14,7 @@
   "key_1": "Home",
   "key_2": "Announcements",
   "key_3": "service",
-  "key_5": "Join a thriving community designed to foster growth and opportunity in the accounting world.",
+ "key_5": "Your path to financial success",
     "key_4": "log out",
     "key_6": "Find Jobs",
     "key_7": "Key Features",
@@ -147,7 +147,8 @@
     "feedback_name3": "Alice Johnson",
     "feedback_title": "Customer Feedback",
     "pricing_title": "Pricing Plans",
-  "contact_title": "Contact Us"
+  "contact_title": "Contact Us",
+  "key_az": "how we are"
 
 }
   
