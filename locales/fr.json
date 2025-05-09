@@ -142,8 +142,10 @@
     "feedback_text2": "J'ai eu une super expérience. Ils sont compétents et professionnels",
     "feedback_name2": "Jean Martin",
     "feedback_text3": "Je recommande vivement cette plateforme. Tout est facile et rapide.",
-    "feedback_name3": "Alice Lambert"
-  ,"feedback_title": "Avis des Clients"
-  }
+    "feedback_name3": "Alice Lambert",
+  "feedback_title": "Avis des Clients",
+    "pricing_title": "Plans tarifaires",
+    "contact_title": "Contactez-nous"
+}
   
   

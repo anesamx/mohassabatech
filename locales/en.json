@@ -144,8 +144,10 @@
     "feedback_text2": "I had a great experience. They are knowledgable and profesional",
     "feedback_name2": "John Doe",
     "feedback_text3": "I highly recommend this platform. All is easy and fast.",
-    "feedback_name3": "Alice Johnson"
-    ,"feedback_title": "Customer Feedback"
-    
+    "feedback_name3": "Alice Johnson",
+    "feedback_title": "Customer Feedback",
+    "pricing_title": "Pricing Plans",
+  "contact_title": "Contact Us"
+
 }
   
