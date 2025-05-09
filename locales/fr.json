@@ -145,8 +145,9 @@
     "feedback_name3": "Alice Lambert",
   "feedback_title": "Avis des Clients",
     "pricing_title": "Plans tarifaires",
-    "contact_title": "Contactez-nous",
-    "key_az": "qui nous sommes"
+   
+    "key_az": "qui nous sommes",
+     "contact_title": "Contactez-nous"
 }
   
   
