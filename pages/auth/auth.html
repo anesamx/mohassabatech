@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script type="module" src="../../firebase.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+    <script type="module" src="../main pages/js/auth.js"></script>
     
     <style>        
      .auth-form .error {color: red;}       
@@ -64,6 +64,7 @@
                 if (userDoc.exists()) {               
                      role = userDoc.data().role;
                      console.log(role)
+ console.log("User role: ", role);
                 
                          if (role === 'Admin') {
                           console.log('Redirecting to admdash');

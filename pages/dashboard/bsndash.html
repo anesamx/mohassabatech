@@ -197,9 +197,11 @@
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title" data-i18n="key_55">Company Profile</h3>
                 <p class="text-gray-700 dashboard-section-description" data-i18n="key_56">View and update your company's profile information.</p>
                 <div class="dashboard-section-content">
-                    <p>Company Name: Mohassabatech</p>
-                    <p>Industry: Technology</p>
-                    <p>Founded: 2020</p>
+                    <p>Company Name: <span id="business-name"></span></p>
+                    <p>Phone: <span id="business-phone"></span></p>
+                    <p>Type: <span id="business-type"></span></p>
+                    <p>Email: <span id="email"></span></p>
+                    <p>Username: <span id="username"></span></p>
                 </div>
             </section>
 
@@ -340,6 +342,30 @@
  
     </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.16/i18next.min.js"></script>
-     
+    
+    <script type="module">
+        import { fetchUserData } from '../main pages/js/profiledata.js';
+        import { auth } from '../../firebase.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js';
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const userData = await fetchUserData(user.uid);
+                if (userData) {
+                    document.getElementById('business-name').textContent = userData.businessName || 'N/A';
+                    document.getElementById('business-phone').textContent = userData.businessPhone || 'N/A';
+                    document.getElementById('business-type').textContent = userData.businessType || 'N/A';
+                    document.getElementById('email').textContent = userData.email || 'N/A';
+                    document.getElementById('username').textContent = userData.username || 'N/A';
+                } else {
+                    console.error("Could not fetch user data.");
+                    // Optionally display an error message on the page
+                }
+            } else {
+                console.log("User is not logged in.");
+                // Redirect to login page or handle as appropriate
+            }
+        });
+    </script>
 </body>
 </html>

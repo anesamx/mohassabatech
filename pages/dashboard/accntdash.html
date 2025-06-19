@@ -64,26 +64,30 @@
             <div id="profile-content" class="hidden dashboard-section">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">My Profile Information</h3>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Username:</label>
-                    <p class="profile-info-value">john.doe</p>
+                    <label class="profile-info-label">Username:</label><span id="username"></span>
                 </div>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Full Name:</label>
-                    <p class="profile-info-value">John Doe</p>
+                    <label class="profile-info-label">Full Name:</label><span id="full-name"></span>
                 </div>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Phone Number:</label>
-                    <p class="profile-info-value">+1 555-123-4567</p>
+                    <label class="profile-info-label">Phone Number:</label><span id="phone-number"></span>
                 </div>
                 <div class="profile-info-item dashboard-section-content">
-                    <label class="profile-info-label">Email:</label>
-                    <p class="profile-info-value">john.doe@example.com</p>
+                    <label class="profile-info-label">Email:</label><span id="email"></span>
+                </div>
+                 <div class="profile-info-item dashboard-section-content">
+                    <label class="profile-info-label">Accountant Type:</label><span id="accountant-type"></span>
                 </div>
             </div>
 
             <div id="applications-content" class="hidden dashboard-section">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Job Applications</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 dashboard-section-content">
+
+
+
+
+
                     <div class="metric-box">
                         <div class="metric-label">Total Jobs Applied</div>
                         <div class="metric-value text-blue-600">15</div>
@@ -97,7 +101,7 @@
                         <div class="metric-value text-green-600">$1,200</div>
                     </div>
                 </div>
-
+               
                 <h4 class="text-md font-semibold text-gray-800 mb-2 dashboard-section-title">Pending Applications</h4>
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
@@ -124,7 +128,7 @@
                         </li>
                     </ul>
                 </div>
-
+            
                 <h4 class="text-md font-semibold text-gray-800 mb-2 dashboard-section-title">Completed Jobs</h4>
                 <div class="scrollable-list-box dashboard-section-content">
                     <ul class="list-none p-0">
@@ -142,7 +146,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+             </div>
 
             <div id="messages-content" class="hidden dashboard-section">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Your Messages</h3>
@@ -171,6 +175,8 @@
                     </ul>
                 </div>
             </div>
+
+
 
             <div id="settings-content" class="hidden dashboard-section">
                 <h3 class="text-lg font-semibold text-gray-800 mb-2 dashboard-section-title">Account Settings</h3>
@@ -262,6 +268,27 @@
                 chatModal.open(`Conversation with ${conversationTitle}`);
             });
         });
+    });
+
+ import { fetchUserData } from '../main pages/js/profiledata.js';
+ import { auth, db } from '../../firebase.js';
+  import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js';
+
+ onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const userData = await fetchUserData(user.uid);
+            if (userData) {
+                document.getElementById('username').textContent = userData.username || '';
+                document.getElementById('full-name').textContent = userData.fullName || '';
+                document.getElementById('phone-number').textContent = userData.phoneNumber || '';
+                document.getElementById('email').textContent = userData.email || '';
+                 document.getElementById('accountant-type').textContent = userData.accountantType || '';
+            } else {
+                console.log("User data not found.");
+            }
+        } else {
+            console.log("User is not logged in.");
+        }
     });
 </script>
 
